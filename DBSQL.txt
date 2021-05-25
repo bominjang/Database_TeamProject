@@ -1,0 +1,132 @@
+# DB 이름: DB2021Team03
+# DB ID: DB2021Team03
+# DB PW: DB02021Team03
+
+
+CREATE DATABASE DB2021Team03;
+use DB2021Team03;
+
+##User
+CREATE TABLE DB2021_User(
+ID int auto_increment not null,
+nickname varchar(20) not null,
+password varchar(20) not null,
+name varchar(20) not null,
+birth date,
+phone varchar(11),
+
+join_time timestamp not null,
+privacy_fg char(1) not null,
+admin_fg char(1) not null,
+delete_fg char(1) not null,
+delete_time timestamp
+
+primary key(nickname)
+);
+
+수정완료
+=======================================
+
+## Movie
+CREATE TABLE DB2021_Movie(
+ID int auto_increment not null,
+title varchar(20) not null,
+genre varchar(20),
+country varchar(20),
+running_time int,
+opening_date date,
+director_id int not null,
+plot varchar(3000),
+rating float,
+age int,
+
+primary key(ID),
+foreign key(director_id)
+references DB2021_Director(ID)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+);
+
+
+## Director
+CREATE TABLE DB2021_Director(
+ID int auto_increment not null,
+name varchar(20) not null,
+country varchar(20),
+birth date,
+
+primary key(ID)
+);
+
+
+## Director_Prize
+CREATE TABLE DB2021_Director_Prize(
+ID int auto_increment not null,
+director_id int not null,
+film_id int not null,
+prize varchar(100),
+
+primary key(ID),
+foreign key(director_id) references DB2021_Director(ID) ON DELETE CASCADE ON UPDATE CASCADE,
+foreign key(film_id) references DB2021_Movie(ID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE INDEX DPidx
+ON DB2021_Director_Prize(director_id, film_id);
+
+
+## Actor
+CREATE TABLE DB2021_Actor(
+ID int auto_increment,
+name varchar(20),
+country varchar(20),
+birth date,
+film_id int not null,
+
+primary key(ID),
+foreign key(film_id) references DB2021_Movie(ID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+## Actor_Prize
+CREATE TABLE DB2021_Actor_Prize(
+ID int auto_increment,
+actor_id int not null,
+film_id int not null,
+prize varchar(100),
+
+primary key(ID),
+foreign key(actor_id) references DB2021_Actor(ID) ON DELETE CASCADE ON UPDATE CASCADE,
+foreign key(film_id) references DB2021_Movie(ID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE INDEX APidx
+ON DB2021_Actor_Prize(actor_id, film_id);
+
+
+## Review
+CREATE TABLE DB2021_Review(
+ID int auto_increment not null,
+movie_id int not null,
+userID varchar(20),
+create_date date,
+rate int,
+detail varchar(500),
+
+primary key(ID),
+foreign key(movie_id) references DB2021_Movie(ID) ON DELETE CASCADE ON UPDATE CASCADE,
+foreign key(userID) references DB2021_User(nickname) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+## 좋아요
+CREATE TABLE DB2021_Likes(
+ID int auto_increment,
+movie_id int not null,
+userID varchar(20),
+
+primary key(ID),
+foreign key(movie_id) references DB2021_Movie(ID),
+foreign key(userID) references DB2021_User(nickname)
+);
+
