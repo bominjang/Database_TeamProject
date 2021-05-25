@@ -95,7 +95,7 @@ public class Login extends CustomUI {
 
         btnJoin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-//                new Join();
+                new Join();
                 frame.dispose();
             }
         });
