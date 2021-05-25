@@ -19,9 +19,9 @@ join_time timestamp not null,
 privacy_fg char(1) not null,
 admin_fg char(1) not null,
 delete_fg char(1) not null,
-delete_time timestamp
+delete_time timestamp,
 
-primary key(nickname)
+primary key(ID)
 );
 
 수정완료
