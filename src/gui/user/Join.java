@@ -64,16 +64,17 @@ public class Join extends CustomUI {
                 }
 
                 String name = txtName.getText();
-                if (name.length() >= 8) {
+                if (name.length() >= 20) {
                     JOptionPane.showMessageDialog(null, "이름은 20글자 이하로 입력해주세요");
                     txtName.setText("");
                 }
 
                 //String regExp = "^[0-9]+$";
-                String regExp = "^([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))$";
+                //String regExp = "^([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))$";
+                String regExp = "^(19[0-9][0-9]|20\\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])+$";
                 String birth = txtbirth.getText();
                 if (birth.length() != 10) {
-                    JOptionPane.showMessageDialog(null, "생년월일은 10글자로 입력해주세요 ex)1994-08-15");
+                    JOptionPane.showMessageDialog(null, "생년월일은 10글자로 입력해주세요 ex)1999-01-01");
                     txtbirth.setText("");
                 } else if (!(birth.matches(regExp))) {
                     JOptionPane.showMessageDialog(null, "생년월일은 1990-01-01형식으로만 입력할 수 있습니다");
@@ -119,7 +120,7 @@ public class Join extends CustomUI {
                 }
                 //nickname.length() <= 20 &&
                 if (password.length() >= 8 && password.equals(passwordCheck)
-                        && birth.length() == 8 && (phone.length() == 10 || phone.length() == 11)
+                        && birth.length() == 10 && (phone.length() == 10 || phone.length() == 11)
                         && cbAgree.isSelected() == true && birth.matches(regExp) && phone.matches(regExp2)
                         && checkId == 0) {
 

@@ -12,8 +12,7 @@ public class DBConnection {
 //            Class.forName("com.mysql.jdbc.Driver");
 //            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:3306:db2021Team03", "DB2021Team03", "DB2021Team03");
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/DB2021Team03", "root", "bomin99@@");
-            System.out.println("connect");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/db2021team03", "DB2021Team03", "DB2021Team03");
             return conn;
         } catch(Exception e){
             e.printStackTrace();
