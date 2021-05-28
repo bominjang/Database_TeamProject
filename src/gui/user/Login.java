@@ -80,7 +80,7 @@ public class Login extends CustomUI {
 //                            new gui.admin.Main();
                             frame.dispose();
                         } else {
-//                            new Main(nickname);
+                            new Main(nickname);
                             frame.dispose();
                         }
                     } else {
