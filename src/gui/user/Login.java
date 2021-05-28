@@ -25,7 +25,7 @@ public class Login extends CustomUI {
 
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
-    private JTextField txtUserId;
+    private JTextField txtNickname;
     private JPasswordField txtPassword;
     private JButton btnLogin, btnJoin;
     private JLabel lbLogo, lbSearch;
@@ -33,7 +33,7 @@ public class Login extends CustomUI {
     private static Connection conn;
     private static PreparedStatement pstmt;
     private static ResultSet rs;
-    private static final String SQL = "SELECT * FROM USERS WHERE USER_ID = ? AND PASSWORD = ? AND DEL_FG = 'N'";
+    private static final String SQL = "SELECT * FROM DB2021_User WHERE NICKNAME = ? AND PASSWORD = ? AND DELETE_FG = 'N'";
 
     public Login() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,18 +61,18 @@ public class Login extends CustomUI {
 
         btnLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String userId = txtUserId.getText();
+                String nickname = txtNickname.getText();
                 String password = String.valueOf(txtPassword.getPassword());
 
                 conn = DBConnection.getConnection();
 
                 try {
                     pstmt = conn.prepareStatement(SQL);
-                    pstmt.setString(1, userId);
+                    pstmt.setString(1, nickname);
                     pstmt.setString(2, password);
                     rs = pstmt.executeQuery();
                     System.out.println(SQL);
-                    System.out.println(userId);
+                    System.out.println(nickname);
                     System.out.println(password);
 
                     if (rs.next()) {
@@ -80,7 +80,7 @@ public class Login extends CustomUI {
 //                            new gui.admin.Main();
                             frame.dispose();
                         } else {
-//                            new Main(userId);
+//                            new Main(nickname);
                             frame.dispose();
                         }
                     } else {
@@ -124,7 +124,7 @@ public class Login extends CustomUI {
         custom.setPanel();
 
         lbLogo = custom.setLbImg("lbLogo", 4, 150, 150);
-        txtUserId = custom.setTextField("txtUserId", "ID", 35, 290, 350, 45);
+        txtNickname = custom.setTextField("txtNickname", "Nickname", 35, 290, 350, 45);
         txtPassword = custom.setPasswordField("txtPassword", "Password", 35, 345, 350, 45);
         btnLogin = custom.setBtnBlue("btnLogin", "로그인", 425);
         btnJoin = custom.setBtnWhite("btnJoin", "회원가입", 480);
