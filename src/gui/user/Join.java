@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.Timestamp;
+import java.sql.ResultSet;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -75,6 +75,7 @@ public class Join extends CustomUI {
                 String birth = txtbirth.getText();
                 if (birth.length() != 10) {
                     JOptionPane.showMessageDialog(null, "생년월일은 10글자로 입력해주세요 ex)1999-01-01");
+
                     txtbirth.setText("");
                 } else if (!(birth.matches(regExp))) {
                     JOptionPane.showMessageDialog(null, "생년월일은 1990-01-01형식으로만 입력할 수 있습니다");
