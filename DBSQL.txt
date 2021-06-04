@@ -24,6 +24,8 @@ delete_time timestamp,
 primary key(ID)
 );
 
+
+
 수정완료
 =======================================
 
