@@ -34,7 +34,7 @@ primary key(ID, name)
 CREATE INDEX Dname ON DB2021_Director(name);
 
 
-## Movie
+## Movie(director와 1:N)
 CREATE TABLE DB2021_MOVIE(
 ID int auto_increment not null,
 title varchar(20) not null,
@@ -42,11 +42,11 @@ genre varchar(20) not null,
 country varchar(20) not null,
 running_time int,
 opening_date date,
+director varchar(20) not null,
 plot varchar(3000),
 rating float,
 age int not null,
 
-director varchar(20) not null,
 primary key(ID),
 foreign key(director) references DB2021_Director(name) on delete cascade on update cascade
 );
@@ -55,7 +55,7 @@ CREATE INDEX Mtitle ON DB2021_MOVIE(title);
 
 
 
-## Director_Prize
+## Director_Prize(1:Many)
 CREATE TABLE DB2021_Director_Prize(
 ID int auto_increment not null,
 prize varchar(100) not null,
@@ -77,14 +77,23 @@ ID int auto_increment not null,
 name varchar(20) not null,
 country varchar(20) not null,
 birth date,
-movie varchar(20) not null,
 
-primary key(ID),
-foreign key(movie) references DB2021_Movie(title) on delete cascade on update cascade
+primary key(ID, name)
 );
 
 CREATE INDEX Aname ON DB2021_Actor(name);
 
+
+## Actor_Movie(Many to Many)
+CREATE TABLE DB2021_Actor_Movie(
+actor varchar(20) not null,
+movie varchar(20) not null,
+
+primary key(actor, movie),
+
+foreign key(actor) references DB2021_Actor(name) on delete cascade on update cascade,
+foreign key(movie) references DB2021_Movie(title) on delete cascade on update cascade
+);
 
 
 ## Actor_Prize
