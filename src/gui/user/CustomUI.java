@@ -100,6 +100,49 @@ class CustomUI extends JFrame {
         return txt;
     }
 
+    protected float setFloatField(String name, String placeholder, int x, int y, int width, int height) {
+        JTextField txt = new JTextField();
+
+        if (placeholder == null) {
+            txt.setText("Please input here");
+        } else {
+            txt.setText(placeholder);
+        }
+
+        Font tfFont = new Font("Arial", Font.PLAIN, 20);
+        txt.setFont(tfFont);
+        txt.setBackground(Color.white);
+        txt.setForeground(Color.gray.brighter());
+
+        txt.addFocusListener(new FocusListener() {
+            public void focusLost(FocusEvent e) {
+                JTextField tf = (JTextField)e.getComponent();
+                if(tf.getText().equals("")) {
+                    if (placeholder == null) {
+                        tf.setForeground(Color.gray.brighter());
+                        tf.setText("Please input here");
+                    } else {
+                        tf.setForeground(Color.gray.brighter());
+                        tf.setText(placeholder);
+                    }
+                }
+            }
+            public void focusGained(FocusEvent e) {
+                JTextField tf = (JTextField)e.getComponent();
+                if (tf.getText().equals(placeholder) || tf.getText().equals("Please input here") || tf.getText().equals("")) {
+                    tf.setText("");
+                    tf.setForeground(Color.BLACK);
+                }
+            }
+        });
+
+        txt.setBounds(x, y, width, height);
+        backgroundPanel.add(txt);
+        txt.setName(name);
+
+        return Float.parseFloat(txt.getText());
+    }
+
     protected JPasswordField setPasswordField(String name, String placeholder, int x, int y, int width, int height) {
         JPasswordField txt = new JPasswordField();
 

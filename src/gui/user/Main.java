@@ -12,41 +12,41 @@ public class Main extends CustomUI {
 
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
-    private JButton btnMovie, btnTheater, btnList, btnInfo, btnLogout;
+    private JButton btnMovie, btnTheater, btnReview, btnInfo, btnLogout;
 
-    private String userId;
+    private String nickname;
 
-    public Main(String userId) {
-        this.userId = userId;
+    public Main(String nickname) {
+        this.nickname = nickname;
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         init();
 
         /*
         btnMovie.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new SelectDate(userId, 0, "Movie");
+                new SelectDate(nickname, 0, "Movie");
                 frame.dispose();
             }
         });
 
         btnTheater.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new SelectTheater1(userId);
+                new SelectTheater1(nickname);
                 frame.dispose();
             }
         });
+         */
 
-        btnList.addActionListener(new ActionListener() {
+        btnReview.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new BookingList(userId);
+                new Review(nickname);
                 frame.dispose();
             }
         });
-        */
 
         btnInfo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new UserInfo(userId);
+                new UserInfo(nickname);
                 frame.dispose();
             }
         });
@@ -71,10 +71,10 @@ public class Main extends CustomUI {
         CustomUI custom = new CustomUI(backgroundPanel);
         custom.setPanel();
 
-        btnMovie = custom.setBtnImg("btnMovie", "영화별 예매", 33, 240);
-        btnTheater = custom.setBtnImg("btnTheater", "상영관별 예매", 212, 240);
-        btnList = custom.setBtnImg("btnList", "예매 확인", 33, 400);
-        btnInfo = custom.setBtnImg("btnInfo", "내 정보 보기", 212, 400);
+        btnMovie = custom.setBtnImg("btnMovie", "둘러보기", 33, 240);
+        btnTheater = custom.setBtnImg("btnTheater", "검색하기", 212, 240);
+        btnReview = custom.setBtnImg("btnReview", "리뷰 작성", 33, 400);
+        btnInfo = custom.setBtnImg("btnInfo", "마이페이지", 212, 400);
         btnLogout = custom.setBtnWhite("btnLogout", "로그아웃", 650);
     }
 }
