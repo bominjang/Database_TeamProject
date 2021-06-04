@@ -6,7 +6,7 @@ CREATE TABLE DB2021_User(
 ID int auto_increment not null,
 nickname varchar(20) not null,
 password varchar(20) not null,
-name varchar(20) not null,
+name varchar(50) not null,
 birth date,
 phone varchar(11),
 join_time timestamp not null,
@@ -24,7 +24,7 @@ CREATE INDEX Unick ON DB2021_User(nickname);
 ## Director
 CREATE TABLE DB2021_Director(
 ID int auto_increment not null,
-name varchar(20) not null,
+name varchar(50) not null,
 country varchar(20) not null,
 birth date,
 
@@ -42,7 +42,7 @@ genre varchar(20) not null,
 country varchar(20) not null,
 running_time int,
 opening_date date,
-director varchar(20) not null,
+director varchar(50) not null,
 plot varchar(3000),
 rating float,
 age int not null,
@@ -59,7 +59,7 @@ CREATE INDEX Mtitle ON DB2021_MOVIE(title);
 CREATE TABLE DB2021_Director_Prize(
 ID int auto_increment not null,
 prize varchar(100) not null,
-director varchar(20) not null,
+director varchar(50) not null,
 movie varchar(20) not null,
 
 primary key(ID),
@@ -74,7 +74,7 @@ CREATE INDEX DPidx ON DB2021_Director_Prize(director);
 ## Actor
 CREATE TABLE DB2021_Actor(
 ID int auto_increment not null,
-name varchar(20) not null,
+name varchar(50) not null,
 country varchar(20) not null,
 birth date,
 
@@ -86,7 +86,7 @@ CREATE INDEX Aname ON DB2021_Actor(name);
 
 ## Actor_Movie(Many to Many)
 CREATE TABLE DB2021_Actor_Movie(
-actor varchar(20) not null,
+actor varchar(50) not null,
 movie varchar(20) not null,
 
 primary key(actor, movie),
@@ -100,7 +100,7 @@ foreign key(movie) references DB2021_Movie(title) on delete cascade on update ca
 CREATE TABLE DB2021_Actor_Prize(
 ID int auto_increment not null,
 prize varchar(100) not null,
-actor varchar(20) not null,
+actor varchar(50) not null,
 movie varchar(20) not null,
 
 primary key(ID),
