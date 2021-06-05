@@ -28,7 +28,7 @@ public class Movie extends CustomUI {
 
     private String nickname;
 
-    public Movie(int MovieId) {
+    public Movie(String nickname, int MovieId) {
         this.nickname = nickname;
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,7 +57,6 @@ public class Movie extends CustomUI {
         // 출연 배우
         ActorDao aDao = ActorDao.getInstance();
         String actors = aDao.selectAll(MovieId, movie.getTitle());
-        System.out.println(actors);
         lbActor.setText(actors);
 
         // 줄거리

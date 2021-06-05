@@ -24,7 +24,7 @@ public class Main extends CustomUI {
         btnMovie.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // 테스트용(원래는 ID)
-                new Movie(6);
+                new Movie(nickname,6);
                 frame.dispose();
             }
         });
