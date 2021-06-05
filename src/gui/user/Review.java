@@ -12,7 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import dao.ComboDao;
@@ -125,7 +124,7 @@ public class Review extends CustomUI {
         lbReview = custom.setLb("lbTitleCard", "리뷰작성", 35, 380, 100, 20, "left", 17, "bold");
         txtdetail = custom.setTextField("txtRating", "후기를 남겨주세요", 200, 380, 180, 150);
 
-        btnReview = custom.setBtnBlue("btnReview", "등록하기", 600);
+        btnReview = custom.setBtnGreen("btnReview", "등록하기", 600);
         btnBack = custom.setBtnWhite("btnBack", "이전으로", 655);
     }
 }

@@ -6,7 +6,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -205,7 +204,7 @@ public class Join extends CustomUI {
         txtphone = custom.setTextField("txtphone", "PHONE", 35, 360, 350, 40);
         cbAgree = custom.setCheckBox("cbAgree", " ARE YOU AGREE?", 35, 400);
 
-        btnJoinComplete = custom.setBtnBlue("btnBlue", "회원가입완료", 550);
+        btnJoinComplete = custom.setBtnGreen("btnBlue", "회원가입완료", 550);
         btnPrev = custom.setBtnWhite("btnWhite", "이전으로", 605);
     }
 }

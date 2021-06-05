@@ -48,7 +48,7 @@ class CustomUI extends JFrame {
 
         JPanel topBluePanel = new JPanel();
         topBluePanel.setBounds(0, 0, 420, 70);
-        topBluePanel.setBackground(new Color(53, 121, 247));
+        topBluePanel.setBackground(new Color(0, 70, 42));
         backgroundPanel.add(topBluePanel);
 
         JPanel topGrayPanel = new JPanel();
@@ -186,7 +186,7 @@ class CustomUI extends JFrame {
         return txt;
     }
 
-    protected JButton setBtnBlue(String name, String text, int y) {
+    protected JButton setBtnGreen(String name, String text, int y) {
 
         class RoundedButton extends JButton {
             public RoundedButton() {
@@ -227,8 +227,8 @@ class CustomUI extends JFrame {
         btn.setBackground(new Color(53, 121, 247));
         Font btnFont = new Font("맑은 고딕", Font.PLAIN, 20);
         btn.setFont(btnFont);
-        btn.setBackground(new Color(53, 121, 247));
-        btn.setForeground(Color.WHITE);
+        btn.setBackground(new Color(0, 70, 42));
+        btn.setForeground(Color.white);
         btn.setBounds(35, y, 350, 45);
         btn.setText(text);
         backgroundPanel.add(btn);
@@ -264,7 +264,7 @@ class CustomUI extends JFrame {
         Font btnFont = new Font("맑은 고딕", Font.PLAIN, 20);
         btn.setFont(btnFont);
         btn.setBackground(Color.WHITE);
-        btn.setForeground(new Color(53, 121, 247));
+        btn.setForeground(new Color(0, 70, 42));
         btn.setBounds(35, y, 350, 45);
         btn.setText(text);
         backgroundPanel.add(btn);
@@ -318,7 +318,7 @@ class CustomUI extends JFrame {
         return btn;
     }
 
-    protected JButton setBtnImg(String name, String text, int x, int y) {
+    protected JButton  setBtnImg(String name, String text, int x, int y) {
         ImageIcon icon = new ImageIcon("img/icon5.png");
         JButton btn = new JButton(text, icon);
 
