@@ -30,6 +30,7 @@ public class Result extends CustomUI {
 
         ReviewDao rDao = ReviewDao.getInstance();
         Reviews review = rDao.selectRecent(nickname);
+        System.out.println(review.getMovie());
         lbMovie.setText(review.getMovie());
 
 //        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -63,7 +64,7 @@ public class Result extends CustomUI {
         lbTitle = custom.setLb("lbTitle", "리뷰가 등록되었습니다", 100, 150, 220, 185, "center", 20, "bold");
 
         lbTitleMovie = custom.setLb("lbTitleMovie", "영화제목", 35, 310, 100, 20, "left", 17, "bold");
-        lbMovie = custom.setLb("lbMovie", "영화를 입력하세요", 195, 310, 180, 20, "right", 17, "plain");
+        lbMovie = custom.setLb("lbMovie", "영화를 입력가하세요", 195, 310, 180, 20, "right", 17, "plain");
 
         lbTitleDate = custom.setLb("lbTitleDate", "리뷰날짜", 35, 360, 100, 20, "left", 17, "bold");
         lbDate = custom.setLb("lbDate", "00-00-00 00:00:00", 195, 360, 180, 20, "right", 17, "plain");

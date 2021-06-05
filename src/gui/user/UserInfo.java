@@ -20,7 +20,7 @@ public class UserInfo extends CustomUI {
 
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
-    private JButton btnMain;
+    private JButton btnMain, btnReviews;
     private JLabel lbTitle, lbTitleId, lbId, lbTitleBirth, lbBirth, lbTitleTel, lbTel;
 
     private String nickname;
@@ -36,6 +36,13 @@ public class UserInfo extends CustomUI {
         btnMain.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new Main(nickname);
+                frame.dispose();
+            }
+        });
+
+        btnReviews.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new MyReviews(nickname);
                 frame.dispose();
             }
         });

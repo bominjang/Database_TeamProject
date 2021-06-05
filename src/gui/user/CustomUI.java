@@ -312,17 +312,21 @@ class CustomUI extends JFrame {
 
     protected JButton  setBtnImg(String name, String text, int x, int y) {
         ImageIcon icon = new ImageIcon("img/icon5.png");
-        JButton btn = new JButton(text, icon);
+        Image originImg = icon.getImage();
+        Image changedImg= originImg.getScaledInstance(170, 140, Image.SCALE_SMOOTH );
+        ImageIcon Icon = new ImageIcon(changedImg);
+
+        JButton btn = new JButton(text, Icon);
 
         Font btnFont = new Font("맑은 고딕", Font.PLAIN, 18);
         btn.setFont(btnFont);
         btn.setBackground(new Color(0, 70, 42));
-        btn.setForeground(Color.WHITE);
+        btn.setForeground(new Color(0, 70, 42));
         btn.setVerticalTextPosition(SwingConstants.BOTTOM);
         btn.setHorizontalTextPosition(SwingConstants.CENTER);
 
         btn.setBorderPainted(false);
-        btn.setBounds(x, y, 170, 150);
+        btn.setBounds(x, y, 170, 180);
         btn.setText(text);
         backgroundPanel.add(btn);
         btn.setName(name);
