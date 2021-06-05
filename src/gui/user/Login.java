@@ -84,6 +84,7 @@ public class Login extends CustomUI {
                             frame.dispose();
                         }
                     } else {
+                        conn.close();
                         JOptionPane.showMessageDialog(frame, "일치하는 사용자가 없습니다.", "오류", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (Exception e2) {
@@ -126,8 +127,10 @@ public class Login extends CustomUI {
         lbLogo = custom.setLbImg("lbLogo", 4, 150, 150);
         txtNickname = custom.setTextField("txtNickname", "Nickname", 35, 290, 350, 45);
         txtPassword = custom.setPasswordField("txtPassword", "Password", 35, 345, 350, 45);
+
         btnLogin = custom.setBtnBlue("btnLogin", "로그인", 35, 425);
         btnJoin = custom.setBtnWhite("btnJoin", "회원가입", 35, 480);
+
         lbSearch = custom.setLb("lbSearch", "아이디 찾기 ｜ 비밀번호 찾기", 100, 535, 200, 40, "center", 15, "plain");
     }
 

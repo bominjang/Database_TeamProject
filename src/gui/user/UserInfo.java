@@ -87,10 +87,11 @@ public class UserInfo extends CustomUI {
             }
 
             lbId.setText(nickname);
-            SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat transFormat = new SimpleDateFormat("YYYY-MM-DD");
             lbBirth.setText(transFormat.format(user.getBirth()));
             lbTel.setText(formatTel(user.getPhone()));
 
+            conn.close();
             return user;
         } catch (Exception e) {
             e.printStackTrace();

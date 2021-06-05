@@ -2,15 +2,10 @@ package gui.user;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 
 import javax.swing.*;
 
 import dao.MovieDao;
-import dao.ReviewDao;
-import models.Movies;
-import models.Reviews;
 
 @SuppressWarnings("serial")
 public class Movie extends CustomUI {
@@ -102,7 +97,6 @@ public class Movie extends CustomUI {
 
         lbTitlePlot = custom.setLb("lbTitlePlot", "줄거리", 330, 490, 150, 20, "center", 17, "bold");
         taPlot = custom.setTextArea("lbPlot", "줄거리주루룩", 100, 520, 600, 120, false);
-
 
         btnMain = custom.setBtnBlue("btnMain", "메인으로", 220, 680);
         btnBack = custom.setBtnWhite("btnBack", "이전으로", 220, 730);
