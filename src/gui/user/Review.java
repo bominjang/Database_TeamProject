@@ -119,7 +119,7 @@ public class Review extends CustomUI {
         lbReview = custom.setLb("lbTitleCard", "리뷰작성", 35, 380, 100, 20, "left", 17, "bold");
         txtdetail = custom.setTextArea("txtRating", "후기를 남겨주세요", 200, 380, 180, 150, true);
 
-        btnReview = custom.setBtnBlue("btnReview", "등록하기", 35, 600);
+        btnReview = custom.setBtnGreen("btnReview", "등록하기", 35, 600);
         btnBack = custom.setBtnWhite("btnBack", "이전으로", 35, 655);
     }
 }

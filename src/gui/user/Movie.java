@@ -1,15 +1,14 @@
 package gui.user;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
-import java.util.Vector;
 
 import javax.swing.*;
 
 import dao.ActorDao;
 import dao.MovieDao;
-import models.Actors;
 import models.Movies;
 
 @SuppressWarnings("serial")
@@ -18,9 +17,9 @@ public class Movie extends CustomUI {
     private JFrame frame = new JFrame();
     // 세로 스크롤 사용, 가로 스크롤 사용 안함
     private JPanel container = new JPanel();
-    private JScrollPane scrollPane = new JScrollPane(container, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+    //private JScrollPane scrollPane = new JScrollPane(container, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     private JPanel backgroundPanel;
-    private JLabel lbIcon, lbTitle, lbTitleMovie, lbTitlePlot, lbTItleRating, lbTitleGenreAge, lbTitleRunOpenTime, lbTitleDirector, lbTitleActor;
+    private JLabel lbIcon, lbTitle, lbTitleMovie,lbTitleCountry, lbTitlePlot, lbTItleRating, lbTitleGenreAge, lbTitleRunOpenTime, lbTitleDirector, lbTitleActor;
     private JLabel lbMovie, lbRating, lbGenreAge, lbCountry, lbRunOpenTime, lbDirector, lbActor;
     private JTextArea taPlot;
 
@@ -96,31 +95,69 @@ public class Movie extends CustomUI {
         CustomUI custom = new CustomUI(backgroundPanel);
         custom.setPanel();
 
+        JPanel panel = new JPanel();
+        panel.setLayout(null);
+        panel.setBackground(Color.WHITE);
+
         lbIcon = custom.setLbImg("lbIcon", 4, 350, 130);
         lbMovie = custom.setLb("lbTitle", "영화제목", 350, 150, 100, 185, "center", 20, "bold");
+
+        panel.add(lbIcon);
+        panel.add(lbMovie);
 
         lbTItleRating = custom.setLb("lbTitleMovie", "평점", 230, 270, 150, 20, "right", 17, "bold");
         lbRating = custom.setLb("lbMovie", "0.0", 425, 270, 200, 20, "left", 17, "plain");
 
+        panel.add(lbTItleRating);
+        panel.add(lbRating);
+
         lbTitleGenreAge = custom.setLb("lbTitleDate", "장르/연령제한", 230, 330, 150, 20, "left", 17, "bold");
         lbGenreAge = custom.setLb("lbDate", "장르와 연령제한입니다.", 425, 330, 200, 20, "left", 17, "plain");
 
-        lbCountry = custom.setLb("lbTitleDate", "나라", 230, 360, 150, 20, "left", 17, "bold");
+        panel.add(lbTitleGenreAge);
+        panel.add(lbGenreAge);
+
+        lbTitleCountry = custom.setLb("lbTitleDate", "나라", 230, 360, 150, 20, "left", 17, "bold");
         lbCountry = custom.setLb("lbDate", "나라입니다.", 425, 360, 200, 20, "left", 17, "plain");
+
+        panel.add(lbTitleCountry);
+        panel.add(lbCountry);
 
         lbTitleRunOpenTime = custom.setLb("lbTitleRating", "상영시간/개봉일", 230, 390, 150, 20, "left", 17, "bold");
         lbRunOpenTime = custom.setLb("lbRating", "상연시간과 개봉일입니다.", 425, 390, 200, 20, "left", 17, "plain");
 
+        panel.add(lbTitleRunOpenTime);
+        panel.add(lbRunOpenTime);
+
         lbTitleDirector = custom.setLb("lbTitleDetail", "감독", 230, 420, 150, 20, "left", 17, "bold");
         lbDirector = custom.setLb("lbDetail", "영화를 맡은 감독입니다.", 425, 420, 200, 20, "left", 17, "plain");
+
+        panel.add(lbTitleDirector);
+        panel.add(lbDirector);
 
         lbTitleActor = custom.setLb("lbTitleDetail", "출연배우", 230, 450, 150, 20, "left", 17, "bold");
         lbActor = custom.setLb("lbDetail", "출연배우들 입니다.", 425, 450, 200, 20, "left", 17, "plain");
 
+        panel.add(lbTitleActor);
+        panel.add(lbActor);
+
         lbTitlePlot = custom.setLb("lbTitlePlot", "줄거리", 330, 490, 150, 20, "center", 17, "bold");
         taPlot = custom.setTextArea("lbPlot", "줄거리주루룩", 100, 520, 600, 120, false);
 
-        btnMain = custom.setBtnBlue("btnMain", "메인으로", 220, 680);
+        panel.add(lbTitlePlot);
+        panel.add(taPlot);
+
+        btnMain = custom.setBtnGreen("btnMain", "메인으로", 220, 680);
         btnBack = custom.setBtnWhite("btnBack", "이전으로", 220, 730);
+
+        panel.setPreferredSize(new Dimension(800, 1500));
+
+        panel.add(btnMain);
+        panel.add(btnBack);
+
+        JScrollPane sp = new JScrollPane();
+        sp.setViewportView(panel);
+        sp.setBounds(0, 100, 800, 1000);
+        backgroundPanel.add(sp);
     }
 }

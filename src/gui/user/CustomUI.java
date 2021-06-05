@@ -175,7 +175,7 @@ class CustomUI extends JFrame {
         return txt;
     }
 
-    protected JButton setBtnBlue(String name, String text, int x, int y) {
+    protected JButton setBtnGreen(String name, String text, int x, int y) {
 
         class RoundedButton extends JButton {
             public RoundedButton() {

@@ -204,7 +204,7 @@ public class Join extends CustomUI {
         txtphone = custom.setTextField("txtphone", "PHONE", 35, 360, 350, 40);
         cbAgree = custom.setCheckBox("cbAgree", " ARE YOU AGREE?", 35, 400);
 
-        btnJoinComplete = custom.setBtnBlue("btnBlue", "회원가입완료", 35, 550);
+        btnJoinComplete = custom.setBtnGreen("btnBlue", "회원가입완료", 35, 550);
         btnPrev = custom.setBtnWhite("btnWhite", "이전으로", 35, 605);
     }
 }

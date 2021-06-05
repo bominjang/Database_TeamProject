@@ -79,7 +79,6 @@ public class MyReviews extends CustomUI {
         frame.setResizable(false);
         frame.setVisible(true);
     }
-//
 //    public int delete(String userId, int reserveId) {
 //        String sql = "DELETE FROM RESERVE R WHERE R.USER_ID=? AND R.ID=?";
 //        conn = DBConnection.getConnection();
@@ -146,13 +145,14 @@ public class MyReviews extends CustomUI {
             panel.setBackground(Color.WHITE);
 
             for (Reviews r : rvs) {
-                int moveY = 55 * i;
+                int moveY = 50 * i;
                 i++;
-                lb = custom.setLb("lbTitleMovie", r.getMovie(), 20, 20 + moveY, 300, 20, "left", 14, "plain", panel);
-                lbTitleMovie[i-1] = custom.setLb("lbTitleMovie", r.getMovie(), 20, 20 + moveY, 300, 20, "left", 14, "plain", panel);
-                lbCreateTime[i-1]= custom.setLb("lbCreateTime", r.getCreate_time(), 60, 20 + moveY, 300, 20, "left", 14, "plain", panel);
-                lbTitleRating[i-1]= custom.setLb("lbTitleRating", Float.toString(r.getRating()), 160, 20 + moveY, 300, 20, "left", 14, "plain", panel);
-                lbReview[i-1]= custom.setLb("lbReview", r.getDetail(), 200, 20 + moveY, 300, 20, "left", 14, "plain", panel);
+                lb = custom.setLb("lbTitleMovie", r.getMovie(), 20, 20 + moveY, 400, 20, "left", 14, "plain", panel);
+                lbTitleMovie[i-1] = custom.setLb("lbTitleMovie", r.getMovie(), 20, 20 + moveY, 400, 20, "left", 14, "plain", panel);
+                lbCreateTime[i-1]= custom.setLb("lbCreateTime", r.getCreate_time(), 20, 20 + moveY, 400, 20, "right", 14, "plain", panel);
+                lbTitleRating[i-1]= custom.setLb("lbTitleRating", Float.toString(r.getRating()), 20, 20 + moveY, 400, 20, "center", 14, "plain", panel);
+
+                lbReview[i-1]= custom.setLb("lbReview", r.getDetail(), 20, 30 + moveY, 300, 40, "left", 14, "plain", panel);
 
                 panel.add(lbTitleMovie[i-1]);
                 panel.add(lbCreateTime[i-1]);
@@ -174,11 +174,11 @@ public class MyReviews extends CustomUI {
 //                    }
 //                });
             }
-            panel.setPreferredSize(new Dimension(400, 20+ 55*i));
+            panel.setPreferredSize(new Dimension(400, 20+ 100*i));
 
             JScrollPane sp = new JScrollPane();
             sp.setViewportView(panel);
-            sp.setBounds(0, 120, 422, 500);
+            sp.setBounds(0, 200, 422, 400);
             backgroundPanel.add(sp);
 
         } catch (Exception e) {
@@ -188,7 +188,7 @@ public class MyReviews extends CustomUI {
         lbTitle = custom.setLb("lbTitle", "나의 리뷰", 100, 85, 220, 185, "center", 20, "bold");
 
 //        btnCancel = custom.setBtnBlue("btnCancel", "예매취소", 600);
-        btnBack = custom.setBtnWhite("btnBack", "이전으로", 655);
+        btnBack = custom.setBtnWhite("btnBack", "이전으로", 35, 655);
     }
 
 }
