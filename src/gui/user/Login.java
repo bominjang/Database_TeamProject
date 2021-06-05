@@ -80,11 +80,12 @@ public class Login extends CustomUI {
 //                            new gui.admin.Main();
                             frame.dispose();
                         } else {
-//                            conn.close();
+                            conn.close();
                             new Main(nickname);
                             frame.dispose();
                         }
                     } else {
+                        conn.close();
                         JOptionPane.showMessageDialog(frame, "일치하는 사용자가 없습니다.", "오류", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (Exception e2) {

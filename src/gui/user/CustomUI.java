@@ -324,7 +324,7 @@ class CustomUI extends JFrame {
 
         Font btnFont = new Font("맑은 고딕", Font.PLAIN, 18);
         btn.setFont(btnFont);
-        btn.setBackground(new Color(53, 121, 247));
+        btn.setBackground(new Color(0, 70, 42));
         btn.setForeground(Color.WHITE);
         btn.setVerticalTextPosition(SwingConstants.BOTTOM);
         btn.setHorizontalTextPosition(SwingConstants.CENTER);
