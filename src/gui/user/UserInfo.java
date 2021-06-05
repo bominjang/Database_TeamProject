@@ -64,7 +64,7 @@ public class UserInfo extends CustomUI {
         lbTitleTel = custom.setLb("lbTitleTel", "전화번호", 35, 420, 100, 20, "left", 17, "bold");
         lbTel = custom.setLb("lbBirth", "", 195, 420, 180, 20, "right", 17, "plain");
 
-        btnMain = custom.setBtnBlue("btnMain", "메인으로", 605);
+        btnMain = custom.setBtnBlue("btnMain", "메인으로", 35, 605);
     }
 
     public Users setUserInfo(String nickname) {

@@ -20,8 +20,9 @@ public class Movie extends CustomUI {
     private JPanel container = new JPanel();
     private JScrollPane scrollPane = new JScrollPane(container, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     private JPanel backgroundPanel;
-    private JLabel lbIcon, lbTitle, lbTitleMovie, lbTItleRating, lbTitleGenreAge, lbTitleRunOpenTime, lbTitleDirector, lbTitleActor;
+    private JLabel lbIcon, lbTitle, lbTitleMovie, lbTitlePlot, lbTItleRating, lbTitleGenreAge, lbTitleRunOpenTime, lbTitleDirector, lbTitleActor;
     private JLabel lbMovie, lbRating, lbGenreAge, lbCountry, lbRunOpenTime, lbDirector, lbActor;
+    private JTextArea taPlot;
 
     private JButton btnMain, btnBack;
 
@@ -65,7 +66,7 @@ public class Movie extends CustomUI {
         });
 
         frame.add(container);
-        frame.setSize(426, 800);
+        frame.setSize(800, 900);
         frame.setResizable(false);
         frame.setVisible(true);
     }
@@ -78,29 +79,32 @@ public class Movie extends CustomUI {
         CustomUI custom = new CustomUI(backgroundPanel);
         custom.setPanel();
 
-        lbIcon = custom.setLbImg("lbIcon", 4, 160, 130);
-        lbMovie = custom.setLb("lbTitle", "영화제목", 100, 150, 220, 185, "center", 20, "bold");
+        lbIcon = custom.setLbImg("lbIcon", 4, 350, 130);
+        lbMovie = custom.setLb("lbTitle", "영화제목", 350, 150, 100, 185, "center", 20, "bold");
 
-        lbTItleRating = custom.setLb("lbTitleMovie", "평점", 35, 310, 150, 20, "left", 17, "bold");
-        lbRating = custom.setLb("lbMovie", "해당 영화의 평점입니다.", 195, 310, 180, 20, "right", 17, "plain");
+        lbTItleRating = custom.setLb("lbTitleMovie", "평점", 230, 270, 150, 20, "right", 17, "bold");
+        lbRating = custom.setLb("lbMovie", "0.0", 425, 270, 200, 20, "left", 17, "plain");
 
-        lbTitleGenreAge = custom.setLb("lbTitleDate", "장르/연령제한", 35, 360, 150, 20, "left", 17, "bold");
-        lbGenreAge = custom.setLb("lbDate", "장르와 연령제한입니다.", 195, 360, 180, 20, "right", 17, "plain");
+        lbTitleGenreAge = custom.setLb("lbTitleDate", "장르/연령제한", 230, 330, 150, 20, "left", 17, "bold");
+        lbGenreAge = custom.setLb("lbDate", "장르와 연령제한입니다.", 425, 330, 200, 20, "left", 17, "plain");
 
-        lbCountry = custom.setLb("lbTitleDate", "나라", 35, 410, 150, 20, "left", 17, "bold");
-        lbCountry = custom.setLb("lbDate", "나라입니다.", 195, 410, 180, 20, "right", 17, "plain");
+        lbCountry = custom.setLb("lbTitleDate", "나라", 230, 360, 150, 20, "left", 17, "bold");
+        lbCountry = custom.setLb("lbDate", "나라입니다.", 425, 360, 200, 20, "left", 17, "plain");
 
-        lbTitleRunOpenTime = custom.setLb("lbTitleRating", "상영시간/개봉일", 35, 460, 150, 20, "left", 17, "bold");
-        lbRunOpenTime = custom.setLb("lbRating", "상연시간과 개봉일입니다.", 195, 460, 180, 20, "right", 17, "plain");
+        lbTitleRunOpenTime = custom.setLb("lbTitleRating", "상영시간/개봉일", 230, 390, 150, 20, "left", 17, "bold");
+        lbRunOpenTime = custom.setLb("lbRating", "상연시간과 개봉일입니다.", 425, 390, 200, 20, "left", 17, "plain");
 
-        lbTitleDirector = custom.setLb("lbTitleDetail", "감독", 35, 510, 150, 20, "left", 17, "bold");
-        lbDirector = custom.setLb("lbDetail", "영화를 맡은 감독입니다.", 195, 510, 180, 20, "right", 17, "plain");
+        lbTitleDirector = custom.setLb("lbTitleDetail", "감독", 230, 420, 150, 20, "left", 17, "bold");
+        lbDirector = custom.setLb("lbDetail", "영화를 맡은 감독입니다.", 425, 420, 200, 20, "left", 17, "plain");
 
-        lbTitleActor = custom.setLb("lbTitleDetail", "출연배우", 35, 560, 150, 20, "left", 17, "bold");
-        lbActor = custom.setLb("lbDetail", "출연배우들 입니다.", 195, 560, 180, 20, "right", 17, "plain");
+        lbTitleActor = custom.setLb("lbTitleDetail", "출연배우", 230, 450, 150, 20, "left", 17, "bold");
+        lbActor = custom.setLb("lbDetail", "출연배우들 입니다.", 425, 450, 200, 20, "left", 17, "plain");
+
+        lbTitlePlot = custom.setLb("lbTitlePlot", "줄거리", 330, 490, 150, 20, "center", 17, "bold");
+        taPlot = custom.setTextArea("lbPlot", "줄거리주루룩", 100, 520, 600, 120, false);
 
 
-        btnMain = custom.setBtnBlue("btnMain", "메인으로", 635);
-        btnBack = custom.setBtnWhite("btnBack", "이전으로", 695);
+        btnMain = custom.setBtnBlue("btnMain", "메인으로", 220, 680);
+        btnBack = custom.setBtnWhite("btnBack", "이전으로", 220, 730);
     }
 }
