@@ -117,7 +117,7 @@ CREATE TABLE DB2021_Review(
 ID int auto_increment not null,
 movie varchar(20) not null,
 nickname varchar(20) not null,
-create_time date not null,
+create_time timestamp not null,
 rating float not null,
 detail varchar(500) not null,
 
