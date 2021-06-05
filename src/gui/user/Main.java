@@ -21,21 +21,19 @@ public class Main extends CustomUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         init();
 
-        /*
         btnMovie.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new SelectDate(nickname, 0, "Movie");
+                new Movie(nickname);
                 frame.dispose();
             }
         });
 
-        btnTheater.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new SelectTheater1(nickname);
-                frame.dispose();
-            }
-        });
-         */
+//        btnTheater.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                new SelectTheater1(nickname);
+//                frame.dispose();
+//            }
+//        });
 
         btnReview.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -71,7 +69,7 @@ public class Main extends CustomUI {
         CustomUI custom = new CustomUI(backgroundPanel);
         custom.setPanel();
 
-        btnMovie = custom.setBtnImg("btnMovie", "둘러보기", 33, 240);
+        btnMovie = custom.setBtnImg("btnMovie", "(테스트)둘러보기", 33, 240);
         btnTheater = custom.setBtnImg("btnTheater", "검색하기", 212, 240);
         btnReview = custom.setBtnImg("btnReview", "리뷰 작성", 33, 400);
         btnInfo = custom.setBtnImg("btnInfo", "마이페이지", 212, 400);
