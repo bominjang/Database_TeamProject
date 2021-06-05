@@ -23,17 +23,18 @@ public class ReviewDao {
     private String sql;
 
 
-    public int insert(String nickname, int movieId, float rating, String detail) {
-        sql = "INSERT INTO DB2021_Review(movie, create_time, rating, detail)";
-        sql += " VALUES(?, CURRENT_DATE(), ?, ?)";
+    public int insert(String movie, String nickname, float rating, String detail) {
+        sql = "INSERT INTO DB2021_Review(movie, nickname, create_time, rating, detail)";
+        sql += " VALUES(?, ?, now(), ?, ?)";
 
         conn = DBConnection.getConnection();
         try {
             int returnCnt = 0;
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, nickname);
-            pstmt.setFloat(2, rating);
-            pstmt.setString(3, detail);
+            pstmt.setString(1, movie);
+            pstmt.setString(2, nickname);
+            pstmt.setFloat(3, rating);
+            pstmt.setString(4, detail);
             returnCnt = pstmt.executeUpdate();
 
             conn.close();
@@ -46,11 +47,7 @@ public class ReviewDao {
     }
 
     public Reviews selectRecent(String nickname) {
-        sql = "SELECT * FROM";
-        sql += " FROM DB2021_Review";
-        sql += " WHERE nickname = ?";
-        sql += " ORDER BY INS_DT DESC)";
-        sql += " WHERE ROWNUM = 1";
+        sql = "SELECT * FROM DB2021_Review WHERE nickname = ? ORDER BY create_time DESC limit 1";
 
         conn = DBConnection.getConnection();
         try {
@@ -62,7 +59,7 @@ public class ReviewDao {
             if (rs.next()) {
                 review.setNickname(rs.getString("nickname"));
                 review.setMovie(rs.getString("movie"));
-                review.setCreate_time(rs.getDate("create_time"));
+                review.setCreate_time(rs.getString("create_time"));
                 review.setRating(rs.getFloat("rating"));
                 review.setDetail(rs.getString("detail"));
 

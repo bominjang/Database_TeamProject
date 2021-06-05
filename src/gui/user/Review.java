@@ -29,11 +29,9 @@ public class Review extends CustomUI {
 
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
-    private JLabel lbTitleNickname, lbTitleUser, lbTitleRating, lbReview, lbTitlePrice, lbPrice, lbTitleMovie, lbTitleResult, lbResult, lbTitleCard, lbTitlePassword;
+    private JLabel lbResult, lbTitleNickname, lbTitleUser, lbTitleRating, lbReview, lbTitleMovie;
     private JComboBox<Combo> comboMovie;
-    private JTextField txtCard1;
-    private String detail;
-    private float rating;
+    private JTextField txtdetail, txtrating;
     private JPasswordField txtCard2, txtCard3, txtPassword;
     private JButton btnReview, btnBack;
 
@@ -42,6 +40,7 @@ public class Review extends CustomUI {
 
     public Review(String nickname) {
         this.nickname = nickname;
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         init();
 
@@ -57,14 +56,15 @@ public class Review extends CustomUI {
             public void actionPerformed(ActionEvent e) {
                 Combo selectedComboItem = (Combo) comboMovie.getSelectedItem();
                 System.out.println("a: "+selectedComboItem);
-                String splitComboItem[] = selectedComboItem.toString().split("\\(");
-                System.out.println("b: "+splitComboItem);
-                String discountContent = splitComboItem[1].replace(")", "");
-                String discountUnit = discountContent.substring(discountContent.length()-1, discountContent.length());
-                int discountVal = Integer.parseInt(discountContent.replace(discountUnit, ""));
-                String priceText = lbPrice.getText().replace(",", "").replace("원", "").replace(" x ", "").replace("인", "");
-                priceText = priceText.substring(0, priceText.length()-1);
-                int price = Integer.parseInt(priceText);
+                String movie = selectedComboItem.toString();
+//                String splitComboItem[] = selectedComboItem.toString().split("\\(");
+//                System.out.println("b: "+splitComboItem[0]);
+//                String discountContent = splitComboItem[1].replace(")", "");
+//                String discountUnit = discountContent.substring(discountContent.length()-1, discountContent.length());
+//                int discountVal = Integer.parseInt(discountContent.replace(discountUnit, ""));
+//                String priceText = lbPrice.getText().replace(",", "").replace("원", "").replace(" x ", "").replace("인", "");
+//                priceText = priceText.substring(0, priceText.length()-1);
+//                int price = Integer.parseInt(priceText);
 
 //                if(discountUnit.equals("원")) {
 //                    price = (price - discountVal) * reserveCnt;
@@ -75,7 +75,8 @@ public class Review extends CustomUI {
 //                } else {
 //                    price = price * reserveCnt;
 //                }
-                lbResult.setText(NumberFormat.getInstance().format(price)+"원");
+                // NullPointerException 필요
+                lbResult.setText(movie);
             }
         });
 //
@@ -93,7 +94,13 @@ public class Review extends CustomUI {
                 if(returnCd == JOptionPane.YES_OPTION) {
 //                    int finalPrice = Integer.parseInt(lbResult.getText().replace(",", "").replace("원", ""));
                     Combo movie = (Combo) comboMovie.getSelectedItem();
-                    int movieId = movie.getKey();
+                    String movieTitle = movie.getValue();
+                    String rating = txtrating.getText();
+                    System.out.println(rating);
+
+                    String detail = txtdetail.getText();
+                    System.out.println(detail);
+
 
                     // 카드번호 검사
 //                    int check = 0;
@@ -106,7 +113,7 @@ public class Review extends CustomUI {
 //                        int returnCnt = rDao.insert(nickname, movieId, placeId, theaterId, reserveDate, reserveTime, reserveCnt, seat, finalPrice, discountId, cardNo);
                     ReviewDao rDao = ReviewDao.getInstance();
 
-                    int returnCnt = rDao.insert(nickname, movieId, rating, detail);
+                    int returnCnt = rDao.insert(movieTitle, nickname, Float.parseFloat(rating), detail);
 
                     if(returnCnt == 1) {
                         new Result(nickname);
@@ -169,11 +176,11 @@ public class Review extends CustomUI {
 
         // 별점 선택
         lbTitleRating = custom.setLb("lbTitleRating", "평점입력", 35, 310, 100, 20, "left", 17, "bold");
-        rating = custom.setFloatField("txtRating", "0.0", 200, 310, 180, 20);
+        txtrating = custom.setTextField("txtRating", "0.0", 200, 310, 180, 20);
 
         // 리뷰 작성
         lbReview = custom.setLb("lbTitleCard", "리뷰작성", 35, 380, 100, 20, "left", 17, "bold");
-        detail = custom.setTextField("txtRating", "후기를 남겨주세요", 200, 380, 180, 150).getText();
+        txtdetail = custom.setTextField("txtRating", "후기를 남겨주세요", 200, 380, 180, 150);
 
 //        lbTitleResult = custom.setLb("lbTitleResult", "최종금액", 35, 340, 100, 20, "left", 17, "bold");
 //        lbResult = custom.setLb("lbText3", "7,000원", 200, 340, 180, 20, "right", 17, "plain");

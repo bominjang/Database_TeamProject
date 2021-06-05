@@ -6,13 +6,13 @@ public class Reviews {
     private int id;
     private String movie;
     private String nickname;
-    private Date create_time;
+    private String create_time;
     private float rating;
     private String detail;
 
     public Reviews() {}
 
-    public Reviews(int id, String movie, String nickname, Date create_time,
+    public Reviews(int id, String movie, String nickname, String create_time,
                    float rating, String detail) {
         this.id = id;
         this.movie = movie;
@@ -46,11 +46,11 @@ public class Reviews {
         this.nickname = nickname;
     }
 
-    public Date getCreate_time() {
+    public String getCreate_time() {
         return create_time;
     }
 
-    public void setCreate_time(Date create_time) {
+    public void setCreate_time(String create_time) {
         this.create_time = create_time;
     }
 
