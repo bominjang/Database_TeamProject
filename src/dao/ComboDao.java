@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
@@ -30,13 +31,14 @@ public class ComboDao {
         } else if(comboContent.equals("discount")) {
             sql = "SELECT ID AS KEY, NAME||' ('||VAL||UNIT||')' AS VALUE FROM DISCOUNT";
         } else if(comboContent.equals("movie")) {
-            sql = "SELECT ID AS 'KEY', 'TITLE' AS VALUE FROM DB2021_MOVIE";
+            sql = "SELECT ID AS 'KEY', TITLE AS 'VALUE' FROM DB2021_MOVIE";
         } else {
             sql = "";
         }
 
         conn = DBConnection.getConnection();
         try {
+            System.out.println(sql);
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
 
@@ -47,7 +49,7 @@ public class ComboDao {
                 combos.add(combo);
             }
 
-            if(rs.getRow() == 0) {
+            if(rs.getRow() != 0) {
                 conn.close();
                 return null;
             } else {

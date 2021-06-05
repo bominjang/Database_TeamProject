@@ -56,7 +56,9 @@ public class Review extends CustomUI {
         comboMovie.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Combo selectedComboItem = (Combo) comboMovie.getSelectedItem();
+                System.out.println("a: "+selectedComboItem);
                 String splitComboItem[] = selectedComboItem.toString().split("\\(");
+                System.out.println("b: "+splitComboItem);
                 String discountContent = splitComboItem[1].replace(")", "");
                 String discountUnit = discountContent.substring(discountContent.length()-1, discountContent.length());
                 int discountVal = Integer.parseInt(discountContent.replace(discountUnit, ""));
@@ -89,7 +91,7 @@ public class Review extends CustomUI {
             public void actionPerformed(ActionEvent e) {
                 int returnCd = JOptionPane.showConfirmDialog(frame, "등록하시겠습니까?", "확인", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if(returnCd == JOptionPane.YES_OPTION) {
-                    int finalPrice = Integer.parseInt(lbResult.getText().replace(",", "").replace("원", ""));
+//                    int finalPrice = Integer.parseInt(lbResult.getText().replace(",", "").replace("원", ""));
                     Combo movie = (Combo) comboMovie.getSelectedItem();
                     int movieId = movie.getKey();
 

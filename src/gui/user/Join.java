@@ -106,11 +106,8 @@ public class Join extends CustomUI {
                 int checkId = 0;
                 try {
                     pstmt = conn.prepareStatement(SQL2);
-                    System.out.println("sql2");
                     pstmt.setString(1, nickname);
-                    System.out.println("검사");
                     checkId = pstmt.executeUpdate();
-                    System.out.println("update");
                     conn.close();
                 } catch (Exception e2) {
                     e2.printStackTrace();
@@ -130,20 +127,13 @@ public class Join extends CustomUI {
                     try {
                         pstmt = conn.prepareStatement(SQL);
                         pstmt.setString(1, nickname);
-                        System.out.println("1");
                         pstmt.setString(2, password);
-                        System.out.println("2");
                         pstmt.setString(3, name);
-                        System.out.println("3");
                         pstmt.setString(4, birth);
-                        System.out.println("4");
                         pstmt.setString(5, phone);
-                        System.out.println("5");
                         pstmt.setString(6, privacyFg);
-                        System.out.println("6");
 
                         returnCnt = pstmt.executeUpdate();
-                        System.out.println("7");
                         conn.close();
                     } catch (Exception e2) {
                         e2.printStackTrace();
