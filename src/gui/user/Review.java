@@ -6,13 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Vector;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import dao.ComboDao;
 import dao.ReviewDao;
@@ -25,7 +19,8 @@ public class Review extends CustomUI {
     private JPanel backgroundPanel;
     private JLabel lbResult, lbTitleNickname, lbTitleUser, lbTitleRating, lbReview, lbTitleMovie;
     private JComboBox<Combo> comboMovie;
-    private JTextField txtdetail, txtrating;
+    private JTextField txtrating;
+    private JTextArea txtdetail;
     private JButton btnReview, btnBack;
 
     private String nickname;
@@ -122,9 +117,9 @@ public class Review extends CustomUI {
 
         // 리뷰 작성
         lbReview = custom.setLb("lbTitleCard", "리뷰작성", 35, 380, 100, 20, "left", 17, "bold");
-        txtdetail = custom.setTextField("txtRating", "후기를 남겨주세요", 200, 380, 180, 150);
+        txtdetail = custom.setTextArea("txtRating", "후기를 남겨주세요", 200, 380, 180, 150, true);
 
-        btnReview = custom.setBtnGreen("btnReview", "등록하기", 600);
-        btnBack = custom.setBtnWhite("btnBack", "이전으로", 655);
+        btnReview = custom.setBtnBlue("btnReview", "등록하기", 35, 600);
+        btnBack = custom.setBtnWhite("btnBack", "이전으로", 35, 655);
     }
 }

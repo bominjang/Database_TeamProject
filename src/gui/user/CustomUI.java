@@ -15,19 +15,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.Vector;
 
-import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.Border;
 
 import models.Combo;
@@ -47,12 +35,13 @@ class CustomUI extends JFrame {
         backgroundPanel.setBackground(Color.WHITE);
 
         JPanel topBluePanel = new JPanel();
-        topBluePanel.setBounds(0, 0, 420, 70);
+        topBluePanel.setBounds(0, 0, 800, 70);
         topBluePanel.setBackground(new Color(0, 70, 42));
+
         backgroundPanel.add(topBluePanel);
 
         JPanel topGrayPanel = new JPanel();
-        topGrayPanel.setBounds(0, 70, 420, 50);
+        topGrayPanel.setBounds(0, 70, 800, 50);
         topGrayPanel.setBackground(new Color(230, 236, 240));
         backgroundPanel.add(topGrayPanel);
     }
@@ -186,7 +175,7 @@ class CustomUI extends JFrame {
         return txt;
     }
 
-    protected JButton setBtnGreen(String name, String text, int y) {
+    protected JButton setBtnBlue(String name, String text, int x, int y) {
 
         class RoundedButton extends JButton {
             public RoundedButton() {
@@ -224,12 +213,14 @@ class CustomUI extends JFrame {
         }
 
         RoundedButton btn = new RoundedButton();
-        btn.setBackground(new Color(53, 121, 247));
+        btn.setBackground(new Color(0, 70, 42));
         Font btnFont = new Font("맑은 고딕", Font.PLAIN, 20);
         btn.setFont(btnFont);
+
         btn.setBackground(new Color(0, 70, 42));
-        btn.setForeground(Color.white);
-        btn.setBounds(35, y, 350, 45);
+        btn.setForeground(Color.WHITE);
+        btn.setBounds(x, y, 350, 45);
+
         btn.setText(text);
         backgroundPanel.add(btn);
         btn.setName(name);
@@ -237,7 +228,7 @@ class CustomUI extends JFrame {
         return btn;
     }
 
-    protected JButton setBtnWhite(String name, String text, int y) {
+    protected JButton setBtnWhite(String name, String text, int x, int y) {
 
         class RoundedBorder implements Border {
             int radius;
@@ -265,7 +256,8 @@ class CustomUI extends JFrame {
         btn.setFont(btnFont);
         btn.setBackground(Color.WHITE);
         btn.setForeground(new Color(0, 70, 42));
-        btn.setBounds(35, y, 350, 45);
+        btn.setBounds(x, y, 350, 45);
+
         btn.setText(text);
         backgroundPanel.add(btn);
         btn.setName(name);
@@ -340,6 +332,69 @@ class CustomUI extends JFrame {
         btn.setName(name);
 
         return btn;
+    }
+
+    protected JTextArea setTextArea(String name, String placeholder, int x, int y, int width, int height, boolean isEditable) {
+        JTextArea txt = new JTextArea();
+        txt.setEditable(isEditable);
+
+        //행 넘기기 기능(line wrapping)을 킨다.
+        txt.setLineWrap(true);
+        
+        // 내용 추가될 때 마다 스크롤 내리지 않고 바로 보기
+        txt.setCaretPosition(txt.getDocument().getLength());
+
+        if (placeholder == null) {
+            txt.setText("Please input here");
+        } else {
+            txt.setText(placeholder);
+        }
+
+        Font tfFont = new Font("Arial", Font.PLAIN, 20);
+        txt.setFont(tfFont);
+        txt.setBackground(Color.white);
+        txt.setForeground(Color.gray.brighter());
+
+        txt.addFocusListener(new FocusListener() {
+            public void focusLost(FocusEvent e) {
+                JTextArea ta = (JTextArea)e.getComponent();
+                if(ta.getText().equals("")) {
+                    if (placeholder == null) {
+                        ta.setForeground(Color.gray.brighter());
+                        ta.setText("Please input here");
+                    } else {
+                        ta.setForeground(Color.gray.brighter());
+                        ta.setText(placeholder);
+                    }
+                }
+            }
+            public void focusGained(FocusEvent e) {
+                JTextArea ta = (JTextArea)e.getComponent();
+                if (ta.getText().equals(placeholder) || ta.getText().equals("Please input here") || ta.getText().equals("")) {
+                    ta.setText("");
+                    ta.setForeground(Color.BLACK);
+                }
+            }
+        });
+
+        Border border = BorderFactory.createLineBorder(Color.gray);
+        txt.setBorder(BorderFactory.createCompoundBorder(border,
+                BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        txt.setBounds(x, y, width, height);
+
+//        JScrollPane scrollPane = new JScrollPane(txt);
+//        //스크롤 틀에 수직 방향의 스크롤 바만 집어 넣음
+//        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+//        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+//
+//        scrollPane.setBounds(20, 30, 20, 30);
+//        scrollPane.setVisible(true);
+
+        backgroundPanel.add(txt);
+
+        txt.setName(name);
+
+        return txt;
     }
 
     protected JLabel setLb(String name, String text, int x, int y, int width, int height, String alignment, int fontSize, String weight) {

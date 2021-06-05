@@ -23,7 +23,8 @@ public class Main extends CustomUI {
 
         btnMovie.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new Movie(nickname);
+                // 테스트용(원래는 ID)
+                new Movie(nickname,6);
                 frame.dispose();
             }
         });
@@ -73,6 +74,6 @@ public class Main extends CustomUI {
         btnTheater = custom.setBtnImg("btnTheater", "검색하기", 212, 240);
         btnReview = custom.setBtnImg("btnReview", "리뷰 작성", 33, 400);
         btnInfo = custom.setBtnImg("btnInfo", "마이페이지", 212, 400);
-        btnLogout = custom.setBtnWhite("btnLogout", "로그아웃", 650);
+        btnLogout = custom.setBtnWhite("btnLogout", "로그아웃", 35, 650);
     }
 }

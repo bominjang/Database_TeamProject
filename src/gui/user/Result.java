@@ -75,6 +75,6 @@ public class Result extends CustomUI {
         lbTitleDetail = custom.setLb("lbTitleDetail", "후기", 35, 460, 100, 20, "left", 17, "bold");
         lbDetail = custom.setLb("lbDetail", "후기를 입력하세요.", 195, 460, 180, 20, "right", 17, "plain");
 
-        btnMain = custom.setBtnGreen("btnMain", "메인으로", 655);
+        btnMain = custom.setBtnBlue("btnMain", "메인으로", 35, 655);
     }
 }
