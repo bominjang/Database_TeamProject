@@ -32,9 +32,13 @@ public class ReviewDao {
             int returnCnt = 0;
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, movie);
+            System.out.println(movie);
             pstmt.setString(2, nickname);
+            System.out.println(nickname);
             pstmt.setFloat(3, rating);
+            System.out.println(rating);
             pstmt.setString(4, detail);
+            System.out.println(detail);
             returnCnt = pstmt.executeUpdate();
 
             conn.close();
@@ -75,4 +79,41 @@ public class ReviewDao {
 
         return null;
     }
+
+    public Reviews reviewDetail(int reviewId)
+    {
+        sql = "SELECT * FROM DB2021_Review WHERE id = ?";
+
+        conn = DBConnection.getConnection();
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, reviewId);
+            rs = pstmt.executeQuery();
+
+            Reviews review = new Reviews();
+            if (rs.next()) {
+                review.setNickname(rs.getString("nickname"));
+                review.setMovie(rs.getString("movie"));
+                review.setCreate_time(rs.getString("create_time"));
+                review.setRating(rs.getFloat("rating"));
+                review.setDetail(rs.getString("detail"));
+
+                conn.close();
+                return review;
+            } else {
+                conn.close();
+                return null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+
+    //update
+
+    //delete
 }
