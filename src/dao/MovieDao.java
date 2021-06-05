@@ -20,7 +20,7 @@ public class MovieDao {
     private static ResultSet rs;
 
     public Movies selectOne(int id) {
-        String sql = "SELECT * FROM MOVIE WHERE ID = ?";
+        String sql = "SELECT * FROM DB2021_MOVIE WHERE ID = ?";
         conn = DBConnection.getConnection();
 
         try {
@@ -30,11 +30,16 @@ public class MovieDao {
 
             Movies movie = new Movies();
             if (rs.next()) {
-                movie.setId(rs.getInt("ID"));
-                movie.setTitle(rs.getString("TITLE"));
-//                movie.setPrice(rs.getInt("PRICE"));
-                movie.setAge(rs.getInt("AGE"));
-                movie.setRunningTime(rs.getInt("RUNNING_TIME"));
+                movie.setTitle(rs.getString("title"));
+                movie.setGenre(rs.getString("genre"));
+                movie.setCountry(rs.getString("country"));
+                movie.setRunningTime(rs.getInt("running_time"));
+                movie.setOpening_date(rs.getDate("opening_date"));
+                movie.setDirector(rs.getString("director"));
+                movie.setPlot(rs.getString("plot"));
+                movie.setRating(rs.getFloat("rating"));
+                movie.setAge(rs.getInt("age"));
+
                 conn.close();
                 return movie;
             } else {
@@ -181,29 +186,4 @@ public class MovieDao {
 
         return -1;
     }
-
-//    public Movies selectPrice(int id) {
-//        String sql ="SELECT PRICE FROM MOVIE WHERE ID = ?";
-//        conn = DBConnection.getConnection();
-//        try {
-//            pstmt = conn.prepareStatement(sql);
-//            pstmt.setInt(1, id);
-//            rs = pstmt.executeQuery();
-//
-//            Movies movie = new Movies();
-//            if(rs.next()) {
-//                movie.setPrice(rs.getInt("PRICE"));
-//
-//                conn.close();
-//                return movie;
-//            } else {
-//                conn.close();
-//                return null;
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        return null;
-//    }
 }

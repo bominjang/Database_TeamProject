@@ -2,10 +2,15 @@ package gui.user;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Vector;
 
 import javax.swing.*;
 
+import dao.ActorDao;
 import dao.MovieDao;
+import models.Actors;
+import models.Movies;
 
 @SuppressWarnings("serial")
 public class Movie extends CustomUI {
@@ -23,23 +28,41 @@ public class Movie extends CustomUI {
 
     private String nickname;
 
-    public Movie(String title) {
+    public Movie(int MovieId) {
         this.nickname = nickname;
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         init();
 
         MovieDao mDao = MovieDao.getInstance();
-//        Movies movie = mDao.selectTitle(title);
-//
-//        // 라벨에 값들 set하기
-//        lbMovie.setText(movie.getMovie());
-//
-////        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-////        lbDate.setText(dateFormat.format(review.getCreate_time()));
-//        lbDate.setText(review.getCreate_time());
-//        lbRating.setText(Float.toString(review.getRating()));
-//        lbDetail.setText(review.getDetail());
+        Movies movie = mDao.selectOne(MovieId);
+
+        // 라벨에 값들 set하기
+        // 제목
+        lbMovie.setText(movie.getTitle());
+        
+        // 장르/연령제한
+        lbGenreAge.setText(movie.getRating()+"/"+Integer.toString(movie.getAge())+"세이상관람가능");
+        
+        // 나라
+        lbCountry.setText(movie.getCountry());
+        
+        // 상연시간/개봉일
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        lbRunOpenTime.setText(Integer.toString(movie.getRunningTime())+"분/"+dateFormat.format(movie.getOpening_date()));
+
+        // 감독
+        lbDirector.setText(movie.getDirector());
+
+        // 출연 배우
+        ActorDao aDao = ActorDao.getInstance();
+        String actors = aDao.selectAll(MovieId, movie.getTitle());
+        System.out.println(actors);
+        lbActor.setText(actors);
+
+        // 줄거리
+        taPlot.setText(movie.getPlot());
+
 
         btnMain.addActionListener(new ActionListener() {
             @Override
