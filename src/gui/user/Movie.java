@@ -22,7 +22,7 @@ public class Movie extends CustomUI {
     private JLabel lbMovie, lbRating, lbGenreAge, lbCountry, lbRunOpenTime, lbDirector, lbActor;
     private JTextArea taPlot;
 
-    private JButton btnMain, btnBack;
+    private JButton btnMain, btnBack, btnMovieReviews;
 
     private String nickname;
 
@@ -63,6 +63,14 @@ public class Movie extends CustomUI {
         // 줄거리
         taPlot.setText(movie.getPlot());
 
+        //영화 review보기
+        btnMovieReviews.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MovieReviews(nickname, MovieId);
+                frame.dispose();
+            }
+        });
 
         btnMain.addActionListener(new ActionListener() {
             @Override
@@ -149,13 +157,18 @@ public class Movie extends CustomUI {
         panel.add(lbTitlePlot);
         panel.add(taPlot);
 
-        btnMain = custom.setBtnGreen("btnMain", "메인으로", 220, 680);
-        btnBack = custom.setBtnWhite("btnBack", "이전으로", 220, 730);
+        btnMovieReviews = custom.setBtnGreen("btnReviews","영화 리뷰 보기",220, 680);
 
-        panel.setPreferredSize(new Dimension(800, 1500));
+        btnMain = custom.setBtnGreen("btnMain", "메인으로", 220, 740);
+        btnBack = custom.setBtnWhite("btnBack", "이전으로", 220, 800);
 
+        panel.setPreferredSize(new Dimension(800, 1150));
+
+        panel.add(btnMovieReviews);
         panel.add(btnMain);
         panel.add(btnBack);
+
+
 
         JScrollPane sp = new JScrollPane();
         sp.setViewportView(panel);

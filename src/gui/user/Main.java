@@ -15,6 +15,7 @@ public class Main extends CustomUI {
     private JButton btnMovie, btnTheater, btnReview, btnInfo, btnLogout;
 
     private String nickname;
+    private int userId;
 
     public Main(String nickname) {
         this.nickname = nickname;
@@ -24,7 +25,8 @@ public class Main extends CustomUI {
         btnMovie.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // 테스트용(원래는 ID)
-                new Movie(nickname,6);
+                //new Movie(nickname,6);
+                new Ranking(nickname);
                 frame.dispose();
             }
         });

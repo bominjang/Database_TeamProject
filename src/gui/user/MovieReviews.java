@@ -20,31 +20,33 @@ import models.Movies;
 import models.Reviews;
 
 @SuppressWarnings("serial")
-public class MyReviews extends CustomUI {
+public class MovieReviews extends CustomUI {
 
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
-    private JLabel lbTitle, lbResult, lb, lbTitleRating[], lbTitleMovie[], lbCreateTime[];
-    private JTextArea lbReview[];
+    private JLabel lbTitle, lbResult, lb,lbNickName[], lbCreateTime[],lbRating[], lbReview[];
     private JTextField txtdetail, txtrating;
     private JButton btnReview, btnBack;
 
-    private final String SQL = "SELECT * FROM DB2021_Review WHERE NICKNAME=?";
+    private final String SQL = "SELECT * FROM DB2021_Review WHERE Movie = (SELECT title FROM DB2021_MOVIE AS M WHERE M.ID = ?)";
     private ArrayList<Reviews> rvs = new ArrayList<Reviews>();
 
     private String nickname;
+    private int movieId;
+
     private int reviewId;
 
-    //movie varchar(20) not null, 
+    //movie varchar(20) not null,
     //nickname varchar(20) not null,
     //create_time date not null,
     //rating float not null,
     //detail varchar(500) not null,
 
-    
 
-    public MyReviews(String nickname) {
+
+    public MovieReviews(String nickname, int MovieId) {
         this.nickname = nickname;
+        this.movieId = MovieId;
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         init();
 //        btnCancel.addActionListener(new ActionListener() {
@@ -114,12 +116,12 @@ public class MyReviews extends CustomUI {
         conn = DBConnection.getConnection();
         try {
             pstmt = conn.prepareStatement(SQL);
-            pstmt.setString(1, nickname);
+            pstmt.setInt(1, movieId);
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
                 Reviews rv = new Reviews();
-                rv.setMovie(rs.getString("MOVIE")); // 영화제목
+                rv.setNickname(rs.getString("NICKNAME")); // 영화제목
                 rv.setCreate_time(rs.getString("CREATE_TIME"));
                 rv.setRating(rs.getFloat("RATING"));
                 rv.setDetail(rs.getString("DETAIL"));
@@ -135,11 +137,10 @@ public class MyReviews extends CustomUI {
 //            lbReview.setText(rv.getDetail());
 
             int i = 0;
-            //lbNickName.setText(nickname);
-            lbTitleMovie = new JLabel[rvs.size()];
+            lbNickName = new JLabel[rvs.size()];
             lbCreateTime = new JLabel[rvs.size()];
-            lbTitleRating = new JLabel[rvs.size()];
-            lbReview = new JTextArea[rvs.size()];
+            lbRating = new JLabel[rvs.size()];
+            lbReview = new JLabel[rvs.size()];
 
             JPanel panel = new JPanel();
             panel.setLayout(null);
@@ -148,16 +149,15 @@ public class MyReviews extends CustomUI {
             for (Reviews r : rvs) {
                 int moveY = 50 * i;
                 i++;
-                lb = custom.setLb("lbTitleMovie", r.getMovie(), 20, 20 + moveY, 400, 20, "left", 14, "plain", panel);
-                lbTitleMovie[i-1] = custom.setLb("lbTitleMovie", r.getMovie(), 20, 20 + moveY, 400, 20, "left", 14, "plain", panel);
-                lbCreateTime[i-1]= custom.setLb("lbCreateTime", r.getCreate_time(), 20, 20 + moveY, 400, 20, "right", 14, "plain", panel);
-                lbTitleRating[i-1]= custom.setLb("lbTitleRating", Float.toString(r.getRating()), 20, 20 + moveY, 400, 20, "center", 14, "plain", panel);
+                lbNickName[i-1] = custom.setLb("lbNickName", r.getNickname(), 20, 20 + moveY, 400, 20, "left", 15, "plain", panel);
+                lbCreateTime[i-1]= custom.setLb("lbCreateTime", r.getCreate_time(), 20, 20 + moveY, 400, 20, "right", 15, "plain", panel);
+                lbRating[i-1]= custom.setLb("lbTitleRating", Float.toString(r.getRating()), 20, 20 + moveY, 400, 20, "center", 15, "plain", panel);
 
-                lbReview[i-1]= custom.setTextArea("lbReview", r.getDetail(), 20, 30 + moveY, 300, 40, false);
+                lbReview[i-1]= custom.setLb("lbReview", r.getDetail(), 20, 30 + moveY, 300, 40, "left", 15, "plain", panel);
 
-                panel.add(lbTitleMovie[i-1]);
+                panel.add(lbNickName[i-1]);
                 panel.add(lbCreateTime[i-1]);
-                panel.add(lbTitleRating[i-1]);
+                panel.add(lbRating[i-1]);
                 panel.add(lbReview[i-1]);
 
 //                lbTitleMovie[i - 1].addMouseListener(new MouseListener() {
@@ -175,7 +175,7 @@ public class MyReviews extends CustomUI {
 //                    }
 //                });
             }
-            panel.setPreferredSize(new Dimension(400, 20+ 100*i));
+            panel.setPreferredSize(new Dimension(450, 20+ 100*i));
 
             JScrollPane sp = new JScrollPane();
             sp.setViewportView(panel);
@@ -186,7 +186,7 @@ public class MyReviews extends CustomUI {
             e.printStackTrace();
         }
 
-        lbTitle = custom.setLb("lbTitle", "나의 리뷰", 100, 85, 220, 185, "center", 20, "bold");
+        lbTitle = custom.setLb("lbTitle", "리뷰", 100, 85, 220, 185, "center", 20, "bold");
 
 //        btnCancel = custom.setBtnBlue("btnCancel", "예매취소", 600);
         btnBack = custom.setBtnWhite("btnBack", "이전으로", 35, 655);

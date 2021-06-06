@@ -53,6 +53,42 @@ public class MovieDao {
         return null;
     }
 
+    public Vector<Movies> selectRanking()
+    {
+        Vector<Movies> movies = new Vector<>();
+        String sql = "SELECT id, title, director, rating FROM DB2021_MOVIE ORDER BY rating";
+        conn = DBConnection.getConnection();
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            int i=0;
+
+            while (rs.next()) {
+                if(i==3){
+                    conn.close();
+                    return movies;
+                }
+                Movies movie = new Movies();
+                movie.setId(rs.getInt("ID"));
+                movie.setTitle(rs.getString("TITLE"));
+                movie.setDirector(rs.getString("DIRECTOR"));
+                movie.setRating(rs.getFloat("RATING"));
+                movies.add(movie);
+                i++;
+            }
+
+            conn.close();
+
+            return movies;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public Vector<Movies> selectAll() {
         Vector<Movies> movies = new Vector<>();
         String sql = "SELECT * FROM MOVIE";
