@@ -159,7 +159,7 @@ public class Movie extends CustomUI {
 
         btnMovieReviews = custom.setBtnGreen("btnReviews","영화 리뷰 보기",220, 680,350,40);
 
-        btnMain = custom.setBtnGreen("btnMain", "메인으로", 220, 680, 350, 40);
+        btnMain = custom.setBtnGreen("btnMain", "메인으로", 220, 740, 350, 40);
         btnBack = custom.setBtnWhite("btnBack", "이전으로", 220, 800);
 
         panel.setPreferredSize(new Dimension(800, 1150));
