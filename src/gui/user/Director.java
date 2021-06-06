@@ -1,5 +1,6 @@
 package gui.user;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -45,18 +46,17 @@ public class Director extends CustomUI {
 
         SimpleDateFormat transFormat = new SimpleDateFormat("YYYY-MM-DD");
         String birth;
-        if(director.getBirth() == null){
-            birth="unknown";
+        if (director.getBirth() == null) {
+            birth = "unknown";
         } else {
-            birth=transFormat.format(director.getBirth());
+            birth = transFormat.format(director.getBirth());
         }
         lbBirth.setText(birth);
-
 
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int returnCd = JOptionPane.showConfirmDialog(frame, "메인 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-                if(returnCd == JOptionPane.YES_OPTION) {
+                if (returnCd == JOptionPane.YES_OPTION) {
                     new Main(nickname);
                     frame.dispose();
                 }
@@ -95,10 +95,9 @@ public class Director extends CustomUI {
 
         lbTitleMovies = custom.setLb("lbTitleMovies", "필모그라피", 150, 360, 200, 20, "left", 17, "bold");
 
-        if(direcMovies == null) {
+        if (direcMovies == null) {
             custom.setLb("lbMovies", "없음", 319, 360, 200, 20, "left", 17, "plain");
-        }
-        else{
+        } else {
             for (int i = 0; i < direcMovies.size(); i++) {
                 String movie = direcMovies.get(i);
 
@@ -113,18 +112,17 @@ public class Director extends CustomUI {
 //        lbPrize = custom.setLb("lbDetail", "감독이 받은 상", 425, 420, 200, 20, "left", 17, "plain");
 
         lbTitlePrize = custom.setLb("lbTitlePrize", "수상이력", 150, 450, 200, 20, "left", 17, "bold");
-        if(direcPrizes == null) {
+        if (direcPrizes == null) {
             custom.setLb("lbPrizes", "없음", 319, 450, 200, 20, "left", 17, "plain");
-        }
-        else {
+        } else {
             int i = 0;
-            for (String mapkey : direcPrizes.keySet()){
+            for (String mapkey : direcPrizes.keySet()) {
                 custom.setLb("lbMovies", mapkey, 319, 450 + (20 * i), 200, 20, "left", 17, "plain");
 
                 Vector<String> prizes = direcPrizes.get(mapkey);
-                for(String prize : prizes) { //for문을 통한 전체출력
+                for (String prize : prizes) { //for문을 통한 전체출력
                     ++i;
-                    custom.setLb("lbMovies", "- "+prize, 319, 450 + (20 * i), 200, 20, "left", 17, "plain");
+                    custom.setLb("lbMovies", "- " + prize, 319, 450 + (20 * i), 200, 20, "left", 17, "plain");
                 }
                 ++i;
             }
