@@ -161,12 +161,9 @@ public class SearchResult extends CustomUI {
                 public void mouseClicked(MouseEvent e) {
                     int movieId = 0;
                     String movieTitle = e.getSource().toString();
-                    System.out.println("Default: " + movieTitle);
                     for (int i = 0; i < lbMovieName.length; i++) {
                         if (movieTitle.contains(rMovies.get(i).getTitle())) {
                             movieId = rMovies.get(i).getId();
-                            System.out.println("ID는" + movieId);
-                            System.out.println(rMovies.get(i).getTitle());
                         }
                     }
                     new Movie(nickname, movieId);
