@@ -19,16 +19,14 @@ import javax.swing.JScrollPane;
 
 import dao.DBConnection;
 import dao.MovieDao;
-import dao.UserDao;
 import models.Movies;
-import models.Users;
 
 @SuppressWarnings("serial")
 public class Ranking extends CustomUI {
 
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
-    private JLabel lbBox[], lbMovieName[], lbRating[], lbTitle;
+    private JLabel lbBox[], lbMovieName[], lbRating[], lbTitle, lbLine;
     private JButton btnBack;
 
     private static final String SQL = "SELECT DISTINCT M.ID, M.TITLE, M.AGE, M.RUNNING_TIME FROM MOVIE M INNER JOIN SCREEN S ON M.ID = S.MOVIE_ID WHERE ? BETWEEN S.START_DATE AND S.END_DATE";
@@ -39,12 +37,12 @@ public class Ranking extends CustomUI {
     private int movieId;
     //private ArrayList<Movies> movies = new ArrayList<>();
 
-    private String userId ;
+    private String nickname;
     private MovieDao mDao;
     private Vector<Movies> rMovies;
 
-    public Ranking(String userId) {
-        this.userId = userId;
+    public Ranking(String nickname) {
+        this.nickname = nickname;
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         mDao = MovieDao.getInstance();
@@ -58,7 +56,7 @@ public class Ranking extends CustomUI {
 
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new Main(userId);
+                new Main(nickname);
                 frame.dispose();
             }
         });
@@ -87,7 +85,7 @@ public class Ranking extends CustomUI {
             for (int j = 0; j < rMovies.size(); j++) {
                 int moveY = 55;
                 addnum++;
-                lbBox[j] = custom.setLbBox("lbBox" + j, j + "", 35, 20 + (moveY * j), panel);
+                lbBox[j] = custom.setLbBox("lbBox" + j, j+1+"", 35, 20 + (moveY * j), panel);
                 lbMovieName[j] = custom.setLb("lbMovieName" + j, rMovies.get(j).getTitle(), 75, 22 + (moveY * j), 300, 20, "left", 14, "plain", panel);
                 lbRating[j] = custom.setLb("lbTime" + j, "평점: "+rMovies.get(j).getRating() + "", 80, 22 + (moveY * j), 300, 20, "right", 13, "plain", panel);
 
@@ -107,12 +105,12 @@ public class Ranking extends CustomUI {
                         for (int i = 0; i < lbMovieName.length; i++) {
                             if (movieTitle.contains(rMovies.get(i).getTitle())) {
                                 movieId = rMovies.get(i).getId();
-                                movieAge = rMovies.get(i).getAge();
+                                //movieAge = rMovies.get(i).get();
                             }
                         }
 
-                        UserDao dao = UserDao.getInstance();
-                        Users user = dao.selectBirth(userId);
+//                        UserDao dao = UserDao.getInstance();
+//                        Users user = dao.selectBirth(userId);
 
 //                        String birth = user.getBirthDate() + "";
 //                        int birthYear = Integer.parseInt(birth.substring(0, 4));

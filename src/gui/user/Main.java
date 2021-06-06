@@ -30,7 +30,8 @@ public class Main extends CustomUI {
                 // 감독 상세-테스트용(nickname, DirectorID)
 //                new Director(nickname, 14);
                 // 배우 상세-테스트용(nickname, ActorID)
-                new Actor(nickname, 26);
+                //new Actor(nickname, 26);
+                new Ranking(nickname);
                 frame.dispose();
             }
         });

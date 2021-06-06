@@ -452,22 +452,11 @@ class CustomUI extends JFrame {
 
     protected JLabel setLbBox(String name, String text, int x, int y, JPanel panel) {
         JLabel lb = new JLabel(text);
-        int age = Integer.parseInt(text);
+        int rating = Integer.parseInt(text);
 
-        if(age == 99) {
-            lb.setFont(new Font("맑은 고딕", Font.BOLD, 0));
-            lb.setBackground(new Color(53, 121, 247));
-        } else if(age >= 19) {
-            lb.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-            lb.setBackground(Color.RED);
-        } else if (age <= 0) {
-            lb.setFont(new Font("맑은 고딕", Font.BOLD, 10));
-            lb.setBackground(Color.BLUE);
-            lb.setText("전체");
-        } else {
-            lb.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-            lb.setBackground(Color.GREEN);
-        }
+        lb.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        lb.setBackground(new Color(0, 70, 42));
+
         lb.setOpaque(true);
         lb.setForeground(Color.WHITE);
         lb.setHorizontalAlignment(SwingConstants.CENTER);

@@ -58,7 +58,7 @@ public class MovieDao {
     public Vector<Movies> selectRanking()
     {
         Vector<Movies> movies = new Vector<>();
-        String sql = "SELECT id, title, director, rating FROM DB2021_MOVIE ORDER BY rating";
+        String sql = "SELECT id, title, rating FROM DB2021_MOVIE ORDER BY rating DESC, title LIMIT 10";
         conn = DBConnection.getConnection();
 
         try {
@@ -67,14 +67,10 @@ public class MovieDao {
             int i=0;
 
             while (rs.next()) {
-                if(i==3){
-                    conn.close();
-                    return movies;
-                }
                 Movies movie = new Movies();
                 movie.setId(rs.getInt("ID"));
                 movie.setTitle(rs.getString("TITLE"));
-                movie.setDirector(rs.getString("DIRECTOR"));
+                System.out.println(rs.getString("TITLE"));
                 movie.setRating(rs.getFloat("RATING"));
                 movies.add(movie);
                 i++;
