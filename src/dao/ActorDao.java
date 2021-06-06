@@ -8,8 +8,8 @@ import java.sql.ResultSet;
 import java.util.Vector;
 
 public class ActorDao {
-    private ActorDao() {
-    }
+
+    private ActorDao() {}
 
     private static ActorDao instance = new ActorDao();
 
@@ -22,7 +22,7 @@ public class ActorDao {
     private static ResultSet rs;
 
     public Actors selectOne(int id) {
-        String sql = "SELECT * FROM MOVIE WHERE ID = ?";
+        String sql = "SELECT * FROM DB2021_Actor WHERE ID = ?";
         conn = DBConnection.getConnection();
 
         try {
@@ -30,20 +30,20 @@ public class ActorDao {
             pstmt.setInt(1, id);
             rs = pstmt.executeQuery();
 
-            Actors movie = new Actors();
+            Actors actor = new Actors();
             if (rs.next()) {
-//                movie.setTitle(rs.getString("title"));
-//                movie.setGenre(rs.getString("genre"));
-//                movie.setCountry(rs.getString("country"));
-//                movie.setRunningTime(rs.getInt("running_time"));
-//                movie.setOpening_date(rs.getDate("opening_date"));
-//                movie.setDirector(rs.getString("director"));
-//                movie.setPlot(rs.getString("plot"));
-//                movie.setRating(rs.getFloat("rating"));
-//                movie.setAge(rs.getInt("age"));
+//                actor.setTitle(rs.getString("title"));
+//                actor.setGenre(rs.getString("genre"));
+//                actor.setCountry(rs.getString("country"));
+//                actor.setRunningTime(rs.getInt("running_time"));
+//                actor.setOpening_date(rs.getDate("opening_date"));
+//                actor.setDirector(rs.getString("director"));
+//                actor.setPlot(rs.getString("plot"));
+//                actor.setRating(rs.getFloat("rating"));
+//                actor.setAge(rs.getInt("age"));
 
                 conn.close();
-                return movie;
+                return actor;
             } else {
                 conn.close();
                 return null;
@@ -55,15 +55,16 @@ public class ActorDao {
         return null;
     }
 
-    public String selectAll(int movieId, String title) {
+    public String selectAll(int movieId) {
         String movies = "";
-        String sql = "SELECT actor FROM DB2021_Actor_Movie Where movie in (SELECT title FROM DB2021_Movie where ID = ? and title = ?)";
+//        String sql = "SELECT actor FROM DB2021_Actor_Movie Where movie in (SELECT title FROM DB2021_Movie where ID = ? and title = ?)";
+        String sql = "SELECT actor FROM DB2021_Actor_Movie as am left outer join DB2021_Movie as m on am.movie = m.title where m.ID = ?";
         conn = DBConnection.getConnection();
 
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, movieId);
-            pstmt.setString(2, title);
+//            pstmt.setString(2, title);
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
