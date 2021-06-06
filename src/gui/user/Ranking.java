@@ -29,10 +29,10 @@ public class Ranking extends CustomUI {
     private JLabel lbBox[], lbMovieName[], lbRating[], lbTitle, lbLine;
     private JButton btnBack;
 
-    private static final String SQL = "SELECT DISTINCT M.ID, M.TITLE, M.AGE, M.RUNNING_TIME FROM MOVIE M INNER JOIN SCREEN S ON M.ID = S.MOVIE_ID WHERE ? BETWEEN S.START_DATE AND S.END_DATE";
+//    private static final String SQL = "SELECT DISTINCT M.ID, M.TITLE, M.AGE, M.RUNNING_TIME FROM MOVIE M INNER JOIN SCREEN S ON M.ID = S.MOVIE_ID WHERE ? BETWEEN S.START_DATE AND S.END_DATE";
     private static Connection conn;
-    private static PreparedStatement pstmt;
-    private static ResultSet rs;
+//    private static PreparedStatement pstmt;
+//    private static ResultSet rs;
     private int addnum;
     private int movieId;
     //private ArrayList<Movies> movies = new ArrayList<>();
@@ -77,7 +77,6 @@ public class Ranking extends CustomUI {
             custom.setPanel();
 
 
-
             JPanel panel = new JPanel();
             panel.setLayout(null);
             panel.setBackground(Color.WHITE);
@@ -85,29 +84,36 @@ public class Ranking extends CustomUI {
             for (int j = 0; j < rMovies.size(); j++) {
                 int moveY = 55;
                 addnum++;
-                lbBox[j] = custom.setLbBox("lbBox" + j, j+1+"", 35, 20 + (moveY * j), panel);
+                lbBox[j] = custom.setLbBox("lbBox" + j, j + 1 + "", 35, 20 + (moveY * j), panel);
                 lbMovieName[j] = custom.setLb("lbMovieName" + j, rMovies.get(j).getTitle(), 75, 22 + (moveY * j), 300, 20, "left", 14, "plain", panel);
-                lbRating[j] = custom.setLb("lbTime" + j, "평점: "+rMovies.get(j).getRating() + "", 80, 22 + (moveY * j), 300, 20, "right", 13, "plain", panel);
+                lbRating[j] = custom.setLb("lbTime" + j, "평점: " + rMovies.get(j).getRating() + "", 80, 22 + (moveY * j), 300, 20, "right", 13, "plain", panel);
 
                 panel.add(lbBox[j]);
                 panel.add(lbMovieName[j]);
                 panel.add(lbRating[j]);
 
                 lbMovieName[j].addMouseListener(new MouseListener() {
-                    public void mouseReleased(MouseEvent e) {}
-                    public void mousePressed(MouseEvent e) {}
-                    public void mouseExited(MouseEvent e) {}
-                    public void mouseEntered(MouseEvent e) {}
+                    public void mouseReleased(MouseEvent e) {
+                    }
+
+                    public void mousePressed(MouseEvent e) {
+                    }
+
+                    public void mouseExited(MouseEvent e) {
+                    }
+
+                    public void mouseEntered(MouseEvent e) {
+                    }
+
                     public void mouseClicked(MouseEvent e) {
                         String movieTitle = e.getSource().toString();
-                        int movieAge = 0;
-
                         for (int i = 0; i < lbMovieName.length; i++) {
                             if (movieTitle.contains(rMovies.get(i).getTitle())) {
                                 movieId = rMovies.get(i).getId();
-                                //movieAge = rMovies.get(i).get();
                             }
                         }
+                        new Movie(nickname, movieId);
+                        frame.dispose();
 
 //                        UserDao dao = UserDao.getInstance();
 //                        Users user = dao.selectBirth(userId);
@@ -137,8 +143,8 @@ public class Ranking extends CustomUI {
             sp.setBounds(0, 120, 422, 500);
             backgroundPanel.add(sp);
 
-            //lbTitle = custom.setLb("lbTitle", "예매 내역", 100, 85, 220, 185, "center", 20, "bold");
-            btnBack = custom.setBtnWhite("btnBack", "이전으로",35, 650);
+            lbTitle = custom.setLb("lbTitle", "영화 순위", 100, 85, 220, 185, "center", 20, "bold");
+            btnBack = custom.setBtnWhite("btnBack", "이전으로", 35, 650);
         } catch (Exception e) {
             e.printStackTrace();
         }

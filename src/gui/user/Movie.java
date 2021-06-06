@@ -80,12 +80,12 @@ public class Movie extends CustomUI {
             }
         });
 
-        // 이전 페이지로 돌아가도록(수정)
+        // 이전 페이지로 돌아가도록
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int returnCd = JOptionPane.showConfirmDialog(frame, "메인 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if(returnCd == JOptionPane.YES_OPTION) {
-                    new Main(nickname);
+                    new Ranking(nickname);
                     frame.dispose();
                 }
             }
