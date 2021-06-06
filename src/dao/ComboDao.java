@@ -26,19 +26,7 @@ public class ComboDao {
         Vector<Combo> combos = new Vector<>();
         String sql;
 
-        if(comboContent.equals("search")) {
-
-//            Keyword keyword = new Keyword();
-//            keyword.setKey("영화");
-//            keyword.setValue("movie");
-//            combos.add(keyword);
-
-            return combos;
-        } else if(comboContent.equals("seat")) {
-            sql = "SELECT ID AS KEY, SEAT_TYPE AS VALUE FROM SEAT";
-        } else if(comboContent.equals("discount")) {
-            sql = "SELECT ID AS KEY, NAME||' ('||VAL||UNIT||')' AS VALUE FROM DISCOUNT";
-        } else if(comboContent.equals("movie")) {
+        if(comboContent.equals("movie")) {
             sql = "SELECT ID AS 'KEY', TITLE AS 'VALUE' FROM DB2021_MOVIE";
         } else {
             sql = "";

@@ -36,6 +36,7 @@ public class ActorDao {
 
             Actors actor = new Actors();
             if (rs.next()) {
+                actor.setId(rs.getInt("ID"));
                 actor.setName(rs.getString("name"));
                 actor.setBirth(rs.getDate("birth"));
                 actor.setCountry(rs.getString("country"));

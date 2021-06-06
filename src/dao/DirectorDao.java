@@ -35,6 +35,7 @@ public class DirectorDao {
 
             Directors director = new Directors();
             if (rs.next()) {
+                director.setId(rs.getInt("ID"));
                 director.setName(rs.getString("name"));
                 director.setBirth(rs.getDate("birth"));
                 director.setCountry(rs.getString("country"));

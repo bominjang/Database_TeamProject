@@ -115,24 +115,6 @@ public class Ranking extends CustomUI {
                         new Movie(nickname, movieId);
                         frame.dispose();
 
-//                        UserDao dao = UserDao.getInstance();
-//                        Users user = dao.selectBirth(userId);
-
-//                        String birth = user.getBirthDate() + "";
-//                        int birthYear = Integer.parseInt(birth.substring(0, 4));
-//                        int birthMonth = Integer.parseInt(birth.substring(4, 6));
-//                        int birthDay = Integer.parseInt(birth.substring(6));
-//
-//                        Utils util = new Utils();
-//                        int age = util.getAge(birthYear, birthMonth, birthDay);
-//
-//                        if (age >= movieAge) {
-//                            new SelectMovie2(userId, movieId, reserveDate);
-//                            frame.dispose();
-//                        } else {
-//                            JOptionPane.showMessageDialog(frame, "관람 가능한 나이가 아닙니다.", "오류", JOptionPane.ERROR_MESSAGE);
-//                        }
-
                     }
                 });
             }

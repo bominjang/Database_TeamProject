@@ -30,6 +30,7 @@ public class MovieDao {
 
             Movies movie = new Movies();
             if (rs.next()) {
+                movie.setId(rs.getInt("ID"));
                 movie.setTitle(rs.getString("title"));
                 movie.setGenre(rs.getString("genre"));
                 movie.setCountry(rs.getString("country"));

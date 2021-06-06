@@ -3,6 +3,8 @@ package gui.user;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.security.Key;
 import java.text.SimpleDateFormat;
 import java.util.Vector;
@@ -22,87 +24,31 @@ public class SearchResult extends CustomUI {
     private JPanel container = new JPanel();
     private JPanel backgroundPanel;
     private JLabel lbIcon, lbTitle, lbTitleMovie,lbTitleCountry, lbTitlePlot, lbTItleRating, lbTitleGenreAge, lbTitleRunOpenTime, lbTitleDirector, lbTitleActor;
-    private JLabel lbMovie, lbRating, lbGenreAge, lbCountry, lbRunOpenTime, lbDirector, lbActor;
+    private JLabel lbMovieName[], lbRating[], lbGenreAge, lbCountry, lbRunOpenTime, lbDirector, lbActor;
     private JTextArea taPlot;
     private JTextField searchbar;
-
     private JComboBox<Keyword> comboKeyword;
-
     private JButton btnMain, btnBack, btnSearch;
+    private JLabel lbBox[];
+    private Vector<Movies> rMovies;
+    private SearchDao sDao;
 
     private String nickname;
+    private int addnum;
 
     public SearchResult(String nickname, String keyword, String text) {
         this.nickname = nickname;
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        init();
 
-//        MovieDao mDao = MovieDao.getInstance();
-//        Movies movie = mDao.selectOne(MovieId);
-//
-//        // 라벨에 값들 set하기
-//        // 제목
-//        lbMovie.setText(movie.getTitle());
-//
-//        // 평점
-//        lbRating.setText(Float.toString(movie.getRating()));
-//
-//        // 장르/연령제한
-//        lbGenreAge.setText(movie.getGenre()+"/"+Integer.toString(movie.getAge())+"세이상관람가능");
-//
-//        // 나라
-//        lbCountry.setText(movie.getCountry());
-//
-//        // 상연시간/개봉일
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        lbRunOpenTime.setText(Integer.toString(movie.getRunningTime())+"분/"+dateFormat.format(movie.getOpening_date()));
-//
-//        // 감독
-//        lbDirector.setText(movie.getDirector());
-//
-//        // 출연 배우
-//        ActorDao aDao = ActorDao.getInstance();
-//        String actors = aDao.selectAll(MovieId);
-//        lbActor.setText(actors);
-//
-//        // 줄거리
-//        taPlot.setText(movie.getPlot());
-//
-//        // 영화 선택
-//        comboMovie.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                Combo selectedComboItem = (Combo) comboMovie.getSelectedItem();
-//                System.out.println("a: "+selectedComboItem);
-//                String movie = selectedComboItem.toString();
-//                lbResult.setText(movie);
-//            }
-//        });
-//
-//        // 등록하기
-//        btnReview.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                int returnCd = JOptionPane.showConfirmDialog(frame, "등록하시겠습니까?", "확인", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-//                if(returnCd == JOptionPane.YES_OPTION) {
-//                    Combo movie = (Combo) comboMovie.getSelectedItem();
-//
-//                    String movieTitle = movie.getValue();
-//                    String rating = txtrating.getText();
-//                    String detail = txtdetail.getText();
-//
-//                    ReviewDao rDao = ReviewDao.getInstance();
-//
-//                    int returnCnt = rDao.insert(movieTitle, nickname, Float.parseFloat(rating), detail);
-//
-//                    if(returnCnt == 1) {
-//                        new Result(nickname);
-//                        frame.dispose();
-//                    } else {
-//                        JOptionPane.showMessageDialog(frame, "등록에 실패하였습니다. 다시 시도해 주세요.", "오류", JOptionPane.ERROR_MESSAGE);
-//                    }
-//                }
-//            }
-//        });
+        sDao = SearchDao.getInstance();
+        rMovies = sDao.search(keyword, text);
+
+        lbBox = new JLabel[rMovies.size()];
+        lbMovieName = new JLabel[rMovies.size()];
+        lbRating = new JLabel[rMovies.size()];
+
+        init();
 
         // 메인 페이지로 돌아가도록
         btnMain.addActionListener(new ActionListener() {
@@ -122,6 +68,25 @@ public class SearchResult extends CustomUI {
                 if(returnCd == JOptionPane.YES_OPTION) {
                     new Search(nickname);
                     frame.dispose();
+                }
+            }
+        });
+
+        btnSearch.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Keyword movie = (Keyword) comboKeyword.getSelectedItem();
+
+                String key = movie.getKey();
+                String text = searchbar.getText();
+
+                SearchDao sDao = SearchDao.getInstance();
+                boolean check = sDao.dataExist(key, text);
+
+                if(check) {
+                    new SearchResult(nickname, key, text);
+                    frame.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(frame, "등록되어 있지 않은 정보입니다.", "오류", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -169,47 +134,51 @@ public class SearchResult extends CustomUI {
         lbTitle = custom.setLb("lbTitle", "검색 결과", 310, 300, 180, 50, "center", 35, "bold");
         panel.add(lbTitle);
 
-        lbTitleGenreAge = custom.setLb("lbTitleDate", "장르/연령제한", 230, 330, 150, 20, "left", 17, "bold");
-        lbGenreAge = custom.setLb("lbDate", "장르와 연령제한입니다.", 425, 320, 200, 20, "left", 17, "plain");
+        for (int j = 0; j < rMovies.size(); j++) {
+            int moveY = 55;
+            addnum++;
+            lbBox[j] = custom.setLbBox("lbBox" + j, j + 1 + "", 150, 400 + (moveY * j), panel);
+            lbMovieName[j] = custom.setLb(rMovies.get(j).getTitle(), rMovies.get(j).getTitle(), 200, 402 + (moveY * j), 300, 20, "left", 20, "plain", panel);
+            lbRating[j] = custom.setLb("lbTime" + j, "평점: " + rMovies.get(j).getRating() + "", 350, 402 + (moveY * j), 300, 20, "right", 20, "plain", panel);
 
-        panel.add(lbTitleGenreAge);
-        panel.add(lbGenreAge);
+            panel.add(lbBox[j]);
+            panel.add(lbMovieName[j]);
+            panel.add(lbRating[j]);
 
-        lbTitleCountry = custom.setLb("lbTitleDate", "나라", 230, 360, 150, 20, "left", 17, "bold");
-        lbCountry = custom.setLb("lbDate", "나라입니다.", 425, 360, 200, 20, "left", 17, "plain");
+            lbMovieName[j].addMouseListener(new MouseListener() {
+                public void mouseReleased(MouseEvent e) {
+                }
 
-        panel.add(lbTitleCountry);
-        panel.add(lbCountry);
+                public void mousePressed(MouseEvent e) {
+                }
 
-        lbTitleRunOpenTime = custom.setLb("lbTitleRating", "상영시간/개봉일", 230, 390, 150, 20, "left", 17, "bold");
-        lbRunOpenTime = custom.setLb("lbRating", "상연시간과 개봉일입니다.", 425, 390, 200, 20, "left", 17, "plain");
+                public void mouseExited(MouseEvent e) {
+                }
 
-        panel.add(lbTitleRunOpenTime);
-        panel.add(lbRunOpenTime);
+                public void mouseEntered(MouseEvent e) {
+                }
 
-        lbTitleDirector = custom.setLb("lbTitleDetail", "감독", 230, 420, 150, 20, "left", 17, "bold");
-        lbDirector = custom.setLb("lbDetail", "영화를 맡은 감독입니다.", 425, 420, 200, 20, "left", 17, "plain");
-
-        panel.add(lbTitleDirector);
-        panel.add(lbDirector);
-
-        lbTitleActor = custom.setLb("lbTitleDetail", "출연배우", 230, 450, 150, 20, "left", 17, "bold");
-        lbActor = custom.setLb("lbDetail", "출연배우들 입니다.", 425, 450, 200, 20, "left", 17, "plain");
-
-        panel.add(lbTitleActor);
-        panel.add(lbActor);
-
-        lbTitlePlot = custom.setLb("lbTitlePlot", "줄거리", 330, 490, 150, 20, "center", 17, "bold");
-        taPlot = custom.setTextArea("lbPlot", "줄거리주루룩", 100, 520, 600, 120, false);
-
-        panel.add(lbTitlePlot);
-        panel.add(taPlot);
-
-        panel.setPreferredSize(new Dimension(800, 1500));
+                public void mouseClicked(MouseEvent e) {
+                    int movieId = 0;
+                    String movieTitle = e.getSource().toString();
+                    System.out.println("Default: " + movieTitle);
+                    for (int i = 0; i < lbMovieName.length; i++) {
+                        if (movieTitle.contains(rMovies.get(i).getTitle())) {
+                            movieId = rMovies.get(i).getId();
+                            System.out.println("ID는" + movieId);
+                            System.out.println(rMovies.get(i).getTitle());
+                        }
+                    }
+                    new Movie(nickname, movieId);
+                    frame.dispose();
+                }
+            });
+        }
+        panel.setPreferredSize(new Dimension(800, 900 + 55 * addnum));
 
         JScrollPane sp = new JScrollPane();
         sp.setViewportView(panel);
-        sp.setBounds(0, 100, 800, 1000);
+        sp.setBounds(0, 100, 800, 900);
         backgroundPanel.add(sp);
     }
 }

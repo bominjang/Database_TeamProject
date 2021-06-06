@@ -32,72 +32,6 @@ public class Search extends CustomUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         init();
 
-//        MovieDao mDao = MovieDao.getInstance();
-//        Movies movie = mDao.selectOne(MovieId);
-//
-//        // 라벨에 값들 set하기
-//        // 제목
-//        lbMovie.setText(movie.getTitle());
-//
-//        // 평점
-//        lbRating.setText(Float.toString(movie.getRating()));
-//
-//        // 장르/연령제한
-//        lbGenreAge.setText(movie.getGenre()+"/"+Integer.toString(movie.getAge())+"세이상관람가능");
-//
-//        // 나라
-//        lbCountry.setText(movie.getCountry());
-//
-//        // 상연시간/개봉일
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        lbRunOpenTime.setText(Integer.toString(movie.getRunningTime())+"분/"+dateFormat.format(movie.getOpening_date()));
-//
-//        // 감독
-//        lbDirector.setText(movie.getDirector());
-//
-//        // 출연 배우
-//        ActorDao aDao = ActorDao.getInstance();
-//        String actors = aDao.selectAll(MovieId);
-//        lbActor.setText(actors);
-//
-//        // 줄거리
-//        taPlot.setText(movie.getPlot());
-//
-//        // 영화 선택
-//        comboMovie.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                Combo selectedComboItem = (Combo) comboMovie.getSelectedItem();
-//                System.out.println("a: "+selectedComboItem);
-//                String movie = selectedComboItem.toString();
-//                lbResult.setText(movie);
-//            }
-//        });
-//
-//        // 등록하기
-//        btnReview.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                int returnCd = JOptionPane.showConfirmDialog(frame, "등록하시겠습니까?", "확인", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-//                if(returnCd == JOptionPane.YES_OPTION) {
-//                    Combo movie = (Combo) comboMovie.getSelectedItem();
-//
-//                    String movieTitle = movie.getValue();
-//                    String rating = txtrating.getText();
-//                    String detail = txtdetail.getText();
-//
-//                    ReviewDao rDao = ReviewDao.getInstance();
-//
-//                    int returnCnt = rDao.insert(movieTitle, nickname, Float.parseFloat(rating), detail);
-//
-//                    if(returnCnt == 1) {
-//                        new Result(nickname);
-//                        frame.dispose();
-//                    } else {
-//                        JOptionPane.showMessageDialog(frame, "등록에 실패하였습니다. 다시 시도해 주세요.", "오류", JOptionPane.ERROR_MESSAGE);
-//                    }
-//                }
-//            }
-//        });
-
         // 메인 페이지로 돌아가도록
         btnMain.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -120,11 +54,23 @@ public class Search extends CustomUI {
             }
         });
 
+        // 검색
         btnSearch.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-//                new SearchResult(nickname, keyword, text);
-                new SearchResult(nickname, "movie", "hi");
-                frame.dispose();
+                Keyword movie = (Keyword) comboKeyword.getSelectedItem();
+
+                String key = movie.getKey();
+                String text = searchbar.getText();
+
+                SearchDao sDao = SearchDao.getInstance();
+                boolean check = sDao.dataExist(key, text);
+
+                if(check) {
+                    new SearchResult(nickname, key, text);
+                    frame.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(frame, "등록되어 있지 않은 정보입니다.", "오류", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
