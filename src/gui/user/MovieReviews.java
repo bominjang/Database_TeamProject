@@ -36,14 +36,6 @@ public class MovieReviews extends CustomUI {
 
     private int reviewId;
 
-    //movie varchar(20) not null,
-    //nickname varchar(20) not null,
-    //create_time date not null,
-    //rating float not null,
-    //detail varchar(500) not null,
-
-
-
     public MovieReviews(String nickname, int MovieId) {
         this.nickname = nickname;
         this.movieId = MovieId;

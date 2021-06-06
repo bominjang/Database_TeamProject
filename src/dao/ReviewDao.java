@@ -159,4 +159,22 @@ public class ReviewDao {
     //update
 
     //delete
+    public int delete(int reviewId) {
+        String sql = "DELETE FROM DB2021_Review WHERE ID = ?";
+        conn = DBConnection.getConnection();
+
+        int returnCnt = 0;
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, reviewId);
+            returnCnt = pstmt.executeUpdate();
+
+            conn.close();
+            return returnCnt;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return -1;
+    }
 }
