@@ -102,6 +102,7 @@ public class ReviewDao {
 
             Reviews review = new Reviews();
             if (rs.next()) {
+                review.setId(rs.getInt("ID"));
                 review.setNickname(rs.getString("nickname"));
                 review.setMovie(rs.getString("movie"));
                 review.setCreate_time(rs.getString("create_time"));
@@ -134,6 +135,7 @@ public class ReviewDao {
 
             Reviews review = new Reviews();
             if (rs.next()) {
+                review.setId(rs.getInt("ID"));
                 review.setNickname(rs.getString("nickname"));
                 review.setMovie(rs.getString("movie"));
                 review.setCreate_time(rs.getString("create_time"));
