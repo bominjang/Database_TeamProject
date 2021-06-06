@@ -215,11 +215,83 @@ class CustomUI extends JFrame {
 
         RoundedButton btn = new RoundedButton();
         btn.setBackground(new Color(0, 70, 42));
-        Font btnFont = new Font("맑은 고딕", Font.PLAIN, 20);
+
+        Font btnFont;
+        if(text.equals("삭제하기"))
+        {
+            btnFont = new Font("맑은 고딕", Font.PLAIN, 14);
+
+        }
+        else{
+            btnFont = new Font("맑은 고딕", Font.PLAIN, 20);
+        }
         btn.setFont(btnFont);
 
         btn.setBackground(new Color(0, 70, 42));
         btn.setForeground(Color.WHITE);
+        btn.setBounds(x, y, width, height);
+
+        btn.setText(text);
+        backgroundPanel.add(btn);
+        btn.setName(name);
+
+        return btn;
+    }
+
+
+    protected JButton setBtnGreen(String name, String text, int x, int y, String alignment, int width, int height) {
+        class RoundedButton extends JButton {
+            public RoundedButton() {
+                super();
+                decorate();
+            }
+
+            protected void decorate() {
+                setBorderPainted(false);
+                setOpaque(false);
+            }
+
+            protected void paintComponent(Graphics g) {
+                int width = getWidth();
+                int height = getHeight();
+                Graphics2D graphics = (Graphics2D) g;
+                graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                if (getModel().isArmed()) {
+                    graphics.setColor(getBackground().darker());
+                } else if (getModel().isRollover()) {
+                    graphics.setColor(getBackground().brighter());
+                } else {
+                    graphics.setColor(getBackground());
+                }
+                graphics.fillRoundRect(0, 0, width, height, 15, 15);
+                FontMetrics fontMetrics = graphics.getFontMetrics();
+                Rectangle stringBounds = fontMetrics.getStringBounds(this.getText(), graphics).getBounds();
+                int textX = (width - stringBounds.width) / 2;
+                int textY = (height - stringBounds.height) / 2 + fontMetrics.getAscent();
+                graphics.setColor(getForeground());
+                graphics.setFont(getFont());
+                graphics.drawString(getText(), textX, textY);
+                super.paintComponent(g);
+            }
+        }
+
+        RoundedButton btn = new RoundedButton();
+        btn.setBackground(new Color(0, 70, 42));
+
+        Font btnFont;
+        if(text.equals("삭제하기"))
+        {
+            btnFont = new Font("맑은 고딕", Font.PLAIN, 14);
+
+        }
+        else{
+            btnFont = new Font("맑은 고딕", Font.PLAIN, 20);
+        }
+        btn.setFont(btnFont);
+
+        btn.setBackground(new Color(0, 70, 42));
+        btn.setForeground(Color.WHITE);
+        btn.setHorizontalAlignment(setAlign(alignment));
         btn.setBounds(x, y, width, height);
 
         btn.setText(text);

@@ -56,7 +56,7 @@ public class Ranking extends CustomUI {
 
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new Main(nickname);
+                new Ranking(nickname);
                 frame.dispose();
             }
         });
