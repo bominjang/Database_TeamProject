@@ -33,8 +33,10 @@ public class MovieDao {
                 movie.setTitle(rs.getString("title"));
                 movie.setGenre(rs.getString("genre"));
                 movie.setCountry(rs.getString("country"));
+
                 movie.setRunningTime(rs.getInt("running_time"));
                 movie.setOpening_date(rs.getDate("opening_date"));
+
                 movie.setDirector(rs.getString("director"));
                 movie.setPlot(rs.getString("plot"));
                 movie.setRating(rs.getFloat("rating"));
