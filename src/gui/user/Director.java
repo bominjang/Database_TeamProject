@@ -71,7 +71,7 @@ public class Director extends CustomUI {
             }
         });
 
-        frame.setSize(800, 900);
+        frame.setSize(600, 900);
         frame.setResizable(false);
         frame.setVisible(true);
     }
@@ -84,25 +84,25 @@ public class Director extends CustomUI {
         CustomUI custom = new CustomUI(backgroundPanel);
         custom.setPanel();
 
-        lbIcon = custom.setLbImg("lbIcon", 4, 350, 130);
-        lbName = custom.setLb("lbName", "감독이름", 350, 150, 100, 185, "center", 20, "bold");
+        lbIcon = custom.setLbImg("lbIcon", 4, 232, 130);
+        lbName = custom.setLb("lbName", "감독이름", 232, 150, 100, 185, "center", 20, "bold");
 
-        lbTitleCountry = custom.setLb("lbTitleCountry", "출신국가", 250, 300, 150, 20, "left", 17, "bold");
-        lbCountry = custom.setLb("lbCountry", "출신 국가", 425, 300, 200, 20, "left", 17, "plain");
+        lbTitleCountry = custom.setLb("lbTitleCountry", "출신국가", 150, 300, 150, 20, "left", 17, "bold");
+        lbCountry = custom.setLb("lbCountry", "출신 국가", 319, 300, 200, 20, "left", 17, "plain");
 
-        lbTitleBirth = custom.setLb("lbTitleBirth", "생년월일", 250, 330, 150, 20, "left", 17, "bold");
-        lbBirth = custom.setLb("lbBirth", "00-00-00", 425, 330, 200, 20, "left", 17, "plain");
+        lbTitleBirth = custom.setLb("lbTitleBirth", "생년월일", 150, 330, 150, 20, "left", 17, "bold");
+        lbBirth = custom.setLb("lbBirth", "00-00-00", 319, 330, 200, 20, "left", 17, "plain");
 
-        lbTitleMovies = custom.setLb("lbTitleMovies", "필모그라피", 250, 360, 200, 20, "left", 17, "bold");
+        lbTitleMovies = custom.setLb("lbTitleMovies", "필모그라피", 150, 360, 200, 20, "left", 17, "bold");
 
         if(direcMovies == null) {
-            custom.setLb("lbMovies", "없음", 425, 360, 200, 20, "left", 17, "plain");
+            custom.setLb("lbMovies", "없음", 319, 360, 200, 20, "left", 17, "plain");
         }
         else{
             for (int i = 0; i < direcMovies.size(); i++) {
                 String movie = direcMovies.get(i);
 
-                lbMovies[i] = custom.setLb("lbMovies", "영화(연도)", 425, 360 + (20 * i), 200, 20, "left", 17, "plain");
+                lbMovies[i] = custom.setLb("lbMovies", "영화(연도)", 319, 360 + (20 * i), 200, 20, "left", 17, "plain");
                 lbMovies[i].setText(movie);
             }
         }
@@ -112,19 +112,19 @@ public class Director extends CustomUI {
 //        lbTitlePrize = custom.setLb("lbTitleDetail", "상", 230, 420, 150, 20, "left", 17, "bold");
 //        lbPrize = custom.setLb("lbDetail", "감독이 받은 상", 425, 420, 200, 20, "left", 17, "plain");
 
-        lbTitlePrize = custom.setLb("lbTitlePrize", "수상이력", 250, 450, 200, 20, "left", 17, "bold");
+        lbTitlePrize = custom.setLb("lbTitlePrize", "수상이력", 150, 450, 200, 20, "left", 17, "bold");
         if(direcPrizes == null) {
-            custom.setLb("lbPrizes", "없음", 425, 450, 200, 20, "left", 17, "plain");
+            custom.setLb("lbPrizes", "없음", 319, 450, 200, 20, "left", 17, "plain");
         }
         else {
             int i = 0;
             for (String mapkey : direcPrizes.keySet()){
-                custom.setLb("lbMovies", mapkey, 425, 450 + (20 * i), 300, 20, "left", 17, "plain");
+                custom.setLb("lbMovies", mapkey, 319, 450 + (20 * i), 200, 20, "left", 17, "plain");
 
                 Vector<String> prizes = direcPrizes.get(mapkey);
                 for(String prize : prizes) { //for문을 통한 전체출력
                     ++i;
-                    custom.setLb("lbMovies", "- "+prize, 425, 450 + (20 * i), 300, 20, "left", 17, "plain");
+                    custom.setLb("lbMovies", "- "+prize, 319, 450 + (20 * i), 200, 20, "left", 17, "plain");
                 }
                 ++i;
             }
@@ -133,7 +133,7 @@ public class Director extends CustomUI {
 //        lbTitlePlot = custom.setLb("lbTitlePlot", "줄거리", 330, 490, 150, 20, "center", 17, "bold");
 //        taPlot = custom.setTextArea("lbPlot", "줄거리주루룩", 100, 520, 600, 120, false);
 
-        btnMain = custom.setBtnGreen("btnMain", "메인으로", 220, 680);
-        btnBack = custom.setBtnWhite("btnBack", "이전으로", 220, 730);
+        btnMain = custom.setBtnGreen("btnMain", "메인으로", 120, 680);
+        btnBack = custom.setBtnWhite("btnBack", "이전으로", 120, 730);
     }
 }
