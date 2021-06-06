@@ -26,7 +26,9 @@ public class Main extends CustomUI {
                 // 영화 상세-테스트용(원래는 nickname, MovieID)
 //                new Movie(nickname,6);
                 // 감독 상세-테스트용(nickname, DirectorID)
-                new Director(nickname, 14);
+//                new Director(nickname, 14);
+                // 배우 상세-테스트용(nickname, ActorID)
+                new Actor(nickname, 26);
                 frame.dispose();
             }
         });
