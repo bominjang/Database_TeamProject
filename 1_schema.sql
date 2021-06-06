@@ -44,7 +44,7 @@ running_time int,
 opening_date date,
 director varchar(50) not null,
 plot varchar(3000),
-rating float,
+rating float not null,
 age int not null,
 
 primary key(ID),

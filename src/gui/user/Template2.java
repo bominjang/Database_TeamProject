@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 
 import javax.swing.*;
 
-public class Director extends CustomUI {
+public class Template2 extends CustomUI {
 
     private JFrame frame = new JFrame();
     private JPanel container = new JPanel();
@@ -19,7 +19,7 @@ public class Director extends CustomUI {
 
     private String nickname;
 
-    public Director(String nickname, int DirectorId) {
+    public Template2(String nickname, int DirectorId) {
         this.nickname = nickname;
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
