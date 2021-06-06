@@ -33,12 +33,12 @@ public class Main extends CustomUI {
             }
         });
 
-//        btnTheater.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                new SelectTheater1(nickname);
-//                frame.dispose();
-//            }
-//        });
+        btnTheater.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new Search(nickname);
+                frame.dispose();
+            }
+        });
 
         btnReview.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

@@ -1,5 +1,6 @@
 package dao;
 
+import java.security.Key;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
@@ -7,6 +8,7 @@ import java.sql.ResultSet;
 import java.util.Vector;
 
 import models.Combo;
+import models.Keyword;
 
 public class ComboDao {
     private ComboDao(){}
@@ -24,8 +26,14 @@ public class ComboDao {
         Vector<Combo> combos = new Vector<>();
         String sql;
 
-        if(comboContent.equals("place")) {
-            sql = "SELECT ID AS KEY, NAME AS VALUE FROM PLACE";
+        if(comboContent.equals("search")) {
+
+//            Keyword keyword = new Keyword();
+//            keyword.setKey("영화");
+//            keyword.setValue("movie");
+//            combos.add(keyword);
+
+            return combos;
         } else if(comboContent.equals("seat")) {
             sql = "SELECT ID AS KEY, SEAT_TYPE AS VALUE FROM SEAT";
         } else if(comboContent.equals("discount")) {

@@ -128,7 +128,7 @@ public class Login extends CustomUI {
         txtNickname = custom.setTextField("txtNickname", "Nickname", 35, 290, 350, 45);
         txtPassword = custom.setPasswordField("txtPassword", "Password", 35, 345, 350, 45);
 
-        btnLogin = custom.setBtnGreen("btnLogin", "로그인", 35, 425);
+        btnLogin = custom.setBtnGreen("btnLogin", "로그인", 35, 425, 350, 40);
         btnJoin = custom.setBtnWhite("btnJoin", "회원가입", 35, 480);
 
         lbSearch = custom.setLb("lbSearch", "아이디 찾기 ｜ 비밀번호 찾기", 100, 535, 200, 40, "center", 15, "plain");

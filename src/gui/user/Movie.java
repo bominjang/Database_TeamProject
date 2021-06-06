@@ -149,7 +149,7 @@ public class Movie extends CustomUI {
         panel.add(lbTitlePlot);
         panel.add(taPlot);
 
-        btnMain = custom.setBtnGreen("btnMain", "메인으로", 220, 680);
+        btnMain = custom.setBtnGreen("btnMain", "메인으로", 220, 680, 350, 40);
         btnBack = custom.setBtnWhite("btnBack", "이전으로", 220, 730);
 
         panel.setPreferredSize(new Dimension(800, 1500));

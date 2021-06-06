@@ -19,6 +19,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import models.Combo;
+import models.Keyword;
 
 @SuppressWarnings("serial")
 class CustomUI extends JFrame {
@@ -175,7 +176,7 @@ class CustomUI extends JFrame {
         return txt;
     }
 
-    protected JButton setBtnGreen(String name, String text, int x, int y) {
+    protected JButton setBtnGreen(String name, String text, int x, int y, int width, int height) {
 
         class RoundedButton extends JButton {
             public RoundedButton() {
@@ -219,7 +220,7 @@ class CustomUI extends JFrame {
 
         btn.setBackground(new Color(0, 70, 42));
         btn.setForeground(Color.WHITE);
-        btn.setBounds(x, y, 350, 45);
+        btn.setBounds(x, y, width, height);
 
         btn.setText(text);
         backgroundPanel.add(btn);
@@ -520,6 +521,28 @@ class CustomUI extends JFrame {
 
         return cb;
     }
+
+    protected JComboBox<Keyword> setKeyword(String name, Vector<Keyword> combos, int x, int y, int width, int height){
+        JComboBox<Keyword> keyword = new JComboBox<>();
+
+        if(combos == null) {
+            Keyword keywordNull = new Keyword("영화", "movie");
+            keyword.addItem(keywordNull);
+        } else {
+            for (Keyword c : combos) {
+                keyword.addItem(c);
+            }
+        }
+
+        keyword.setBackground(Color.WHITE);
+        keyword.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
+        keyword.setBounds(x, y, width, height);
+        backgroundPanel.add(keyword);
+        keyword.setName(name);
+
+        return keyword;
+    }
+
 
     protected JComboBox<Combo> setCombo(String name, Vector<Combo> combos, int x, int y, int width, int height){
         JComboBox<Combo> combo = new JComboBox<>();

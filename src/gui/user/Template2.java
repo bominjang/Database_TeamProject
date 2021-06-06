@@ -83,7 +83,7 @@ public class Template2 extends CustomUI {
         lbTitlePlot = custom.setLb("lbTitlePlot", "줄거리", 330, 490, 150, 20, "center", 17, "bold");
         taPlot = custom.setTextArea("lbPlot", "줄거리주루룩", 100, 520, 600, 120, false);
 
-        btnMain = custom.setBtnGreen("btnMain", "메인으로", 220, 680);
+        btnMain = custom.setBtnGreen("btnMain", "메인으로", 220, 680, 350, 40);
         btnBack = custom.setBtnWhite("btnBack", "이전으로", 220, 730);
     }
 }

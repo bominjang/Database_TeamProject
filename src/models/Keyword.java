@@ -1,22 +1,22 @@
 package models;
 
-public class Combo {
-    private int key;
+public class Keyword {
+    private String key;
     private String value;
 
-    public Combo() {}
+    public Keyword() {}
 
-    public Combo(int key, String value) {
+    public Keyword(String key, String value) {
         this.key = key;
         this.value = value;
     }
 
 
-    public int getKey() {
+    public String getKey() {
         return key;
     }
 
-    public void setKey(int key) {
+    public void setKey(String key) {
         this.key = key;
     }
 
