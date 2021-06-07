@@ -99,10 +99,10 @@ public class Ranking extends CustomUI {
                     }
 
                     public void mouseClicked(MouseEvent e) {
-                        String movieTitle = e.getSource().toString();
-                        for (int i = 0; i < lbMovieName.length; i++) {
-                            if (movieTitle.contains(rMovies.get(i).getTitle())) {
-                                movieId = rMovies.get(i).getId();
+                        JLabel label = (JLabel) e.getSource();
+                        for (Movies rMovie : rMovies) {
+                            if (label.getText().equals(rMovie.getTitle())) {
+                                movieId = rMovie.getId();
                             }
                         }
                         new Movie(nickname, movieId);
