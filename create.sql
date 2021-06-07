@@ -2,6 +2,19 @@ CREATE DATABASE DB2021Team03;
 use DB2021Team03;
 
 ##User
+/*
+ID: pk
+nickname: 로그인 때 쓰일 유저 ID(index)
+password: 로그인 때 쓰일 비밀번호
+name: 유저 이름
+birth: 생년월일
+phone: 전화번호
+join_time: 회원가입 날짜 및 시간
+privacy_fg: 개인정보제공 동의 여부
+admin_fg: 관리자인지 여부
+delete_fg: 탈퇴한 사용자 여부
+delete_time: 탈퇴한 날짜 및 시간
+*/
 CREATE TABLE DB2021_User(
 ID int auto_increment not null,
 nickname varchar(20) not null,
@@ -22,6 +35,12 @@ CREATE INDEX Unick ON DB2021_User(nickname);
 
 
 ## Director
+/*
+ID: pk
+name: 감독 이름(pk, index))
+country: 출생국가
+birth: 생일
+*/
 CREATE TABLE DB2021_Director(
 ID int auto_increment not null,
 name varchar(50) not null,
@@ -34,7 +53,21 @@ primary key(ID, name)
 CREATE INDEX Dname ON DB2021_Director(name);
 
 
-## Movie(director와 1:N)
+## Movie
+/*
+ID: pk
+title: 영화 제목(index)
+genre: 장르
+country: 어느 나라 영화인지
+running_time: 상영 시간
+opening_date: 개봉일
+director: 감독
+plot: 줄거리
+rating: 평점
+age: 연령제한
+
+Movie : Director = 1: Many 관계
+*/
 CREATE TABLE DB2021_MOVIE(
 ID int auto_increment not null,
 title varchar(20) not null,
@@ -55,7 +88,15 @@ CREATE INDEX Mtitle ON DB2021_MOVIE(title);
 
 
 
-## Director_Prize(1:Many)
+## Director_Prize
+/*
+ID: pk
+prize: 상 이름
+director: 상을 받은 감독(index)
+movie: 어떤 영화로 상을 받았는지
+
+Director: Prize = 1: Many 관계
+*/
 CREATE TABLE DB2021_Director_Prize(
 ID int auto_increment not null,
 prize varchar(100) not null,
@@ -72,6 +113,12 @@ CREATE INDEX DPidx ON DB2021_Director_Prize(director);
 
 
 ## Actor
+/*
+ID: pk
+name: 배우 이름(pk, index)
+country: 출생 국가
+birth: 생년월일
+*/
 CREATE TABLE DB2021_Actor(
 ID int auto_increment not null,
 name varchar(50) not null,
@@ -85,6 +132,14 @@ CREATE INDEX Aname ON DB2021_Actor(name);
 
 
 ## Actor_Movie(Many to Many)
+/*
+ID: pk
+name: 배우 이름(pk, index)
+country: 출생 국가
+birth: 생년월일
+
+Actor : Movie = Many : Many 관계
+*/
 CREATE TABLE DB2021_Actor_Movie(
 actor varchar(50) not null,
 movie varchar(20) not null,
@@ -99,6 +154,14 @@ CREATE INDEX AMidx ON DB2021_Actor_Movie(actor);
 
 
 ## Actor_Prize
+/*
+ID: pk
+prize: 배우가 받은 상
+actor: 받은 배우(index)
+movie: 어떤 영화에 출연해서 상을 받은건지
+
+Actor: Prize = 1: Many 관계
+*/
 CREATE TABLE DB2021_Actor_Prize(
 ID int auto_increment not null,
 prize varchar(100) not null,
@@ -113,8 +176,17 @@ foreign key(movie) references DB2021_Movie(title) on delete cascade on update ca
 CREATE INDEX APidx ON DB2021_Actor_Prize(actor);
 
 
-
 ## Review
+/*
+ID: pk
+movie: 리뷰할 영화
+nickname: 리뷰하는 유저의 닉네임(index)
+create_time: 리뷰 작성 날짜 및 시간
+rating: 유저가 매긴 평점
+detail: 리뷰 내용
+
+Review: User = Many: 1 관계
+*/
 CREATE TABLE DB2021_Review(
 ID int auto_increment not null,
 movie varchar(20) not null,
