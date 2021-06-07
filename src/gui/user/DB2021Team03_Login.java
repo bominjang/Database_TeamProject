@@ -22,6 +22,7 @@ import dao.DB2021Team03_DBConnection;
 
 @SuppressWarnings("serial")
 public class DB2021Team03_Login extends DB2021Team03_CustomUI {
+    // 배우에 대한 상세 정보를 볼 수 있는 클래스
 
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;

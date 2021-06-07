@@ -14,6 +14,7 @@ import models.Directors;
 
 @SuppressWarnings("serial")
 public class DB2021Team03_Director extends DB2021Team03_CustomUI {
+    // 감독에 대한 상세 정보를 볼 수 있는 클래스
 
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
@@ -25,25 +26,33 @@ public class DB2021Team03_Director extends DB2021Team03_CustomUI {
 
     private String nickname;
 
+    // 생성자: 로그인 유지를 위한 사용자 nickname 그리고 Actor ID를 인자로 받는다.
     public DB2021Team03_Director(String nickname, int directorId) {
         this.nickname = nickname;
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // DirectorDao 객체를 이용해 directorId로 해당 director 객체를 가져온다.
         DB2021Team03_DirectorDao dDao = DB2021Team03_DirectorDao.getInstance();
         Directors director = dDao.selectOne(directorId);
 
+        // 감독이 제작한 영화 리스트 set
         direcMovies = dDao.selectMovies(directorId);
         lbMovies = new JLabel[direcMovies.size()];
 
+        // 감독의 수상 이력 리스트 set
         direcPrizes = dDao.selectPrizes(directorId);
 
+        // GUI 호출
         init();
 
+        // 감독 이름 set
         lbName.setText(director.getName());
 
+        // 감독의 출신국가 set
         lbCountry.setText(director.getCountry());
 
+        // 감독의 생년월일 set
         SimpleDateFormat transFormat = new SimpleDateFormat("YYYY-MM-DD");
         String birth;
         if (director.getBirth() == null) {
@@ -53,6 +62,8 @@ public class DB2021Team03_Director extends DB2021Team03_CustomUI {
         }
         lbBirth.setText(birth);
 
+
+        // 영화 목록(순위)으로 이동하기 버튼
         btnRanking.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int returnCd = JOptionPane.showConfirmDialog(frame, "영화 목록 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
@@ -63,6 +74,7 @@ public class DB2021Team03_Director extends DB2021Team03_CustomUI {
             }
         });
 
+        // 메인으로 이동하기 버튼
         btnMain.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -76,6 +88,7 @@ public class DB2021Team03_Director extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
+    // 감독 상세 화면 구성을 위한 GUI 코드
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);
@@ -94,6 +107,7 @@ public class DB2021Team03_Director extends DB2021Team03_CustomUI {
 
         lbTitleMovies = custom.setLb("lbTitleMovies", "필모그라피", 150, 360, 200, 20, "left", 17, "bold");
 
+        // 감독이 제작한 영화들을 가져온다
         if (direcMovies == null) {
             custom.setLb("lbMovies", "없음", 319, 360, 200, 20, "left", 17, "plain");
         } else {
@@ -105,6 +119,7 @@ public class DB2021Team03_Director extends DB2021Team03_CustomUI {
             }
         }
 
+        // 감독의 수상 이력들을 가져온다
         lbTitlePrize = custom.setLb("lbTitlePrize", "수상이력", 150, 450, 200, 20, "left", 17, "bold");
         if (direcPrizes == null) {
             custom.setLb("lbPrizes", "없음", 319, 450, 200, 20, "left", 17, "plain");

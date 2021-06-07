@@ -13,6 +13,7 @@ import models.Actors;
 
 @SuppressWarnings("serial")
 public class DB2021Team03_Actor extends DB2021Team03_CustomUI {
+    // 배우에 대한 상세 정보를 볼 수 있는 클래스
 
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
@@ -24,25 +25,33 @@ public class DB2021Team03_Actor extends DB2021Team03_CustomUI {
 
     private String nickname;
 
+    // 생성자: 로그인 유지를 위한 사용자 nickname 그리고 Actor ID를 인자로 받는다.
     public DB2021Team03_Actor(String nickname, int actorId) {
         this.nickname = nickname;
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // ActorDao 객체를 이용해 actorId로 해당 actor의 객체를 가져온다.
         DB2021Team03_ActorDao aDao = DB2021Team03_ActorDao.getInstance();
         Actors actor = aDao.selectOne(actorId);
 
+        // 배우가 출연한 영화 리스트 set
         actorMovies = aDao.selectMovies(actor.getName());
         lbMovies = new JLabel[actorMovies.size()];
 
+        // 배우의 수상 이력 리스트 set
         actorPrizes = aDao.selectPrizes(actorId);
 
+        // GUI 호출
         init();
 
+        // 배우의 이름 set
         lbName.setText(actor.getName());
 
+        // 배우의 출신국가 set
         lbCountry.setText(actor.getCountry());
 
+        // 배우의 생년월일 set
         SimpleDateFormat transFormat = new SimpleDateFormat("YYYY-MM-DD");
         String birth;
         if(actor.getBirth() == null){
@@ -53,6 +62,7 @@ public class DB2021Team03_Actor extends DB2021Team03_CustomUI {
         lbBirth.setText(birth);
 
 
+        // 이전으로 가기 버튼 기능(메인으로 이동한다.)
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int returnCd = JOptionPane.showConfirmDialog(frame, "메인 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
@@ -63,6 +73,7 @@ public class DB2021Team03_Actor extends DB2021Team03_CustomUI {
             }
         });
 
+        // 메인으로 가기 버튼 기능
         btnMain.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -76,6 +87,7 @@ public class DB2021Team03_Actor extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
+    // 배우 상세 화면 구성을 위한 GUI 코드
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);
@@ -94,6 +106,7 @@ public class DB2021Team03_Actor extends DB2021Team03_CustomUI {
 
         lbTitleMovies = custom.setLb("lbTitleMovies", "필모그라피", 150, 360, 200, 20, "left", 17, "bold");
 
+        // 배우가 출연한 영화들을 가져온다
         if(actorMovies == null) {
             custom.setLb("lbMovies", "없음", 319, 360, 200, 20, "left", 17, "plain");
         }
@@ -106,6 +119,7 @@ public class DB2021Team03_Actor extends DB2021Team03_CustomUI {
             }
         }
 
+        // 배우의 수상 이력들을 가져온다
         lbTitlePrize = custom.setLb("lbTitlePrize", "수상이력", 150, 450, 200, 20, "left", 17, "bold");
         if(actorPrizes == null) {
             custom.setLb("lbPrizes", "없음", 319, 450, 200, 20, "left", 17, "plain");

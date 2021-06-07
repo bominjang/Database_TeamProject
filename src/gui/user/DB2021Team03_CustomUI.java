@@ -21,8 +21,11 @@ import javax.swing.border.Border;
 import models.Combo;
 import models.Keyword;
 
+
 @SuppressWarnings("serial")
 class DB2021Team03_CustomUI extends JFrame {
+    // 프로젝트를 위해 커스텀한 GUI 코드를 모아둔 클래스(일종의 도구 모음)
+    
     JPanel backgroundPanel;
 
     public DB2021Team03_CustomUI() {}
@@ -31,6 +34,7 @@ class DB2021Team03_CustomUI extends JFrame {
         this.backgroundPanel = backgroundPanel;
     }
 
+    // Panel set
     protected void setPanel() {
         backgroundPanel.setLayout(null);
         backgroundPanel.setBackground(Color.WHITE);
@@ -47,6 +51,7 @@ class DB2021Team03_CustomUI extends JFrame {
         backgroundPanel.add(topGrayPanel);
     }
 
+    // TextField set
     protected JTextField setTextField(String name, String placeholder, int x, int y, int width, int height) {
         JTextField txt = new JTextField();
 
@@ -90,49 +95,7 @@ class DB2021Team03_CustomUI extends JFrame {
         return txt;
     }
 
-    protected float setFloatField(String name, String placeholder, int x, int y, int width, int height) {
-        JTextField txt = new JTextField();
-
-        if (placeholder == null) {
-            txt.setText("Please input here");
-        } else {
-            txt.setText(placeholder);
-        }
-
-        Font tfFont = new Font("Arial", Font.PLAIN, 20);
-        txt.setFont(tfFont);
-        txt.setBackground(Color.white);
-        txt.setForeground(Color.gray.brighter());
-
-        txt.addFocusListener(new FocusListener() {
-            public void focusLost(FocusEvent e) {
-                JTextField tf = (JTextField)e.getComponent();
-                if(tf.getText().equals("")) {
-                    if (placeholder == null) {
-                        tf.setForeground(Color.gray.brighter());
-                        tf.setText("Please input here");
-                    } else {
-                        tf.setForeground(Color.gray.brighter());
-                        tf.setText(placeholder);
-                    }
-                }
-            }
-            public void focusGained(FocusEvent e) {
-                JTextField tf = (JTextField)e.getComponent();
-                if (tf.getText().equals(placeholder) || tf.getText().equals("Please input here") || tf.getText().equals("")) {
-                    tf.setText("");
-                    tf.setForeground(Color.BLACK);
-                }
-            }
-        });
-
-        txt.setBounds(x, y, width, height);
-        backgroundPanel.add(txt);
-        txt.setName(name);
-
-        return Float.parseFloat(txt.getText());
-    }
-
+    // PasswordField set
     protected JPasswordField setPasswordField(String name, String placeholder, int x, int y, int width, int height) {
         JPasswordField txt = new JPasswordField();
 
@@ -176,6 +139,7 @@ class DB2021Team03_CustomUI extends JFrame {
         return txt;
     }
 
+    // 녹색 Button set
     protected JButton setBtnGreen(String name, String text, int x, int y, int width, int height) {
 
         class RoundedButton extends JButton {
@@ -238,7 +202,7 @@ class DB2021Team03_CustomUI extends JFrame {
         return btn;
     }
 
-
+    // 녹색 Button set(align 조작 가능)
     protected JButton setBtnGreen(String name, String text, int x, int y, String alignment, int width, int height) {
         class RoundedButton extends JButton {
             public RoundedButton() {
@@ -301,6 +265,7 @@ class DB2021Team03_CustomUI extends JFrame {
         return btn;
     }
 
+    // 흰색 Button set
     protected JButton setBtnWhite(String name, String text, int x, int y) {
 
         class RoundedBorder implements Border {
@@ -338,6 +303,7 @@ class DB2021Team03_CustomUI extends JFrame {
         return btn;
     }
 
+    // TextField set
     protected JButton setBtnMovie(String name, String time, String seatCnt, int x, int y) {
         JButton btn = new JButton("<html>" + time + "<br/>" + seatCnt + "</html>");
 
@@ -352,37 +318,7 @@ class DB2021Team03_CustomUI extends JFrame {
         return btn;
     }
 
-    protected JButton setBtnSeat(String name, String seat, int x, int y) {
-        JButton btn = new JButton(seat);
-
-        Font btnFont = new Font("맑은 고딕", Font.BOLD, 14);
-        btn.setFont(btnFont);
-        btn.setBackground(new Color(230, 236, 240));
-        btn.setForeground(new Color(114, 114, 114));
-        btn.setBorderPainted(false);
-        btn.setBounds(x, y, 53, 48);
-        backgroundPanel.add(btn);
-        btn.setName(name);
-
-        return btn;
-    }
-
-    protected JButton setbtnBar(String name, String text, int y) {
-        JButton btn = new JButton();
-
-        Font btnFont = new Font("맑은 고딕", Font.BOLD, 14);
-        btn.setFont(btnFont);
-        btn.setBackground(new Color(230, 236, 240));
-        btn.setForeground(new Color(114, 114, 114));
-        btn.setBorderPainted(false);
-        btn.setBounds(45, y, 334, 40);
-        btn.setText(text);
-        backgroundPanel.add(btn);
-        btn.setName(name);
-
-        return btn;
-    }
-
+    // 버튼 아이콘 set
     protected JButton  setBtnImg(String name, String text, int x, int y) {
         ImageIcon icon = new ImageIcon("img/icon5.png");
         Image originImg = icon.getImage();
@@ -407,6 +343,7 @@ class DB2021Team03_CustomUI extends JFrame {
         return btn;
     }
 
+    // TextArea set
     protected JTextArea setTextArea(String name, String placeholder, int x, int y, int width, int height, boolean isEditable) {
         JTextArea txt = new JTextArea();
         txt.setEditable(isEditable);
@@ -462,6 +399,7 @@ class DB2021Team03_CustomUI extends JFrame {
         return txt;
     }
 
+    // Label set
     protected JLabel setLb(String name, String text, int x, int y, int width, int height, String alignment, int fontSize, String weight) {
         JLabel lb = new JLabel(text);
         Font lbFont = new Font("맑은 고딕", setWeight(weight), fontSize);
@@ -475,6 +413,7 @@ class DB2021Team03_CustomUI extends JFrame {
         return lb;
     }
 
+    // Label set(backgroundPanel에 add하지 않음)
     protected JLabel setLb(String name, String text, int x, int y, int width, int height, String alignment, int fontSize, String weight, JPanel panel) {
         JLabel lb = new JLabel(text);
         Font lbFont = new Font("맑은 고딕", setWeight(weight), fontSize);
@@ -487,34 +426,7 @@ class DB2021Team03_CustomUI extends JFrame {
         return lb;
     }
 
-    protected JLabel setLbBox(String name, String text, int x, int y) {
-        JLabel lb = new JLabel(text);
-        int age = Integer.parseInt(text);
-
-        if(age == 99) {
-            lb.setFont(new Font("맑은 고딕", Font.BOLD, 0));
-            lb.setBackground(new Color(53, 121, 247));
-        } else if(age >= 19) {
-            lb.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-            lb.setBackground(Color.RED);
-        } else if (age <= 0) {
-            lb.setFont(new Font("맑은 고딕", Font.BOLD, 10));
-            lb.setBackground(Color.BLUE);
-            lb.setText("전체");
-        } else {
-            lb.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-            lb.setBackground(Color.GREEN);
-        }
-        lb.setOpaque(true);
-        lb.setForeground(Color.WHITE);
-        lb.setHorizontalAlignment(SwingConstants.CENTER);
-        lb.setBounds(x, y, 27, 27);
-        backgroundPanel.add(lb);
-        lb.setName(name);
-
-        return lb;
-    }
-
+    // Box icon set
     protected JLabel setLbBox(String name, String text, int x, int y, JPanel panel) {
         JLabel lb = new JLabel(text);
         int rating = Integer.parseInt(text);
@@ -531,6 +443,7 @@ class DB2021Team03_CustomUI extends JFrame {
         return lb;
     }
 
+    // 이미지 icon set
     protected JLabel setLbImg(String name, int iconNum, int x, int y) {
         JLabel lb = new JLabel();
 
@@ -557,6 +470,7 @@ class DB2021Team03_CustomUI extends JFrame {
         return lb;
     }
 
+    // checkbox set
     protected JCheckBox setCheckBox(String name, String text, int x, int y) {
         JCheckBox cb = new JCheckBox();
         cb.setBackground(Color.WHITE);
@@ -577,6 +491,7 @@ class DB2021Team03_CustomUI extends JFrame {
         return cb;
     }
 
+    // ComboBox set(검색 키워드 선택 시 사용)
     protected JComboBox<Keyword> setKeyword(String name, Vector<Keyword> combos, int x, int y, int width, int height){
         JComboBox<Keyword> keyword = new JComboBox<>();
 
@@ -598,7 +513,7 @@ class DB2021Team03_CustomUI extends JFrame {
         return keyword;
     }
 
-
+    // ComboBox set(영화 선택 시 사용)
     protected JComboBox<Combo> setCombo(String name, Vector<Combo> combos, int x, int y, int width, int height){
         JComboBox<Combo> combo = new JComboBox<>();
 
@@ -620,18 +535,7 @@ class DB2021Team03_CustomUI extends JFrame {
         return combo;
     }
 
-    protected JComboBox<String> setCombo(String name, String[] text, int x, int y, int width, int height){
-        JComboBox<String> combo = new JComboBox<>(text);
-
-        combo.setBackground(Color.WHITE);
-        combo.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
-        combo.setBounds(x, y, width, height);
-        backgroundPanel.add(combo);
-        combo.setName(name);
-
-        return combo;
-    }
-
+    // 왼쪽, 가운데, 오른쪽 정렬 set
     private int setAlign(String alignment) {
         if(alignment.toUpperCase().equals("CENTER")) {
             return 0;
@@ -644,6 +548,7 @@ class DB2021Team03_CustomUI extends JFrame {
         }
     }
 
+    // 너비 set
     private int setWeight(String weight) {
         if(weight.toUpperCase().equals("BOLD")) {
             return 1;
@@ -652,21 +557,5 @@ class DB2021Team03_CustomUI extends JFrame {
         } else {
             return 0;
         }
-    }
-
-    protected JList<Combo> setList(String name, DefaultListModel<Combo> listModel, int x) {
-        JList<Combo> list = new JList<Combo>(listModel);
-        list.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-        list.setForeground(new Color(114, 114, 114));
-
-        JLabel lb = (JLabel) list.getCellRenderer();
-        lb.setPreferredSize(new Dimension(200, 50));
-
-        JScrollPane sp = new JScrollPane(list);
-        sp.setBounds(x, 120, 420, 500);
-        backgroundPanel.add(sp);
-        list.setName(name);
-
-        return list;
     }
 }
