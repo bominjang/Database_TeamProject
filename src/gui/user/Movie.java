@@ -195,7 +195,7 @@ public class Movie extends CustomUI {
         panel.setBackground(Color.WHITE);
 
 
-        lbIcon = custom.setLbImg("lbIcon", 4, 350, 130);
+        lbIcon = custom.setLbImg("lbIcon", 0, 350, 130);
         lbMovie = custom.setLb("lbTitle", "영화제목", 350, 150, 100, 185, "center", 20, "bold");
 
         panel.add(lbIcon);

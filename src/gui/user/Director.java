@@ -84,7 +84,7 @@ public class Director extends CustomUI {
         CustomUI custom = new CustomUI(backgroundPanel);
         custom.setPanel();
 
-        lbIcon = custom.setLbImg("lbIcon", 4, 232, 130);
+        lbIcon = custom.setLbImg("lbIcon", 0, 232, 130);
         lbName = custom.setLb("lbName", "감독이름", 232, 150, 100, 185, "center", 20, "bold");
 
         lbTitleCountry = custom.setLb("lbTitleCountry", "출신국가", 150, 300, 150, 20, "left", 17, "bold");

@@ -77,7 +77,7 @@ public class Update extends CustomUI {
         CustomUI custom = new CustomUI(backgroundPanel);
         custom.setPanel();
 
-        lbIcon = custom.setLbImg("lbIcon", 4, 160, 130);
+        lbIcon = custom.setLbImg("lbIcon", 0, 160, 130);
         lbTitle = custom.setLb("lbTitle", "리뷰 수정", 100, 150, 220, 185, "center", 20, "bold");
 
         lbTitleMovie = custom.setLb("lbTitleMovie", "영화제목", 35, 310, 100, 20, "left", 17, "bold");

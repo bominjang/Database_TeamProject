@@ -60,7 +60,7 @@ public class UserInfo extends CustomUI {
         CustomUI custom = new CustomUI(backgroundPanel);
         custom.setPanel();
 
-        lbTitle = custom.setLbImg("lbTitle", 2, 165, 150);
+        lbTitle = custom.setLbImg("lbTitle", 0, 165, 150);
 
         lbTitleId = custom.setLb("lbTitleId", "닉네임", 35, 300, 100, 20, "left", 17, "bold");
         lbId = custom.setLb("lbId", "", 195, 300, 180, 20, "right", 17, "plain");
