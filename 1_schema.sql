@@ -95,6 +95,8 @@ foreign key(actor) references DB2021_Actor(name) on delete cascade on update cas
 foreign key(movie) references DB2021_Movie(title) on delete cascade on update cascade
 );
 
+CREATE INDEX AMidx ON DB2021_Actor_Movie(actor);
+
 
 ## Actor_Prize
 CREATE TABLE DB2021_Actor_Prize(
@@ -126,17 +128,8 @@ foreign key(movie) references DB2021_Movie(title) on delete cascade on update ca
 foreign key(nickname) references DB2021_User(nickname) on delete cascade on update cascade
 );
 
+CREATE INDEX Ridx ON DB2021_Review(nickname);
 
-## 좋아요
-CREATE TABLE DB2021_Likes(
-ID int auto_increment,
-movie varchar(20),
-nickname varchar(20),
-
-primary key(ID),
-foreign key(movie) references DB2021_Movie(title) on delete cascade on update cascade,
-foreign key(nickname) references DB2021_User(nickname) on delete cascade on update cascade
-);
 
 # view들
 CREATE VIEW titleExist AS SELECT title FROM DB2021_Movie;
