@@ -64,12 +64,12 @@ public class Main extends CustomUI {
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);
-        frame.setTitle("영화 예매 프로그램 ver1.0");
+        frame.setTitle("DB2021Team03-영화 정보 프로그램");
 
         CustomUI custom = new CustomUI(backgroundPanel);
         custom.setPanel();
 
-        btnMovie = custom.setBtnImg("btnMovie", "(테스트)둘러보기", 33, 240);
+        btnMovie = custom.setBtnImg("btnMovie", "영화순위 보기", 33, 240);
         btnTheater = custom.setBtnImg("btnTheater", "검색하기", 212, 240);
         btnReview = custom.setBtnImg("btnReview", "리뷰 작성", 33, 400);
         btnInfo = custom.setBtnImg("btnInfo", "마이페이지", 212, 400);
