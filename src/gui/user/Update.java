@@ -21,7 +21,7 @@ public class Update extends CustomUI {
     private String nickname;
     private int reviewId;
 
-    public Update(String nickname, int reviewId) {
+    public Update(String nickname, int reviewId, String mv) {
         this.nickname = nickname;
         this.reviewId = reviewId;
 
@@ -33,8 +33,6 @@ public class Update extends CustomUI {
         System.out.println(review.getMovie());
         lbMovie.setText(review.getMovie());
 
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        lbDate.setText(dateFormat.format(review.getCreate_time()));
         lbDate.setText(review.getCreate_time());
         lbRating.setText(Float.toString(review.getRating()));
         lbDetail.setText(review.getDetail());
@@ -49,7 +47,7 @@ public class Update extends CustomUI {
         btnUpdate.addActionListener(new ActionListener() {
             int result=0;
             public void actionPerformed(ActionEvent e) {
-                result = rDao.update(reviewId,Float.parseFloat(lbRating.getText()),lbDetail.getText());
+                result = rDao.update(reviewId, mv, Float.parseFloat(lbRating.getText()),lbDetail.getText());
                 new Result(nickname, reviewId);
                 frame.dispose();
 

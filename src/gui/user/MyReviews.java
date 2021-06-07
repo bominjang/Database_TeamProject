@@ -123,17 +123,19 @@ public class MyReviews extends CustomUI {
                         JButton btn = (JButton) e.getSource();
                         int result = 0;
                         int id=-1;
+                        String mv = "";
 
                         for (Reviews rv : rvs) {
                             if (btn.getName().equals(rv.getId() + "")) {
                                 System.out.println(rv.getId());
                                 id = rv.getId();
+                                mv = rv.getMovie();
                             }
                         }
 
 
                     
-                        result = reviewDao.delete(id);
+                        result = reviewDao.delete(id, mv);
                         if (result == -1) {
                             JOptionPane.showMessageDialog(frame, "ER21:데이터를 삭제할 수 없습니다.", "오류", JOptionPane.ERROR_MESSAGE);
                         } else if (result== 0) {
@@ -157,14 +159,16 @@ public class MyReviews extends CustomUI {
 
                         int result = 0;
                         int id=-1;
+                        String mv = "";
 
                         for (Reviews rv : rvs) {
                             if (btn.getName().equals(rv.getId()+"")) {
                                 System.out.println(rv.getId());
                                 id = rv.getId();
+                                mv = rv.getMovie();
                             }
                         }
-                        new Update(nickname, id);
+                        new Update(nickname, id, mv);
                         frame.dispose();
                     }
                 });
