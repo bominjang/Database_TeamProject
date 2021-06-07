@@ -3,6 +3,8 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+
+// mysql과 연결을 위한 클래스
 public class DB2021Team03_DBConnection {
     public static Connection getConnection(){
         Connection conn = null;

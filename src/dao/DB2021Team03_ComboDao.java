@@ -7,6 +7,7 @@ import java.util.Vector;
 
 import models.Combo;
 
+// 콤보박스 구현을 위한 Class
 public class DB2021Team03_ComboDao {
     private DB2021Team03_ComboDao(){}
     private static DB2021Team03_ComboDao instance = new DB2021Team03_ComboDao();
@@ -19,6 +20,8 @@ public class DB2021Team03_ComboDao {
     private static PreparedStatement pstmt;
     private static ResultSet rs;
 
+    // Review 작성 시 어떤 영화에 대한 리뷰를 작성할건지 선택하는 콤보박스에 쓰이는 메소드
+    // Movie 테이블에 있는 모든 영화 title을 반환한다.
     public Vector<Combo> setCombo(String comboContent) {
         Vector<Combo> combos = new Vector<>();
         String sql;
@@ -42,41 +45,6 @@ public class DB2021Team03_ComboDao {
             }
 
             if(rs.getRow() != 0) {
-                conn.close();
-                return null;
-            } else {
-                conn.close();
-                return combos;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    public Vector<Combo> setCombo(String comboContent, int id) {
-        Vector<Combo> combos = new Vector<>();
-        String sql;
-
-        sql = "SELECT ID AS KEY, NAME AS VALUE FROM THEATER WHERE PLACE_ID = ?";
-
-        conn = DB2021Team03_DBConnection.getConnection();
-        try {
-            pstmt = conn.prepareStatement(sql);
-            if(comboContent.equals("theater")) {
-                pstmt.setInt(1, id);
-            }
-            rs = pstmt.executeQuery();
-
-            while(rs.next()){
-                Combo combo = new Combo();
-                combo.setKey(rs.getInt("KEY"));
-                combo.setValue(rs.getString("VALUE"));
-                combos.add(combo);
-            }
-
-            if(rs.getRow() == 0) {
                 conn.close();
                 return null;
             } else {

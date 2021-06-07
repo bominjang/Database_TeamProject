@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+// Director 테이블 관련 SQL처리를 위한 Class
 public class DB2021Team03_DirectorDao {
     private DB2021Team03_DirectorDao() {
     }
@@ -47,6 +48,7 @@ public class DB2021Team03_DirectorDao {
         return -1;
     }
 
+    // Director의 ID를 받아서 해당 Director 객체를 반환해주는 메소드
     public Directors selectOne(int id) {
         String sql = "SELECT * FROM DB2021_Director WHERE ID = ?";
         conn = DB2021Team03_DBConnection.getConnection();
@@ -76,6 +78,7 @@ public class DB2021Team03_DirectorDao {
         return null;
     }
 
+    // Director의 ID를 받아서 해당 Director가 제작한 모든 영화 객체를 반환해주는 메소드
     public Vector<String> selectMovies(int directorId) {
         //영화들을 저장하는 Vector 선언 + 객체 생성.
         Vector<String> movies = new Vector<String>();
@@ -109,6 +112,7 @@ public class DB2021Team03_DirectorDao {
         return null;
     }
 
+    // Director의 ID를 받아서 해당 Director가 어떤 영화로 어떠한 상들을 받았는지 그 쌍을 반환해주는 메소드
     public Map<String, Vector<String>> selectPrizes(int directorId) {
         Map<String, Vector<String>> MP = new HashMap<String, Vector<String>>();
 
