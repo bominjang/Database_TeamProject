@@ -91,7 +91,7 @@ public class ReviewDao {
         return -1;
     }
 
-    public Reviews selectRecent(String nickname) {
+    public Reviews reviewDetail(String nickname) {
         sql = "SELECT * FROM DB2021_Review WHERE nickname = ? ORDER BY create_time DESC limit 1";
 
         conn = DBConnection.getConnection();
@@ -157,6 +157,27 @@ public class ReviewDao {
 
 
     //update
+    public int update(int reviewId, float rating, String detail) {
+        String sql = "UPDATE DB2021_Review SET RATING = ?, DETAIL = ?, CREATE_TIME = now() WHERE ID = ?";
+        conn = DBConnection.getConnection();
+
+        int returnCnt = 0;
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setFloat(1, rating);
+            pstmt.setString(2, detail);
+            pstmt.setInt(3, reviewId);
+
+            returnCnt = pstmt.executeUpdate();
+
+            conn.close();
+            return returnCnt;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return -1;
+    }
 
     //delete
     public int delete(int reviewId) {

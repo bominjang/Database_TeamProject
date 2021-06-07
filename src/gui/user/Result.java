@@ -18,9 +18,10 @@ public class Result extends CustomUI {
     private JPanel backgroundPanel;
     private JLabel lbIcon, lbTitle;
     private JLabel lbTitleMovie, lbMovie, lbTitleDate, lbDate, lbTitleRating, lbRating, lbTitleDetail, lbDetail;
-    private JButton btnMain;
+    private JButton btnMain,btnReviews;
 
     private String nickname;
+    private int reviewId;
 
     public Result(String nickname) {
         this.nickname = nickname;
@@ -29,7 +30,7 @@ public class Result extends CustomUI {
         init();
 
         ReviewDao rDao = ReviewDao.getInstance();
-        Reviews review = rDao.selectRecent(nickname);
+        Reviews review = rDao.reviewDetail(nickname);
         System.out.println(review.getMovie());
         lbMovie.setText(review.getMovie());
 
@@ -43,6 +44,50 @@ public class Result extends CustomUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new Main(nickname);
+                frame.dispose();
+            }
+        });
+
+        btnReviews.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new MyReviews(nickname);
+                frame.dispose();
+            }
+        });
+
+        frame.setSize(426, 779);
+        frame.setResizable(false);
+        frame.setVisible(true);
+    }
+
+    public Result(String nickname, int reviewId) {
+        this.nickname = nickname;
+        this.reviewId = reviewId;
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        init();
+
+        ReviewDao rDao = ReviewDao.getInstance();
+        Reviews review = rDao.reviewDetail(nickname);
+        System.out.println(review.getMovie());
+        lbMovie.setText(review.getMovie());
+
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        lbDate.setText(dateFormat.format(review.getCreate_time()));
+        lbDate.setText(review.getCreate_time());
+        lbRating.setText(Float.toString(review.getRating()));
+        lbDetail.setText(review.getDetail());
+
+        btnMain.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new Main(nickname);
+                frame.dispose();
+            }
+        });
+
+        btnReviews.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new MyReviews(nickname);
                 frame.dispose();
             }
         });
@@ -64,7 +109,7 @@ public class Result extends CustomUI {
         lbTitle = custom.setLb("lbTitle", "리뷰가 등록되었습니다", 100, 150, 220, 185, "center", 20, "bold");
 
         lbTitleMovie = custom.setLb("lbTitleMovie", "영화제목", 35, 310, 100, 20, "left", 17, "bold");
-        lbMovie = custom.setLb("lbMovie", "영화를 입력가하세요", 195, 310, 180, 20, "right", 17, "plain");
+        lbMovie = custom.setLb("lbMovie", "영화를 입력하세요", 195, 310, 180, 20, "right", 17, "plain");
 
         lbTitleDate = custom.setLb("lbTitleDate", "리뷰날짜", 35, 360, 100, 20, "left", 17, "bold");
         lbDate = custom.setLb("lbDate", "00-00-00 00:00:00", 195, 360, 180, 20, "right", 17, "plain");
@@ -75,6 +120,7 @@ public class Result extends CustomUI {
         lbTitleDetail = custom.setLb("lbTitleDetail", "후기", 35, 460, 100, 20, "left", 17, "bold");
         lbDetail = custom.setLb("lbDetail", "후기를 입력하세요.", 195, 460, 180, 20, "right", 17, "plain");
 
+        btnReviews = custom.setBtnGreen("btnReviews", "내가 쓴 리뷰들", 35, 600, 350, 40);
         btnMain = custom.setBtnGreen("btnMain", "메인으로", 35, 655, 350, 40);
     }
 }
