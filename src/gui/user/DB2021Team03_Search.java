@@ -11,7 +11,7 @@ import dao.*;
 import models.Keyword;
 
 @SuppressWarnings("serial")
-public class Search extends CustomUI {
+public class DB2021Team03_Search extends DB2021Team03_CustomUI {
 
     private JFrame frame = new JFrame();
 
@@ -26,7 +26,7 @@ public class Search extends CustomUI {
 
     private String nickname;
 
-    public Search(String nickname) {
+    public DB2021Team03_Search(String nickname) {
         this.nickname = nickname;
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,7 +37,7 @@ public class Search extends CustomUI {
             public void actionPerformed(ActionEvent e) {
                 int returnCd = JOptionPane.showConfirmDialog(frame, "메인 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if(returnCd == JOptionPane.YES_OPTION) {
-                    new Main(nickname);
+                    new DB2021Team03_Main(nickname);
                     frame.dispose();
                 }
             }
@@ -48,7 +48,7 @@ public class Search extends CustomUI {
             public void actionPerformed(ActionEvent e) {
                 int returnCd = JOptionPane.showConfirmDialog(frame, "이전 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if(returnCd == JOptionPane.YES_OPTION) {
-                    new Main(nickname);
+                    new DB2021Team03_Main(nickname);
                     frame.dispose();
                 }
             }
@@ -62,11 +62,11 @@ public class Search extends CustomUI {
                 String key = movie.getKey();
                 String text = searchbar.getText();
 
-                SearchDao sDao = SearchDao.getInstance();
+                DB2021Team03_SearchDao sDao = DB2021Team03_SearchDao.getInstance();
                 boolean check = sDao.dataExist(key, text);
 
                 if(check) {
-                    new SearchResult(nickname, key, text);
+                    new DB2021Team03_SearchResult(nickname, key, text);
                     frame.dispose();
                 } else {
                     JOptionPane.showMessageDialog(frame, "등록되어 있지 않은 정보입니다.", "오류", JOptionPane.ERROR_MESSAGE);
@@ -84,7 +84,7 @@ public class Search extends CustomUI {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);
         frame.setTitle("DB2021Team03-영화 정보 프로그램");
-        CustomUI custom = new CustomUI(backgroundPanel);
+        DB2021Team03_CustomUI custom = new DB2021Team03_CustomUI(backgroundPanel);
         custom.setPanel();
 
         JPanel panel = new JPanel();
@@ -100,7 +100,7 @@ public class Search extends CustomUI {
         lbTitle = custom.setLb("lbTitle", "영화 검색", 310, 200, 180, 50, "center", 35, "bold");
         panel.add(lbTitle);
 
-        SearchDao sDao = SearchDao.getInstance();
+        DB2021Team03_SearchDao sDao = DB2021Team03_SearchDao.getInstance();
         Vector<Keyword> comboKeywords = sDao.setCombo();
         comboKeyword = custom.setKeyword("combo", comboKeywords, 35, 300, 150, 40);
 

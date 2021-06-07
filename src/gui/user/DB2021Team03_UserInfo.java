@@ -12,11 +12,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import dao.DBConnection;
+import dao.DB2021Team03_DBConnection;
 import models.Users;
 
 @SuppressWarnings("serial")
-public class UserInfo extends CustomUI {
+public class DB2021Team03_UserInfo extends DB2021Team03_CustomUI {
 
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
@@ -25,7 +25,7 @@ public class UserInfo extends CustomUI {
 
     private String nickname;
 
-    public UserInfo(String nickname) {
+    public DB2021Team03_UserInfo(String nickname) {
         this.nickname = nickname;
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,14 +35,14 @@ public class UserInfo extends CustomUI {
 
         btnMain.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new Main(nickname);
+                new DB2021Team03_Main(nickname);
                 frame.dispose();
             }
         });
 
         btnReviews.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new MyReviews(nickname);
+                new DB2021Team03_MyReviews(nickname);
                 frame.dispose();
             }
         });
@@ -56,7 +56,7 @@ public class UserInfo extends CustomUI {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);
         frame.setTitle("DB2021Team03-영화 정보 프로그램");
-        CustomUI custom = new CustomUI(backgroundPanel);
+        DB2021Team03_CustomUI custom = new DB2021Team03_CustomUI(backgroundPanel);
         custom.setPanel();
 
         lbTitle = custom.setLbImg("lbTitle", 0, 165, 150);
@@ -80,7 +80,7 @@ public class UserInfo extends CustomUI {
         Connection conn;
         PreparedStatement pstmt;
         ResultSet rs;
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
 
         Users user = new Users();
         try {

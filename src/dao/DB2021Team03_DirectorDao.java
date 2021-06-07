@@ -8,13 +8,13 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class DirectorDao {
-    private DirectorDao() {
+public class DB2021Team03_DirectorDao {
+    private DB2021Team03_DirectorDao() {
     }
 
-    private static DirectorDao instance = new DirectorDao();
+    private static DB2021Team03_DirectorDao instance = new DB2021Team03_DirectorDao();
 
-    public static DirectorDao getInstance() {
+    public static DB2021Team03_DirectorDao getInstance() {
         return instance;
     }
 
@@ -24,7 +24,7 @@ public class DirectorDao {
 
     public int selectId(String name) {
         String sql = "SELECT id FROM DB2021_Director WHERE NAME = ?";
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
         int id;
 
         try {
@@ -49,7 +49,7 @@ public class DirectorDao {
 
     public Directors selectOne(int id) {
         String sql = "SELECT * FROM DB2021_Director WHERE ID = ?";
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
 
         try {
             pstmt = conn.prepareStatement(sql);
@@ -82,7 +82,7 @@ public class DirectorDao {
         //directorId값을 갖는 director가 제작한 영화제목과 개봉일자를 불러오는 쿼리문.
         String sql = "SELECT title, opening_date FROM DB2021_Movie Where director = (SELECT name FROM DB2021_Director WHERE ID = ?)";
         SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
 
         try {
             pstmt = conn.prepareStatement(sql);
@@ -114,7 +114,7 @@ public class DirectorDao {
 
         String sql = "SELECT prize, movie FROM DB2021_Director_Prize WHERE director = (SELECT name FROM DB2021_Director WHERE ID = ?) ORDER BY movie";
         SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
 
         try {
             pstmt = conn.prepareStatement(sql);

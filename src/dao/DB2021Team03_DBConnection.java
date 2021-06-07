@@ -3,7 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class DBConnection {
+public class DB2021Team03_DBConnection {
     public static Connection getConnection(){
         Connection conn = null;
 

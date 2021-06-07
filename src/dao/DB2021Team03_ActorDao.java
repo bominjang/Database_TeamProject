@@ -11,13 +11,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
-public class ActorDao {
+public class DB2021Team03_ActorDao {
 
-    private ActorDao() {}
+    private DB2021Team03_ActorDao() {}
 
-    private static ActorDao instance = new ActorDao();
+    private static DB2021Team03_ActorDao instance = new DB2021Team03_ActorDao();
 
-    public static ActorDao getInstance() {
+    public static DB2021Team03_ActorDao getInstance() {
         return instance;
     }
 
@@ -27,7 +27,7 @@ public class ActorDao {
 
     public int selectId(String name) {
         String sql = "SELECT id FROM DB2021_Actor WHERE NAME = ?";
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
         int id;
 
         try {
@@ -52,7 +52,7 @@ public class ActorDao {
 
     public Actors selectOne(int id) {
         String sql = "SELECT * FROM DB2021_Actor WHERE ID = ?";
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
 
         try {
             pstmt = conn.prepareStatement(sql);
@@ -80,10 +80,10 @@ public class ActorDao {
     }
 
     public String selectAll(int movieId) {
-        String movies = "";
-        //
+        String actors = "";
+        //Movie.java에서 사용하는 쿼리문이다. 해당 영화에 출연한 배우를 가져오기 위해 left outer join을 사용하였음.
         String sql = "SELECT actor FROM DB2021_Actor_Movie as am left outer join DB2021_Movie as m on am.movie = m.title where m.ID = ?";
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
 
         try {
             pstmt = conn.prepareStatement(sql);
@@ -91,13 +91,14 @@ public class ActorDao {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
+                //출연한 배우들을 actors 변수에 담음.
                 String actor_name = rs.getString("actor");
-                movies += actor_name +" ";
+                actors += actor_name +" ";
             }
 
             conn.close();
 
-            return movies;
+            return actors;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -110,7 +111,7 @@ public class ActorDao {
         Vector<String> movies = new Vector<String>();
         String sql = "SELECT title, opening_date FROM DB2021_Actor_Movie as am left outer join DB2021_Movie as m on am.movie = m.title WHERE am.actor = ?";
         SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
 
         try {
             pstmt = conn.prepareStatement(sql);
@@ -140,7 +141,7 @@ public class ActorDao {
 
         String sql = "SELECT prize, movie FROM DB2021_Actor_Prize WHERE actor = (SELECT name FROM DB2021_Actor WHERE ID = ?) ORDER BY movie";
         SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
 
         try {
             pstmt = conn.prepareStatement(sql);

@@ -5,11 +5,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import dao.ReviewDao;
+import dao.DB2021Team03_ReviewDao;
 import models.Reviews;
 
 @SuppressWarnings("serial")
-public class Update extends CustomUI {
+public class DB2021Team03_Update extends DB2021Team03_CustomUI {
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
     private JLabel lbIcon, lbTitle;
@@ -21,14 +21,14 @@ public class Update extends CustomUI {
     private String nickname;
     private int reviewId;
 
-    public Update(String nickname, int reviewId, String mv) {
+    public DB2021Team03_Update(String nickname, int reviewId, String mv) {
         this.nickname = nickname;
         this.reviewId = reviewId;
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         init();
 
-        ReviewDao rDao = ReviewDao.getInstance();
+        DB2021Team03_ReviewDao rDao = DB2021Team03_ReviewDao.getInstance();
         Reviews review = rDao.reviewDetail(reviewId);
         System.out.println(review.getMovie());
         lbMovie.setText(review.getMovie());
@@ -39,7 +39,7 @@ public class Update extends CustomUI {
 
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new MyReviews(nickname);
+                new DB2021Team03_MyReviews(nickname);
                 frame.dispose();
             }
         });
@@ -48,7 +48,7 @@ public class Update extends CustomUI {
             int result=0;
             public void actionPerformed(ActionEvent e) {
                 result = rDao.update(reviewId, mv, Float.parseFloat(lbRating.getText()),lbDetail.getText());
-                new Result(nickname, reviewId);
+                new DB2021Team03_Result(nickname, reviewId);
                 frame.dispose();
 
                 if (result == -1) {
@@ -72,7 +72,7 @@ public class Update extends CustomUI {
         frame.setContentPane(backgroundPanel);
         frame.setTitle("DB2021Team03-영화 정보 프로그램");
 
-        CustomUI custom = new CustomUI(backgroundPanel);
+        DB2021Team03_CustomUI custom = new DB2021Team03_CustomUI(backgroundPanel);
         custom.setPanel();
 
         lbIcon = custom.setLbImg("lbIcon", 0, 160, 130);

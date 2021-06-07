@@ -8,12 +8,12 @@ import java.util.Vector;
 
 import javax.swing.*;
 
-import dao.ComboDao;
-import dao.ReviewDao;
+import dao.DB2021Team03_ComboDao;
+import dao.DB2021Team03_ReviewDao;
 import models.Combo;
 
 @SuppressWarnings("serial")
-public class Review extends CustomUI {
+public class DB2021Team03_Review extends DB2021Team03_CustomUI {
 
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
@@ -25,7 +25,7 @@ public class Review extends CustomUI {
 
     private String nickname;
 
-    public Review(String nickname) {
+    public DB2021Team03_Review(String nickname) {
         this.nickname = nickname;
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -47,16 +47,17 @@ public class Review extends CustomUI {
                 if(returnCd == JOptionPane.YES_OPTION) {
                     Combo movie = (Combo) comboMovie.getSelectedItem();
 
+                    //사용자에게서 입력받은 값을 변수에 저장
                     String movieTitle = movie.getValue();
                     String rating = txtrating.getText();
                     String detail = txtdetail.getText();
 
-                    ReviewDao rDao = ReviewDao.getInstance();
-
+                    DB2021Team03_ReviewDao rDao = DB2021Team03_ReviewDao.getInstance();
+                    //rDao 객체의 insert메서드 호출
                     int returnCnt = rDao.insert(movieTitle, nickname, Float.parseFloat(rating), detail);
 
                     if(returnCnt == 1) {
-                        new Result(nickname);
+                        new DB2021Team03_Result(nickname);
                         frame.dispose();
                     } else {
                         JOptionPane.showMessageDialog(frame, "등록에 실패하였습니다. 다시 시도해 주세요.", "오류", JOptionPane.ERROR_MESSAGE);
@@ -70,7 +71,7 @@ public class Review extends CustomUI {
             public void actionPerformed(ActionEvent e) {
                 int returnCd = JOptionPane.showConfirmDialog(frame, "메인 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if(returnCd == JOptionPane.YES_OPTION) {
-                    new Main(nickname);
+                    new DB2021Team03_Main(nickname);
                     frame.dispose();
                 }
             }
@@ -96,7 +97,7 @@ public class Review extends CustomUI {
         frame.setContentPane(backgroundPanel);
         frame.setTitle("DB2021Team03-영화 정보 프로그램");
 
-        CustomUI custom = new CustomUI(backgroundPanel);
+        DB2021Team03_CustomUI custom = new DB2021Team03_CustomUI(backgroundPanel);
         custom.setPanel();
 
         // 회원 아이디
@@ -106,7 +107,7 @@ public class Review extends CustomUI {
         // 영화 선택
         lbTitleMovie = custom.setLb("lbTitleMovie", "영화선택", 35, 240, 180, 20, "left", 17, "bold");
 
-        ComboDao cDao = ComboDao.getInstance();
+        DB2021Team03_ComboDao cDao = DB2021Team03_ComboDao.getInstance();
         Vector<Combo> comboMovies = cDao.setCombo("movie");
         comboMovie = custom.setCombo("combo", comboMovies, 235, 240, 150, 25);
 

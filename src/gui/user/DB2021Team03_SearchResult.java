@@ -14,7 +14,7 @@ import models.Keyword;
 import models.Movies;
 
 @SuppressWarnings("serial")
-public class SearchResult extends CustomUI {
+public class DB2021Team03_SearchResult extends DB2021Team03_CustomUI {
 
     private JFrame frame = new JFrame();
 
@@ -28,18 +28,18 @@ public class SearchResult extends CustomUI {
     private JButton btnMain, btnBack, btnSearch;
     private JLabel lbBox[];
     private Vector<Movies> rMovies;
-    private SearchDao sDao;
+    private DB2021Team03_SearchDao sDao;
     private int movieId;
 
     private String nickname;
     private int addnum;
 
-    public SearchResult(String nickname, String keyword, String text) {
+    public DB2021Team03_SearchResult(String nickname, String keyword, String text) {
         this.nickname = nickname;
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        sDao = SearchDao.getInstance();
+        sDao = DB2021Team03_SearchDao.getInstance();
         rMovies = sDao.search(keyword, text);
 
         lbBox = new JLabel[rMovies.size()];
@@ -53,7 +53,7 @@ public class SearchResult extends CustomUI {
             public void actionPerformed(ActionEvent e) {
                 int returnCd = JOptionPane.showConfirmDialog(frame, "메인 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if(returnCd == JOptionPane.YES_OPTION) {
-                    new Main(nickname);
+                    new DB2021Team03_Main(nickname);
                     frame.dispose();
                 }
             }
@@ -64,7 +64,7 @@ public class SearchResult extends CustomUI {
             public void actionPerformed(ActionEvent e) {
                 int returnCd = JOptionPane.showConfirmDialog(frame, "이전 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if(returnCd == JOptionPane.YES_OPTION) {
-                    new Search(nickname);
+                    new DB2021Team03_Search(nickname);
                     frame.dispose();
                 }
             }
@@ -77,11 +77,11 @@ public class SearchResult extends CustomUI {
                 String key = movie.getKey();
                 String text = searchbar.getText();
 
-                SearchDao sDao = SearchDao.getInstance();
+                DB2021Team03_SearchDao sDao = DB2021Team03_SearchDao.getInstance();
                 boolean check = sDao.dataExist(key, text);
 
                 if(check) {
-                    new SearchResult(nickname, key, text);
+                    new DB2021Team03_SearchResult(nickname, key, text);
                     frame.dispose();
                 } else {
                     JOptionPane.showMessageDialog(frame, "등록되어 있지 않은 정보입니다.", "오류", JOptionPane.ERROR_MESSAGE);
@@ -100,7 +100,7 @@ public class SearchResult extends CustomUI {
         frame.setContentPane(backgroundPanel);
         frame.setTitle("DB2021Team03-영화 정보 프로그램");
 
-        CustomUI custom = new CustomUI(backgroundPanel);
+        DB2021Team03_CustomUI custom = new DB2021Team03_CustomUI(backgroundPanel);
         custom.setPanel();
 
         JPanel panel = new JPanel();
@@ -117,7 +117,7 @@ public class SearchResult extends CustomUI {
         panel.add(lbTitle);
 
 
-        SearchDao sDao = SearchDao.getInstance();
+        DB2021Team03_SearchDao sDao = DB2021Team03_SearchDao.getInstance();
         Vector<Keyword> comboKeywords = sDao.setCombo();
         comboKeyword = custom.setKeyword("combo", comboKeywords, 35, 200, 150, 40);
 
@@ -164,7 +164,7 @@ public class SearchResult extends CustomUI {
                         }
                     }
 
-                    new SearchToDetail(nickname, movieId);
+                    new DB2021Team03_SearchToDetail(nickname, movieId);
                     frame.dispose();
                 }
             });

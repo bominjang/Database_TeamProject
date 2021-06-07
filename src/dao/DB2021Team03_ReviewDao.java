@@ -7,14 +7,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ReviewDao {
+public class DB2021Team03_ReviewDao {
 
-    private ReviewDao() {
+    private DB2021Team03_ReviewDao() {
     }
 
-    private static ReviewDao instance = new ReviewDao();
+    private static DB2021Team03_ReviewDao instance = new DB2021Team03_ReviewDao();
 
-    public static ReviewDao getInstance() {
+    public static DB2021Team03_ReviewDao getInstance() {
         return instance;
     }
 
@@ -35,7 +35,7 @@ public class ReviewDao {
         //DB2021_Movie 테이블에서 사용자가 평점를 남긴 영화에 대한 rating 값을 update하는 쿼리문.
         sql3 = "UPDATE DB2021_Movie set rating = ? WHERE title = ?";
 
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
         try {
 
             //Transaction으로 review 삽입, 평균 평점 계산, 평점 업데이트를 구현함.
@@ -94,7 +94,7 @@ public class ReviewDao {
     public Reviews reviewDetail(String nickname) {
         sql = "SELECT * FROM DB2021_Review WHERE nickname = ? ORDER BY create_time DESC limit 1";
 
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, nickname);
@@ -125,7 +125,7 @@ public class ReviewDao {
     public Reviews reviewDetail(int reviewId) {
         sql = "SELECT * FROM DB2021_Review WHERE id = ?";
 
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
 
         try {
             pstmt = conn.prepareStatement(sql);
@@ -166,7 +166,7 @@ public class ReviewDao {
         //DB2021_Movie 테이블에서 사용자가 업데이트한 리뷰의 영화에 대한 rating 값을 update하는 쿼리문.
         sql3 = "UPDATE DB2021_Movie set rating = ? WHERE title = ?";
 
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
 
         try {
             //Transaction으로 review 업데이트, 평균 평점 다시 계산, 평점 업데이트를 구현함.
@@ -234,7 +234,7 @@ public class ReviewDao {
         //DB2021_Movie 테이블에서 사용자가 삭제한 리뷰의 영화에 대한 rating 값을 update하는 쿼리문.
         sql3 = "UPDATE DB2021_Movie set rating = ? WHERE title = ?";
 
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
         try {
             //Transaction으로 review 삭제, 평균 평점 다시 계산, 평점 업데이트를 구현함.
             conn.setAutoCommit(false);

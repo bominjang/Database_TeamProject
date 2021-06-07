@@ -22,12 +22,12 @@ import models.Combo;
 import models.Keyword;
 
 @SuppressWarnings("serial")
-class CustomUI extends JFrame {
+class DB2021Team03_CustomUI extends JFrame {
     JPanel backgroundPanel;
 
-    public CustomUI() {}
+    public DB2021Team03_CustomUI() {}
 
-    public CustomUI(JPanel backgroundPanel) {
+    public DB2021Team03_CustomUI(JPanel backgroundPanel) {
         this.backgroundPanel = backgroundPanel;
     }
 

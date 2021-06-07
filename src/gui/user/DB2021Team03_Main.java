@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class Main extends CustomUI {
+public class DB2021Team03_Main extends DB2021Team03_CustomUI {
 
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
@@ -16,42 +16,42 @@ public class Main extends CustomUI {
 
     private String nickname;
 
-    public Main(String nickname) {
+    public DB2021Team03_Main(String nickname) {
         this.nickname = nickname;
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         init();
 
         btnMovie.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new Ranking(nickname);
+                new DB2021Team03_Ranking(nickname);
                 frame.dispose();
             }
         });
 
         btnTheater.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new Search(nickname);
+                new DB2021Team03_Search(nickname);
                 frame.dispose();
             }
         });
 
         btnReview.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new Review(nickname);
+                new DB2021Team03_Review(nickname);
                 frame.dispose();
             }
         });
 
         btnInfo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new UserInfo(nickname);
+                new DB2021Team03_UserInfo(nickname);
                 frame.dispose();
             }
         });
 
         btnLogout.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new Login();
+                new DB2021Team03_Login();
                 frame.dispose();
             }
         });
@@ -66,7 +66,7 @@ public class Main extends CustomUI {
         frame.setContentPane(backgroundPanel);
         frame.setTitle("DB2021Team03-영화 정보 프로그램");
 
-        CustomUI custom = new CustomUI(backgroundPanel);
+        DB2021Team03_CustomUI custom = new DB2021Team03_CustomUI(backgroundPanel);
         custom.setPanel();
 
         btnMovie = custom.setBtnImg("btnMovie", "영화순위 보기", 33, 240);

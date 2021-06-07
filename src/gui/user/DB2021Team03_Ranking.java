@@ -15,12 +15,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import dao.DBConnection;
-import dao.MovieDao;
+import dao.DB2021Team03_DBConnection;
+import dao.DB2021Team03_MovieDao;
 import models.Movies;
 
 @SuppressWarnings("serial")
-public class Ranking extends CustomUI {
+public class DB2021Team03_Ranking extends DB2021Team03_CustomUI {
 
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
@@ -31,14 +31,14 @@ public class Ranking extends CustomUI {
     private int movieId;
 
     private String nickname;
-    private MovieDao mDao;
+    private DB2021Team03_MovieDao mDao;
     private Vector<Movies> rMovies;
 
-    public Ranking(String nickname) {
+    public DB2021Team03_Ranking(String nickname) {
         this.nickname = nickname;
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        mDao = MovieDao.getInstance();
+        mDao = DB2021Team03_MovieDao.getInstance();
         rMovies = mDao.selectRanking();
 
         lbBox = new JLabel[rMovies.size()];
@@ -49,7 +49,7 @@ public class Ranking extends CustomUI {
 
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new Main(nickname);
+                new DB2021Team03_Main(nickname);
                 frame.dispose();
             }
         });
@@ -60,13 +60,13 @@ public class Ranking extends CustomUI {
     }
 
     private void init() {
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
         try {
             backgroundPanel = new JPanel();
             frame.setContentPane(backgroundPanel);
             frame.setTitle("DB2021Team03-영화 정보 프로그램");
 
-            CustomUI custom = new CustomUI(backgroundPanel);
+            DB2021Team03_CustomUI custom = new DB2021Team03_CustomUI(backgroundPanel);
             custom.setPanel();
 
 
@@ -105,7 +105,7 @@ public class Ranking extends CustomUI {
                                 movieId = rMovie.getId();
                             }
                         }
-                        new Movie(nickname, movieId);
+                        new DB2021Team03_Movie(nickname, movieId);
                         frame.dispose();
 
                     }

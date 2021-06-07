@@ -8,14 +8,14 @@ import java.sql.ResultSet;
 import java.util.Vector;
 
 
-public class UserDao {
-    private UserDao() {
+public class DB2021Team03_UserDao {
+    private DB2021Team03_UserDao() {
     }
 
     // Dao: [자신의타입] [변수명]
-    private static UserDao instance = new UserDao();
+    private static DB2021Team03_UserDao instance = new DB2021Team03_UserDao();
 
-    public static UserDao getInstance(){
+    public static DB2021Team03_UserDao getInstance(){
         return instance;
     }
 
@@ -27,7 +27,7 @@ public class UserDao {
     public Users selectOne(String nickname){
         String sql = "SELECT * FROM DB2021_User WHERE nickname = ";
 
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
 
         try{
             pstmt = conn.prepareStatement(sql);
@@ -68,7 +68,7 @@ public class UserDao {
         Vector<Users> users = new Vector<>();
         String sql = "SELECT * FROM DB2021_User WHERE nickname LIKE '%" + keyword + "%'";
 
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
 
         try{
             pstmt = conn.prepareStatement(sql);
@@ -102,7 +102,7 @@ public class UserDao {
         // 핸드폰 번호로 비밀번호 초기화
         String sql = "UPDATE DB2021_User SET PASSWORD = PHONE WHERE nickname = ?";
 
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
 
         try {
             int returnCnt = 0; // 실행한 row 개수
@@ -124,7 +124,7 @@ public class UserDao {
     public int updateDel(String nickname) {
         String sql = "UPDATE DB2021_User SET delete_fg = 'Y', delete_time = NOW() WHERE nickname = ?";
 
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
 
         try {
             int returnCnt = 0; // 실행한 row 개수
@@ -145,7 +145,7 @@ public class UserDao {
     public Users selectBirth(String nickname) {
         String sql = "SELECT birth FROM DB2021_User WHERE nickname = ?";
 
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
 
         try{
             pstmt = conn.prepareStatement(sql);
