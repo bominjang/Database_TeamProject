@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
 
+// 검색 기능에서 사용될 SQL처리를 위한 Class
 public class DB2021Team03_SearchDao {
     private DB2021Team03_SearchDao(){}
     private static DB2021Team03_SearchDao instance = new DB2021Team03_SearchDao();
@@ -20,6 +21,7 @@ public class DB2021Team03_SearchDao {
     private static PreparedStatement pstmt;
     private static ResultSet rs;
 
+    // 검색 기능에서 사용될 키워드를 출력하는 메소드(콤보박스에 사용)
     public Vector<Keyword> setCombo() {
         Vector<Keyword> combos = new Vector<>();
 
@@ -41,6 +43,7 @@ public class DB2021Team03_SearchDao {
         return combos;
     }
 
+    // 검색 시 해당 데이터의 존재 유무를 확인하는 메소드
     public boolean dataExist(String keyword, String text) {
         String sql, view;
 
@@ -74,6 +77,7 @@ public class DB2021Team03_SearchDao {
         return false;
     }
 
+    // 키워드와 검색어로 영화를 찾아주는 메소드
     public Vector<Movies> search(String keyword, String text) {
         Vector<Movies> results = new Vector<>();
         String sql;

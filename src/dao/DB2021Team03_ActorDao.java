@@ -11,8 +11,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
-public class DB2021Team03_ActorDao {
 
+// Actor 테이블 관련 SQL처리를 위한 Class
+public class DB2021Team03_ActorDao {
+    
     private DB2021Team03_ActorDao() {}
 
     private static DB2021Team03_ActorDao instance = new DB2021Team03_ActorDao();
@@ -25,6 +27,7 @@ public class DB2021Team03_ActorDao {
     private static PreparedStatement pstmt;
     private static ResultSet rs;
 
+    // Actor의 name을 받아서 ID를 알려주는 메소드
     public int selectId(String name) {
         String sql = "SELECT id FROM DB2021_Actor WHERE NAME = ?";
         conn = DB2021Team03_DBConnection.getConnection();
@@ -50,6 +53,7 @@ public class DB2021Team03_ActorDao {
         return -1;
     }
 
+    // Actor의 ID를 받아서 해당 Actor의 객체를 반환해주는 메소드
     public Actors selectOne(int id) {
         String sql = "SELECT * FROM DB2021_Actor WHERE ID = ?";
         conn = DB2021Team03_DBConnection.getConnection();
@@ -79,6 +83,7 @@ public class DB2021Team03_ActorDao {
         return null;
     }
 
+    // movie ID를 받아서 해당 movie에 출연한 모든 Actor 객체를 반환해주는 메소드
     public String selectAll(int movieId) {
         String actors = "";
         //Movie.java에서 사용하는 쿼리문이다. 해당 영화에 출연한 배우를 가져오기 위해 left outer join을 사용하였음.
@@ -107,6 +112,8 @@ public class DB2021Team03_ActorDao {
         return null;
     }
 
+
+    // Actor의 ID를 받아서 해당 Actor가 출연한 모든 Movie 객체를 반환해주는 메소드
     public Vector<String> selectMovies(String name) {
         Vector<String> movies = new Vector<String>();
         String sql = "SELECT title, opening_date FROM DB2021_Actor_Movie as am left outer join DB2021_Movie as m on am.movie = m.title WHERE am.actor = ?";
@@ -136,6 +143,7 @@ public class DB2021Team03_ActorDao {
         return null;
     }
 
+    // Actor의 ID를 받아서 해당 Actor가 어떤 영화로 어떠한 상들을 받았는지 그 쌍을 반환해주는 메소드
     public Map<String, Vector<String>> selectPrizes(int directorId) {
         Map<String, Vector<String>> MP = new HashMap<String, Vector<String>>();
 

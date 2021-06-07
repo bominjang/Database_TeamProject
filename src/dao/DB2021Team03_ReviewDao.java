@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+// Review 테이블 관련 SQL처리를 위한 Class
 public class DB2021Team03_ReviewDao {
 
     private DB2021Team03_ReviewDao() {
@@ -23,7 +24,7 @@ public class DB2021Team03_ReviewDao {
     private static ResultSet rs;
     private String sql, sql2, sql3;
 
-
+    // 사용자가 리뷰를 작성하면 Review table에 리뷰를 insert하는 메소드
     public int insert(String movie, String nickname, float rating, String detail) {
         //DB2021_Review 테이블에 사용자가 입력한 리뷰를 insert하는 쿼리문.
         sql = "INSERT INTO DB2021_Review(movie, nickname, create_time, rating, detail)";
@@ -91,6 +92,7 @@ public class DB2021Team03_ReviewDao {
         return -1;
     }
 
+    // 사용자의 nickname을 받아 해당 사용자가 작성한 모든 리뷰 객체를 반환하는 메소드
     public Reviews reviewDetail(String nickname) {
         sql = "SELECT * FROM DB2021_Review WHERE nickname = ? ORDER BY create_time DESC limit 1";
 
@@ -122,6 +124,7 @@ public class DB2021Team03_ReviewDao {
         return null;
     }
 
+    // Review ID를 해당 리뷰 객체를 반환해주는 메소드
     public Reviews reviewDetail(int reviewId) {
         sql = "SELECT * FROM DB2021_Review WHERE id = ?";
 

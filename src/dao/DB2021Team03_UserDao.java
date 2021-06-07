@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
 
-
+// User 테이블 관련 SQL처리를 위한 Class
 public class DB2021Team03_UserDao {
     private DB2021Team03_UserDao() {
     }
@@ -140,33 +140,5 @@ public class DB2021Team03_UserDao {
         }
 
         return -1;
-    }
-
-    public Users selectBirth(String nickname) {
-        String sql = "SELECT birth FROM DB2021_User WHERE nickname = ?";
-
-        conn = DB2021Team03_DBConnection.getConnection();
-
-        try{
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, nickname);
-            rs = pstmt.executeQuery();
-
-            Users user = new Users();
-            if(rs.next()) {
-                user.setBirth(rs.getDate("birth"));
-
-                conn.close();
-                return user;
-            } else {
-                conn.close();
-                return null;
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
     }
 }
