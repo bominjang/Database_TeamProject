@@ -46,11 +46,11 @@ public class SearchDao {
         String sql, view;
 
         if(keyword.equals("movie")) {
-            sql = "SELECT * FROM titleExist WHERE title = ?";
+            sql = "SELECT * FROM DB2021_titleExist WHERE title = ?";
         } else if(keyword.equals("director")) {
-            sql = "SELECT * FROM DnameExist WHERE name = ?";
+            sql = "SELECT * FROM DB2021_DnameExist WHERE name = ?";
         } else if(keyword.equals("actor")) {
-            sql = "SELECT * FROM AnameExist WHERE name = ?";
+            sql = "SELECT * FROM DB2021_AnameExist WHERE name = ?";
         } else {
             sql = "";
         }

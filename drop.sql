@@ -18,7 +18,9 @@ drop table db2021_user;
 
 
 
-DROP VIEW titleExist;
-DROP VIEW DnameExist;
-DROP VIEW AnameExist;
+DROP VIEW DB2021_titleExist;
+DROP VIEW DB2021_DnameExist;
+DROP VIEW DB2021_AnameExist;
+
+drop database db2021team03;
 

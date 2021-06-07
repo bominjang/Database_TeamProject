@@ -34,7 +34,7 @@ primary key(ID, name)
 CREATE INDEX Dname ON DB2021_Director(name);
 
 
-## Movie(director와 1:N)
+# Movie(director와 1:N)
 CREATE TABLE DB2021_MOVIE(
 ID int auto_increment not null,
 title varchar(20) not null,
@@ -132,8 +132,8 @@ CREATE INDEX Ridx ON DB2021_Review(nickname);
 
 
 # view들
-CREATE VIEW titleExist AS SELECT title FROM DB2021_Movie;
-CREATE VIEW DnameExist AS SELECT name FROM DB2021_Director;
-CREATE VIEW AnameExist AS SELECT name FROM DB2021_Actor;
+CREATE VIEW DB2021_titleExist AS SELECT title FROM DB2021_Movie;
+CREATE VIEW DB2021_DnameExist AS SELECT name FROM DB2021_Director;
+CREATE VIEW DB2021_AnameExist AS SELECT name FROM DB2021_Actor;
 
 
