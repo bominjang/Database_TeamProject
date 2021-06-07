@@ -61,7 +61,7 @@ public class ReviewDao {
             } else {
                 throw new Exception();
             }
-            
+
             // 새 평점으로 업데이트
             pstmt = conn.prepareStatement(sql3);
             pstmt.setFloat(1, update_rating);
@@ -75,9 +75,9 @@ public class ReviewDao {
 
         } catch (Exception e) {
             e.printStackTrace();
-            try{
+            try {
                 conn.rollback();
-            } catch(SQLException se) {
+            } catch (SQLException se) {
                 System.out.println(se.getMessage());
             }
         }
@@ -122,8 +122,7 @@ public class ReviewDao {
         return null;
     }
 
-    public Reviews reviewDetail(int reviewId)
-    {
+    public Reviews reviewDetail(int reviewId) {
         sql = "SELECT * FROM DB2021_Review WHERE id = ?";
 
         conn = DBConnection.getConnection();
@@ -157,12 +156,25 @@ public class ReviewDao {
 
 
     //update
-    public int update(int reviewId, float rating, String detail) {
-        String sql = "UPDATE DB2021_Review SET RATING = ?, DETAIL = ?, CREATE_TIME = now() WHERE ID = ?";
+    public int update(int reviewId, String movie, float rating, String detail) {
+        //사용자가 업데이트한 review의 평점과 내용을 업데이트하는 쿼리문.
+        sql = "UPDATE DB2021_Review SET RATING = ?, DETAIL = ?, CREATE_TIME = now() WHERE ID = ?";
+
+        //업데이트 영화리뷰에 대한 평균 평점을 다시 계산하여 select하는 쿼리문.
+        sql2 = "SELECT AVG(rating) as average FROM DB2021_Review WHERE movie = ?";
+
+        //DB2021_Movie 테이블에서 사용자가 업데이트한 리뷰의 영화에 대한 rating 값을 update하는 쿼리문.
+        sql3 = "UPDATE DB2021_Movie set rating = ? WHERE title = ?";
+
         conn = DBConnection.getConnection();
 
-        int returnCnt = 0;
         try {
+            //Transaction으로 review 업데이트, 평균 평점 다시 계산, 평점 업데이트를 구현함.
+            conn.setAutoCommit(false);
+
+            // 리뷰 update
+            int returnCnt = 0;
+
             pstmt = conn.prepareStatement(sql);
             pstmt.setFloat(1, rating);
             pstmt.setString(2, detail);
@@ -170,8 +182,39 @@ public class ReviewDao {
 
             returnCnt = pstmt.executeUpdate();
 
+            // 영화 평점 다시 계산
+            pstmt = conn.prepareStatement(sql2);
+            pstmt.setString(1, movie);
+            rs = pstmt.executeQuery();
+            float update_rating;
+            if (rs.next()) {
+                update_rating = rs.getFloat("average");
+            } else {
+                throw new Exception();
+            }
+
+            // 새 평점으로 업데이트
+            pstmt = conn.prepareStatement(sql3);
+            pstmt.setFloat(1, update_rating);
+            pstmt.setString(2, movie);
+            returnCnt = pstmt.executeUpdate();
+            conn.commit();
+
+            conn.setAutoCommit(true);
             conn.close();
             return returnCnt;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (SQLException se) {
+                System.out.println(se.getMessage());
+            }
+        }
+
+        try {
+            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -179,19 +222,63 @@ public class ReviewDao {
         return -1;
     }
 
-    //delete
-    public int delete(int reviewId) {
-        String sql = "DELETE FROM DB2021_Review WHERE ID = ?";
-        conn = DBConnection.getConnection();
 
-        int returnCnt = 0;
+    //delete
+    public int delete(int reviewId, String movie) {
+        //DB2021_Review 테이블에 선택된 리뷰를 delete하 쿼리문.
+        sql = "DELETE FROM DB2021_Review WHERE ID = ?";
+
+        //삭제된 영화리뷰에 대한 평균 평점을 다시 계산하여 select하는 쿼리문.
+        sql2 = "SELECT AVG(rating) as average FROM DB2021_Review WHERE movie = ?";
+
+        //DB2021_Movie 테이블에서 사용자가 삭제한 리뷰의 영화에 대한 rating 값을 update하는 쿼리문.
+        sql3 = "UPDATE DB2021_Movie set rating = ? WHERE title = ?";
+
+        conn = DBConnection.getConnection();
         try {
+            //Transaction으로 review 삭제, 평균 평점 다시 계산, 평점 업데이트를 구현함.
+            conn.setAutoCommit(false);
+
+            // 리뷰 delete
+            int returnCnt = 0;
+
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, reviewId);
             returnCnt = pstmt.executeUpdate();
 
+            // 영화 평점 다시 계산
+            pstmt = conn.prepareStatement(sql2);
+            pstmt.setString(1, movie);
+            rs = pstmt.executeQuery();
+            float update_rating;
+            if (rs.next()) {
+                update_rating = rs.getFloat("average");
+            } else {
+                throw new Exception();
+            }
+
+            // 새 평점으로 업데이트
+            pstmt = conn.prepareStatement(sql3);
+            pstmt.setFloat(1, update_rating);
+            pstmt.setString(2, movie);
+            returnCnt = pstmt.executeUpdate();
+            conn.commit();
+
+            conn.setAutoCommit(true);
             conn.close();
             return returnCnt;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (SQLException se) {
+                System.out.println(se.getMessage());
+            }
+        }
+
+        try {
+            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
