@@ -133,8 +133,7 @@ public class DB2021Team03_MyReviews extends DB2021Team03_CustomUI {
                             }
                         }
 
-
-                    
+                        //사용자가 선택한 리뷰를 삭제하는 기능.
                         result = reviewDao.delete(id, mv);
                         if (result == -1) {
                             JOptionPane.showMessageDialog(frame, "ER21:데이터를 삭제할 수 없습니다.", "오류", JOptionPane.ERROR_MESSAGE);

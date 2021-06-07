@@ -59,13 +59,16 @@ public class DB2021Team03_Search extends DB2021Team03_CustomUI {
             public void actionPerformed(ActionEvent e) {
                 Keyword movie = (Keyword) comboKeyword.getSelectedItem();
 
+                //사용자가 선택한 key와, 입력한 text를 변수에 저장
                 String key = movie.getKey();
                 String text = searchbar.getText();
 
                 DB2021Team03_SearchDao sDao = DB2021Team03_SearchDao.getInstance();
+                //해당 데이터가 존재하는지 check
                 boolean check = sDao.dataExist(key, text);
 
                 if(check) {
+                    //데이터가 존재한다면 사용자가 입력한 값을 검색&결과출력
                     new DB2021Team03_SearchResult(nickname, key, text);
                     frame.dispose();
                 } else {

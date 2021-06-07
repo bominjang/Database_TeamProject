@@ -47,6 +47,7 @@ public class DB2021Team03_Update extends DB2021Team03_CustomUI {
         btnUpdate.addActionListener(new ActionListener() {
             int result=0;
             public void actionPerformed(ActionEvent e) {
+                //사용자가 수정한 rating과, 리뷰내용을 인자로 하여, rDao 객체의 update메서드를 호출.
                 result = rDao.update(reviewId, mv, Float.parseFloat(lbRating.getText()),lbDetail.getText());
                 new DB2021Team03_Result(nickname, reviewId);
                 frame.dispose();
