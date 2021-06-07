@@ -138,4 +138,9 @@ foreign key(movie) references DB2021_Movie(title) on delete cascade on update ca
 foreign key(nickname) references DB2021_User(nickname) on delete cascade on update cascade
 );
 
+# view들
+CREATE VIEW titleExist AS SELECT title FROM DB2021_Movie;
+CREATE VIEW DnameExist AS SELECT name FROM DB2021_Director;
+CREATE VIEW AnameExist AS SELECT name FROM DB2021_Actor;
+
 

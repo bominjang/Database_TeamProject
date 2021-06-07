@@ -9,9 +9,7 @@ import java.util.Vector;
 import javax.swing.*;
 
 import dao.ActorDao;
-import dao.DirectorDao;
 import models.Actors;
-import models.Directors;
 
 @SuppressWarnings("serial")
 public class Actor extends CustomUI {
@@ -109,11 +107,6 @@ public class Actor extends CustomUI {
             }
         }
 
-//        taMovies = custom.setTextArea("lbMovies", "0.0", 425, 360, 200, 60, false);
-
-//        lbTitlePrize = custom.setLb("lbTitleDetail", "상", 230, 420, 150, 20, "left", 17, "bold");
-//        lbPrize = custom.setLb("lbDetail", "감독이 받은 상", 425, 420, 200, 20, "left", 17, "plain");
-
         lbTitlePrize = custom.setLb("lbTitlePrize", "수상이력", 150, 450, 200, 20, "left", 17, "bold");
         if(actorPrizes == null) {
             custom.setLb("lbPrizes", "없음", 319, 450, 200, 20, "left", 17, "plain");
@@ -131,9 +124,6 @@ public class Actor extends CustomUI {
                 ++i;
             }
         }
-//
-//        lbTitlePlot = custom.setLb("lbTitlePlot", "줄거리", 330, 490, 150, 20, "center", 17, "bold");
-//        taPlot = custom.setTextArea("lbPlot", "줄거리주루룩", 100, 520, 600, 120, false);
 
         btnMain = custom.setBtnGreen("btnMain", "메인으로", 120, 680, 350, 40);
         btnBack = custom.setBtnWhite("btnBack", "이전으로", 120, 730);

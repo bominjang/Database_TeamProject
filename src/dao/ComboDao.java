@@ -1,14 +1,11 @@
 package dao;
 
-import java.security.Key;
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
 
 import models.Combo;
-import models.Keyword;
 
 public class ComboDao {
     private ComboDao(){}
@@ -34,7 +31,6 @@ public class ComboDao {
 
         conn = DBConnection.getConnection();
         try {
-            System.out.println(sql);
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
 

@@ -5,14 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.security.Key;
-import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 import javax.swing.*;
 
 import dao.*;
-import models.Combo;
 import models.Keyword;
 import models.Movies;
 
@@ -120,7 +117,7 @@ public class SearchResult extends CustomUI {
 
 
         SearchDao sDao = SearchDao.getInstance();
-        Vector<Keyword> comboKeywords = sDao.setCombo("search");
+        Vector<Keyword> comboKeywords = sDao.setCombo();
         comboKeyword = custom.setKeyword("combo", comboKeywords, 35, 200, 150, 40);
 
         panel.add(comboKeyword);
