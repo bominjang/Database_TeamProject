@@ -386,7 +386,7 @@ class CustomUI extends JFrame {
     protected JButton  setBtnImg(String name, String text, int x, int y) {
         ImageIcon icon = new ImageIcon("img/icon5.png");
         Image originImg = icon.getImage();
-        Image changedImg= originImg.getScaledInstance(170, 140, Image.SCALE_SMOOTH );
+        Image changedImg= originImg.getScaledInstance(180, 140, Image.SCALE_SMOOTH );
         ImageIcon Icon = new ImageIcon(changedImg);
 
         JButton btn = new JButton(text, Icon);
@@ -544,6 +544,8 @@ class CustomUI extends JFrame {
             img = img.getScaledInstance(80, 56, Image.SCALE_SMOOTH);
         } else if(iconNum == 5) {
             img = img.getScaledInstance(60, 55, Image.SCALE_SMOOTH);
+        } else {
+            img = img.getScaledInstance(100, 70, Image.SCALE_SMOOTH);
         }
         ImageIcon resizeImgIc = new ImageIcon(img);
         lb.setIcon(resizeImgIc);

@@ -122,7 +122,7 @@ public class Login extends CustomUI {
         CustomUI custom = new CustomUI(backgroundPanel);
         custom.setPanel();
 
-        lbLogo = custom.setLbImg("lbLogo", 4, 150, 150);
+        lbLogo = custom.setLbImg("lbLogo", 0, 150, 150);
         txtNickname = custom.setTextField("txtNickname", "Nickname", 35, 290, 350, 45);
         txtPassword = custom.setPasswordField("txtPassword", "Password", 35, 345, 350, 45);
 
