@@ -78,6 +78,7 @@ public class DB2021Team03_SearchDao {
         Vector<Movies> results = new Vector<>();
         String sql;
 
+        //keyword에 따른 검색 쿼리문
         if(keyword.equals("movie")) {
             sql = "SELECT * FROM DB2021_Movie WHERE title = ?";
         } else if(keyword.equals("director")) {
@@ -96,6 +97,7 @@ public class DB2021Team03_SearchDao {
             rs = pstmt.executeQuery();
 
             while(rs.next()){
+                //검색한 결과들을 results에 담음.
                 Movies movie = new Movies();
                 movie.setId(rs.getInt("ID"));
                 movie.setTitle(rs.getString("title"));

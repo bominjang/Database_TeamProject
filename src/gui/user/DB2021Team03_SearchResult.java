@@ -40,6 +40,7 @@ public class DB2021Team03_SearchResult extends DB2021Team03_CustomUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         sDao = DB2021Team03_SearchDao.getInstance();
+        //사용자가 입력한 값 검색
         rMovies = sDao.search(keyword, text);
 
         lbBox = new JLabel[rMovies.size()];
