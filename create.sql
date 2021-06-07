@@ -204,9 +204,9 @@ CREATE INDEX Ridx ON DB2021_Review(nickname);
 
 
 # view들
-CREATE VIEW titleExist AS SELECT title FROM DB2021_Movie;
-CREATE VIEW DnameExist AS SELECT name FROM DB2021_Director;
-CREATE VIEW AnameExist AS SELECT name FROM DB2021_Actor;
+CREATE VIEW DB2021_titleExist AS SELECT title FROM DB2021_Movie;
+CREATE VIEW DB2021_DnameExist AS SELECT name FROM DB2021_Director;
+CREATE VIEW DB2021_AnameExist AS SELECT name FROM DB2021_Actor;
 
 
 # director data insert

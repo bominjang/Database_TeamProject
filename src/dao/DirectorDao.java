@@ -77,7 +77,9 @@ public class DirectorDao {
     }
 
     public Vector<String> selectMovies(int directorId) {
+        //영화들을 저장하는 Vector 선언 + 객체 생성.
         Vector<String> movies = new Vector<String>();
+        //directorId값을 갖는 director가 제작한 영화제목과 개봉일자를 불러오는 쿼리문.
         String sql = "SELECT title, opening_date FROM DB2021_Movie Where director = (SELECT name FROM DB2021_Director WHERE ID = ?)";
         SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
         conn = DBConnection.getConnection();
@@ -87,6 +89,7 @@ public class DirectorDao {
             pstmt.setInt(1, directorId);
             rs = pstmt.executeQuery();
 
+            //해당 director가 제작한 영화들의 제목, 개봉일을 movies에 저장한다.
             while (rs.next()) {
                 String title = rs.getString("title");
                 Date date = rs.getDate("opening_date");
@@ -96,6 +99,7 @@ public class DirectorDao {
 
             conn.close();
 
+            //director가 제작한 영화들의 제목, 개봉일이 담긴 정보를 return
             return movies;
 
         } catch (Exception e) {
