@@ -1,7 +1,5 @@
 package dao;
 
-import gui.user.Director;
-import models.Actors;
 import models.Directors;
 
 import java.sql.Connection;

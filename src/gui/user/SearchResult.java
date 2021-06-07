@@ -5,14 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.security.Key;
-import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 import javax.swing.*;
 
 import dao.*;
-import models.Combo;
 import models.Keyword;
 import models.Movies;
 
@@ -32,6 +29,7 @@ public class SearchResult extends CustomUI {
     private JLabel lbBox[];
     private Vector<Movies> rMovies;
     private SearchDao sDao;
+    private int movieId;
 
     private String nickname;
     private int addnum;
@@ -120,7 +118,7 @@ public class SearchResult extends CustomUI {
 
 
         SearchDao sDao = SearchDao.getInstance();
-        Vector<Keyword> comboKeywords = sDao.setCombo("search");
+        Vector<Keyword> comboKeywords = sDao.setCombo();
         comboKeyword = custom.setKeyword("combo", comboKeywords, 35, 200, 150, 40);
 
         panel.add(comboKeyword);
@@ -159,13 +157,13 @@ public class SearchResult extends CustomUI {
                 }
 
                 public void mouseClicked(MouseEvent e) {
-                    int movieId = 0;
-                    String movieTitle = e.getSource().toString();
-                    for (int i = 0; i < lbMovieName.length; i++) {
-                        if (movieTitle.contains(rMovies.get(i).getTitle())) {
-                            movieId = rMovies.get(i).getId();
+                    JLabel label = (JLabel) e.getSource();
+                    for (Movies rMovie : rMovies) {
+                        if (label.getText().equals(rMovie.getTitle())) {
+                            movieId = rMovie.getId();
                         }
                     }
+
                     new Movie(nickname, movieId);
                     frame.dispose();
                 }

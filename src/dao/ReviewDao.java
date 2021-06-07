@@ -41,13 +41,9 @@ public class ReviewDao {
             int returnCnt = 0;
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, movie);
-            System.out.println(movie);
             pstmt.setString(2, nickname);
-            System.out.println(nickname);
             pstmt.setFloat(3, rating);
-            System.out.println(rating);
             pstmt.setString(4, detail);
-            System.out.println(detail);
             returnCnt = pstmt.executeUpdate();
 
             // 트랜잭션-영화 평점 같이 올리기

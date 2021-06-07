@@ -166,7 +166,6 @@ public class Join extends CustomUI {
 
         btnPrev.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("완료");
                 new Login();
                 frame.dispose();
             }

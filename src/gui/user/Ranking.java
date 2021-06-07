@@ -7,8 +7,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -28,14 +26,9 @@ public class Ranking extends CustomUI {
     private JPanel backgroundPanel;
     private JLabel lbBox[], lbMovieName[], lbRating[], lbTitle, lbLine;
     private JButton btnBack;
-
-//    private static final String SQL = "SELECT DISTINCT M.ID, M.TITLE, M.AGE, M.RUNNING_TIME FROM MOVIE M INNER JOIN SCREEN S ON M.ID = S.MOVIE_ID WHERE ? BETWEEN S.START_DATE AND S.END_DATE";
     private static Connection conn;
-//    private static PreparedStatement pstmt;
-//    private static ResultSet rs;
     private int addnum;
     private int movieId;
-    //private ArrayList<Movies> movies = new ArrayList<>();
 
     private String nickname;
     private MovieDao mDao;
@@ -106,10 +99,10 @@ public class Ranking extends CustomUI {
                     }
 
                     public void mouseClicked(MouseEvent e) {
-                        String movieTitle = e.getSource().toString();
-                        for (int i = 0; i < lbMovieName.length; i++) {
-                            if (movieTitle.contains(rMovies.get(i).getTitle())) {
-                                movieId = rMovies.get(i).getId();
+                        JLabel label = (JLabel) e.getSource();
+                        for (Movies rMovie : rMovies) {
+                            if (label.getText().equals(rMovie.getTitle())) {
+                                movieId = rMovie.getId();
                             }
                         }
                         new Movie(nickname, movieId);

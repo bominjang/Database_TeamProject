@@ -8,17 +8,12 @@ import java.awt.event.MouseListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Vector;
 
 import javax.swing.*;
 
 import dao.DBConnection;
 import dao.ReviewDao;
-import models.Combo;
-import models.Movies;
 import models.Reviews;
 
 @SuppressWarnings("serial")
@@ -39,29 +34,8 @@ public class MyReviews extends CustomUI {
     public MyReviews(String nickname) {
         this.nickname = nickname;
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        init();
-//        btnCancel.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                int result = JOptionPane.showConfirmDialog(null, "예매를 취소하시겠습니까?", "Confirm", JOptionPane.YES_NO_OPTION);
-//                if (result == JOptionPane.YES_OPTION) {
-//                    int resultCnt = delete(nickname, reserveId);
-//                    if(resultCnt == 0) {
-//                        JOptionPane.showMessageDialog(null, "해당되는 데이터가 없습니다.");
-//                    } else {
-//                        JOptionPane.showMessageDialog(null, "예매가 취소되었습니다.");
-//                        new BookingList(nickname);
-//                        frame.dispose();
-//                    }
-//                }
-//            }
-//        });
 
-//        btnBack.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                new BookingList(nickname);
-//                frame.dispose();
-//            }
-//        });
+        init();
 
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -73,24 +47,6 @@ public class MyReviews extends CustomUI {
         frame.setResizable(false);
         frame.setVisible(true);
     }
-//    public int delete(String userId, int reserveId) {
-//        String sql = "DELETE FROM RESERVE R WHERE R.USER_ID=? AND R.ID=?";
-//        conn = DBConnection.getConnection();
-//        try {
-//            int returnCnt = 0;
-//            pstmt = conn.prepareStatement(sql);
-//            pstmt.setString(1, userId);
-//            pstmt.setInt(2, reserveId);
-//            returnCnt = pstmt.executeUpdate();
-//
-//            conn.close();
-//            return returnCnt;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        return -1;
-//    }
 
     private void init() {
         backgroundPanel = new JPanel();
@@ -122,14 +78,7 @@ public class MyReviews extends CustomUI {
 
             conn.close();
 
-//            lbTitleMovie.setText(rv.getMovie());
-//            lbNickName.setText(rv.getNickname());
-//            lbCreateTime.setText(rv.getCreate_time());
-//            lbTitleRating.setText(Float.toString(rv.getRating()));
-//            lbReview.setText(rv.getDetail());
-
             int i = 0;
-            //lbNickName.setText(nickname);
             lbBox = new JLabel[rvs.size()];
             lbTitleMovie = new JLabel[rvs.size()];
             lbCreateTime = new JLabel[rvs.size()];
@@ -173,7 +122,6 @@ public class MyReviews extends CustomUI {
                     public void mouseEntered(MouseEvent e) {}
                     public void mouseClicked(MouseEvent e) {
                         JButton btn = (JButton) e.getSource();
-
                         int result = 0;
                         int id=-1;
 
@@ -184,6 +132,8 @@ public class MyReviews extends CustomUI {
                             }
                         }
 
+
+                    
                         result = reviewDao.delete(id);
                         if (result == -1) {
                             JOptionPane.showMessageDialog(frame, "ER21:데이터를 삭제할 수 없습니다.", "오류", JOptionPane.ERROR_MESSAGE);
@@ -233,6 +183,7 @@ public class MyReviews extends CustomUI {
 
         lbTitle = custom.setLb("lbTitle", "나의 리뷰", 100, 85, 220, 185, "center", 20, "bold");
         btnBack = custom.setBtnWhite("btnBack", "메인으로", 35, 655);
+
     }
 
 }

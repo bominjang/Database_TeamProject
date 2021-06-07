@@ -102,7 +102,7 @@ public class Search extends CustomUI {
         panel.add(lbTitle);
 
         SearchDao sDao = SearchDao.getInstance();
-        Vector<Keyword> comboKeywords = sDao.setCombo("search");
+        Vector<Keyword> comboKeywords = sDao.setCombo();
         comboKeyword = custom.setKeyword("combo", comboKeywords, 35, 300, 150, 40);
 
         panel.add(comboKeyword);

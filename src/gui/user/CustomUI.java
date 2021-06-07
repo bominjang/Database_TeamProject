@@ -455,14 +455,6 @@ class CustomUI extends JFrame {
                 BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         txt.setBounds(x, y, width, height);
 
-//        JScrollPane scrollPane = new JScrollPane(txt);
-//        //스크롤 틀에 수직 방향의 스크롤 바만 집어 넣음
-//        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-//        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-//
-//        scrollPane.setBounds(20, 30, 20, 30);
-//        scrollPane.setVisible(true);
-
         backgroundPanel.add(txt);
 
         txt.setName(name);
