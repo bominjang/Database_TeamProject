@@ -3,11 +3,14 @@ package gui.user;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
 
 import javax.swing.*;
 
 import dao.ActorDao;
+import dao.DirectorDao;
 import dao.MovieDao;
 import models.Movies;
 
@@ -26,14 +29,23 @@ public class Movie extends CustomUI {
 
     private String nickname;
 
+    private JPanel panel;
+
     public Movie(String nickname, int MovieId) {
         this.nickname = nickname;
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         init();
 
+        JPanel in_panel = new JPanel();
+        in_panel.setLayout(null);
+        in_panel.setBackground(Color.BLACK);
+
         MovieDao mDao = MovieDao.getInstance();
         Movies movie = mDao.selectOne(MovieId);
+
+        DirectorDao dDao = DirectorDao.getInstance();
+
 
         // 라벨에 값들 set하기
         // 제목
@@ -63,6 +75,17 @@ public class Movie extends CustomUI {
         // 줄거리
         taPlot.setText(movie.getPlot());
 
+        in_panel.setPreferredSize(new Dimension(600,200));
+
+        JScrollPane sp1 = new JScrollPane(taPlot);
+        sp1.setBounds(100, 520, 600, 200);
+        panel.add(sp1);
+
+        JScrollPane sp2 = new JScrollPane();
+        sp2.setViewportView(panel);
+        sp2.setBounds(0, 100, 800, 1000);
+        backgroundPanel.add(sp2);
+
         //영화 review보기
         btnMovieReviews.addActionListener(new ActionListener() {
             @Override
@@ -80,10 +103,72 @@ public class Movie extends CustomUI {
             }
         });
 
+        //감독상세페이지 이동
+        lbDirector.addMouseListener(new MouseListener() {
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            public void mousePressed(MouseEvent e) {
+            }
+
+            public void mouseExited(MouseEvent e) {
+            }
+
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            public void mouseClicked(MouseEvent e) {
+                JLabel lb = (JLabel) e.getSource();
+                int result = -1;
+
+                result = dDao.selectId(lb.getText());
+                if(result!=-1)
+                {
+                    new Director(nickname, result);
+                    frame.dispose();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "감독 정보가 없습니다.");
+                }
+
+            }
+        });
+
+        //배우 상세페이지 이동
+        lbActor.addMouseListener(new MouseListener() {
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            public void mousePressed(MouseEvent e) {
+            }
+
+            public void mouseExited(MouseEvent e) {
+            }
+
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            public void mouseClicked(MouseEvent e) {
+                JLabel lb = (JLabel) e.getSource();
+                int result = -1;
+
+                result = aDao.selectId(lb.getText());
+                if(result!=-1)
+                {
+                    new Actor(nickname, result);
+                    frame.dispose();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "배우 정보가 없습니다.");
+                }
+
+            }
+        });
+
         // 이전 페이지로 돌아가도록
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int returnCd = JOptionPane.showConfirmDialog(frame, "메인 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                int returnCd = JOptionPane.showConfirmDialog(frame, "이전 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if(returnCd == JOptionPane.YES_OPTION) {
                     new Ranking(nickname);
                     frame.dispose();
@@ -105,9 +190,10 @@ public class Movie extends CustomUI {
         CustomUI custom = new CustomUI(backgroundPanel);
         custom.setPanel();
 
-        JPanel panel = new JPanel();
+        panel = new JPanel();
         panel.setLayout(null);
         panel.setBackground(Color.WHITE);
+
 
         lbIcon = custom.setLbImg("lbIcon", 4, 350, 130);
         lbMovie = custom.setLb("lbTitle", "영화제목", 350, 150, 100, 185, "center", 20, "bold");
@@ -155,24 +241,18 @@ public class Movie extends CustomUI {
         taPlot = custom.setTextArea("lbPlot", "줄거리주루룩", 100, 520, 600, 120, false);
 
         panel.add(lbTitlePlot);
-        panel.add(taPlot);
 
-        btnMovieReviews = custom.setBtnGreen("btnReviews","영화 리뷰 보기",220, 680,350,40);
+        btnMovieReviews = custom.setBtnGreen("btnReviews","영화 리뷰 보기",220, 780,350,40);
+        btnBack = custom.setBtnWhite("btnBack", "이전으로", 220, 840);
+        btnMain = custom.setBtnGreen("btnMain", "메인으로", 220, 900, 350, 40);
 
-        btnMain = custom.setBtnGreen("btnMain", "메인으로", 220, 740, 350, 40);
-        btnBack = custom.setBtnWhite("btnBack", "이전으로", 220, 800);
 
-        panel.setPreferredSize(new Dimension(800, 1150));
+        panel.setPreferredSize(new Dimension(800, 1500));
 
         panel.add(btnMovieReviews);
         panel.add(btnMain);
         panel.add(btnBack);
 
 
-
-        JScrollPane sp = new JScrollPane();
-        sp.setViewportView(panel);
-        sp.setBounds(0, 100, 800, 1000);
-        backgroundPanel.add(sp);
     }
 }

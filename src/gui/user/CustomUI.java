@@ -279,7 +279,7 @@ class CustomUI extends JFrame {
         btn.setBackground(new Color(0, 70, 42));
 
         Font btnFont;
-        if(text.equals("삭제하기"))
+        if(text.equals("삭제하기")||text.equals("수정하기"))
         {
             btnFont = new Font("맑은 고딕", Font.PLAIN, 14);
 

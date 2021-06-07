@@ -23,7 +23,7 @@ public class MyReviews extends CustomUI {
     private JPanel backgroundPanel;
     private JLabel lbTitle,lbBox[], lb, lbReview[], lbTitleRating[], lbTitleMovie[], lbCreateTime[];
     private JTextField txtdetail, txtrating;
-    private JButton btnReview, btnBack, btnDelete[];
+    private JButton btnReview, btnBack, btnDelete[], btnUpdate[];
 
     private final String SQL = "SELECT * FROM DB2021_Review WHERE NICKNAME=?";
     private ArrayList<Reviews> rvs = new ArrayList<Reviews>();
@@ -85,6 +85,7 @@ public class MyReviews extends CustomUI {
             lbTitleRating = new JLabel[rvs.size()];
             lbReview = new JLabel[rvs.size()];
             btnDelete = new JButton[rvs.size()];
+            btnUpdate = new JButton[rvs.size()];
             reviewId = new int[rvs.size()];
 
             JPanel panel = new JPanel();
@@ -99,7 +100,8 @@ public class MyReviews extends CustomUI {
                 lbTitleMovie[i-1] = custom.setLb("lbTitleMovie"+i, r.getMovie(), 30, 20 + moveY, 400, 20, "left", 14, "plain", panel);
                 lbCreateTime[i-1]= custom.setLb("lbCreateTime"+i, r.getCreate_time(), 30, 20 + moveY, 400, 20, "right", 14, "plain", panel);
                 lbTitleRating[i-1]= custom.setLb("lbTitleRating"+i, Float.toString(r.getRating()), 30, 20 + moveY, 400, 20, "center", 14, "plain", panel);
-                btnDelete[i-1]=custom.setBtnGreen(lbTitleMovie[i-1]+""+lbCreateTime[i-1], "삭제하기", 450, 20+moveY, "right", 60, 27);
+                btnDelete[i-1]=custom.setBtnGreen(r.getId()+"", "삭제하기", 450, 20+moveY, "right", 60, 27);
+                btnUpdate[i-1] = custom.setBtnGreen(r.getId()+"", "수정하기",510, 20+moveY, "right", 60, 27);
 
                 lbReview[i-1]= custom.setLb("btnReview", r.getDetail(), 30, 35 + moveY, 400, 25,"left", 14, "plain", panel);
 
@@ -108,6 +110,7 @@ public class MyReviews extends CustomUI {
                 panel.add(lbCreateTime[i-1]);
                 panel.add(lbTitleRating[i-1]);
                 panel.add(btnDelete[i-1]);
+                panel.add(btnUpdate[i-1]);
                 panel.add(lbReview[i-1]);
 
                 ReviewDao reviewDao = ReviewDao.getInstance();
@@ -118,16 +121,19 @@ public class MyReviews extends CustomUI {
                     public void mouseExited(MouseEvent e) {}
                     public void mouseEntered(MouseEvent e) {}
                     public void mouseClicked(MouseEvent e) {
-                        String delBtn = e.getSource().toString();
-
+                        JButton btn = (JButton) e.getSource();
                         int result = 0;
                         int id=-1;
 
-                        for (int i = 0; i < rvs.size(); i++) {
-                            if (delBtn.contains(rvs.get(i).getMovie()) && delBtn.contains(rvs.get(i).getCreate_time())) {
-                                id = rvs.get(i).getId();
+                        for (Reviews rv : rvs) {
+                            if (btn.getName().equals(rv.getId() + "")) {
+                                System.out.println(rv.getId());
+                                id = rv.getId();
                             }
                         }
+
+
+                    
                         result = reviewDao.delete(id);
                         if (result == -1) {
                             JOptionPane.showMessageDialog(frame, "ER21:데이터를 삭제할 수 없습니다.", "오류", JOptionPane.ERROR_MESSAGE);
@@ -138,6 +144,28 @@ public class MyReviews extends CustomUI {
                             dispose();
                         }
                         new MyReviews(nickname);
+                        frame.dispose();
+                    }
+                });
+
+                btnUpdate[i - 1].addMouseListener(new MouseListener() {
+                    public void mouseReleased(MouseEvent e) {}
+                    public void mousePressed(MouseEvent e) {}
+                    public void mouseExited(MouseEvent e) {}
+                    public void mouseEntered(MouseEvent e) {}
+                    public void mouseClicked(MouseEvent e) {
+                        JButton btn = (JButton) e.getSource();
+
+                        int result = 0;
+                        int id=-1;
+
+                        for (Reviews rv : rvs) {
+                            if (btn.getName().equals(rv.getId()+"")) {
+                                System.out.println(rv.getId());
+                                id = rv.getId();
+                            }
+                        }
+                        new Update(nickname, id);
                         frame.dispose();
                     }
                 });
@@ -154,8 +182,8 @@ public class MyReviews extends CustomUI {
         }
 
         lbTitle = custom.setLb("lbTitle", "나의 리뷰", 100, 85, 220, 185, "center", 20, "bold");
+        btnBack = custom.setBtnWhite("btnBack", "메인으로", 35, 655);
 
-        btnBack = custom.setBtnWhite("btnBack", "이전으로", 35, 655);
     }
 
 }

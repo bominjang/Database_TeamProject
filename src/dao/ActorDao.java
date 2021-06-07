@@ -25,6 +25,31 @@ public class ActorDao {
     private static PreparedStatement pstmt;
     private static ResultSet rs;
 
+    public int selectId(String name) {
+        String sql = "SELECT id FROM DB2021_Actor WHERE NAME = ?";
+        conn = DBConnection.getConnection();
+        int id;
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, name);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                id = rs.getInt("ID");
+                conn.close();
+                return id;
+            } else {
+                conn.close();
+                return -1;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return -1;
+    }
+
     public Actors selectOne(int id) {
         String sql = "SELECT * FROM DB2021_Actor WHERE ID = ?";
         conn = DBConnection.getConnection();

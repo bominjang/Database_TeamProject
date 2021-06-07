@@ -19,7 +19,7 @@ public class Director extends CustomUI {
     private JPanel backgroundPanel;
     private JLabel lbIcon, lbName, lbTitleCountry, lbTitleBirth, lbTitleMovies, lbTitlePrize;
     private JLabel lbCountry, lbBirth, lbMovies[], lbPrizes[];
-    private JButton btnMain, btnBack;
+    private JButton btnMain, btnRanking;
     private Vector<String> direcMovies;
     private Map<String, Vector<String>> direcPrizes;
 
@@ -53,11 +53,11 @@ public class Director extends CustomUI {
         }
         lbBirth.setText(birth);
 
-        btnBack.addActionListener(new ActionListener() {
+        btnRanking.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int returnCd = JOptionPane.showConfirmDialog(frame, "메인 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                int returnCd = JOptionPane.showConfirmDialog(frame, "영화 목록 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if (returnCd == JOptionPane.YES_OPTION) {
-                    new Main(nickname);
+                    new Ranking(nickname);
                     frame.dispose();
                 }
             }
@@ -123,7 +123,8 @@ public class Director extends CustomUI {
             }
         }
 
-        btnMain = custom.setBtnGreen("btnMain", "메인으로", 120, 680, 350, 40);
-        btnBack = custom.setBtnWhite("btnBack", "이전으로", 120, 730);
+        btnRanking = custom.setBtnWhite("btnBack", "영화 목록으로", 120, 680);
+        btnMain = custom.setBtnGreen("btnMain", "메인으로", 120, 730, 350, 40);
+
     }
 }
