@@ -43,14 +43,14 @@ public class SearchDao {
     }
 
     public boolean dataExist(String keyword, String text) {
-        String sql;
+        String sql, view;
 
         if(keyword.equals("movie")) {
-            sql = "SELECT * FROM DB2021_Movie WHERE title = ?";
+            sql = "SELECT * FROM titleExist WHERE title = ?";
         } else if(keyword.equals("director")) {
-            sql = "SELECT * FROM DB2021_Director WHERE name = ?";
+            sql = "SELECT * FROM DnameExist WHERE name = ?";
         } else if(keyword.equals("actor")) {
-            sql = "SELECT * FROM DB2021_Actor WHERE name = ?";
+            sql = "SELECT * FROM AnameExist WHERE name = ?";
         } else {
             sql = "";
         }
