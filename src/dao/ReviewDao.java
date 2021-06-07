@@ -25,16 +25,20 @@ public class ReviewDao {
 
 
     public int insert(String movie, String nickname, float rating, String detail) {
+        //DB2021_Review 테이블에 사용자가 입력한 리뷰를 insert하는 쿼리문.
         sql = "INSERT INTO DB2021_Review(movie, nickname, create_time, rating, detail)";
         sql += " VALUES(?, ?, now(), ?, ?)";
 
-        // id면 좋겠지만
+        //사용자가 리뷰를 남긴 영화에 대한 평균 평점을 계산하여 select하는 쿼리문.
         sql2 = "SELECT AVG(rating) as average FROM DB2021_Review WHERE movie = ?";
+
+        //DB2021_Movie 테이블에서 사용자가 평점를 남긴 영화에 대한 rating 값을 update하는 쿼리문.
         sql3 = "UPDATE DB2021_Movie set rating = ? WHERE title = ?";
 
         conn = DBConnection.getConnection();
         try {
 
+            //Transaction으로 review 삽입, 평균 평점 계산, 평점 업데이트를 구현함.
             conn.setAutoCommit(false);
 
             // 리뷰 insert

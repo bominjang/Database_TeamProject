@@ -81,14 +81,13 @@ public class ActorDao {
 
     public String selectAll(int movieId) {
         String movies = "";
-//        String sql = "SELECT actor FROM DB2021_Actor_Movie Where movie in (SELECT title FROM DB2021_Movie where ID = ? and title = ?)";
+        //
         String sql = "SELECT actor FROM DB2021_Actor_Movie as am left outer join DB2021_Movie as m on am.movie = m.title where m.ID = ?";
         conn = DBConnection.getConnection();
 
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, movieId);
-//            pstmt.setString(2, title);
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
