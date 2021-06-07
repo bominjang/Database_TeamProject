@@ -51,8 +51,7 @@ public class MyReviews extends CustomUI {
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);
-        frame.setTitle("영화 예매 프로그램 ver1.0");
-
+        frame.setTitle("DB2021Team03-영화 정보 프로그램");
         CustomUI custom = new CustomUI(backgroundPanel);
         custom.setPanel();
 
@@ -97,7 +96,7 @@ public class MyReviews extends CustomUI {
                 i++;
                 lbBox[i-1] = custom.setLbBox("lbBox"+i, i  + "", 0, 20 + moveY, panel);
                 //lb = custom.setLb("lbTitleMovie", r.getMovie(), 20, 20 + moveY, 400, 20, "left", 14, "plain", panel);
-                lbTitleMovie[i-1] = custom.setLb("lbTitleMovie"+i, r.getMovie(), 30, 20 + moveY, 400, 20, "left", 14, "plain", panel);
+                lbTitleMovie[i-1] = custom.setLb("lbTitleMovie"+i, r.getMovie(), 30, 20 + moveY, 80, 20, "left", 14, "plain", panel);
                 lbCreateTime[i-1]= custom.setLb("lbCreateTime"+i, r.getCreate_time(), 30, 20 + moveY, 400, 20, "right", 14, "plain", panel);
                 lbTitleRating[i-1]= custom.setLb("lbTitleRating"+i, Float.toString(r.getRating()), 30, 20 + moveY, 400, 20, "center", 14, "plain", panel);
                 btnDelete[i-1]=custom.setBtnGreen(r.getId()+"", "삭제하기", 450, 20+moveY, "right", 60, 27);

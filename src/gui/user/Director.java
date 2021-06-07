@@ -79,8 +79,7 @@ public class Director extends CustomUI {
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);
-        frame.setTitle("영화 예매 프로그램 ver1.0");
-
+        frame.setTitle("DB2021Team03-영화 정보 프로그램");
         CustomUI custom = new CustomUI(backgroundPanel);
         custom.setPanel();
 
