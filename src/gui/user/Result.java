@@ -30,11 +30,8 @@ public class Result extends CustomUI {
 
         ReviewDao rDao = ReviewDao.getInstance();
         Reviews review = rDao.selectRecent(nickname);
-        System.out.println(review.getMovie());
         lbMovie.setText(review.getMovie());
 
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        lbDate.setText(dateFormat.format(review.getCreate_time()));
         lbDate.setText(review.getCreate_time());
         lbRating.setText(Float.toString(review.getRating()));
         lbDetail.setText(review.getDetail());

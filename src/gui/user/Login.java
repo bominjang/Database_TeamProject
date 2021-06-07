@@ -71,11 +71,9 @@ public class Login extends CustomUI {
                     pstmt.setString(1, nickname);
                     pstmt.setString(2, password);
                     rs = pstmt.executeQuery();
-                    System.out.println(SQL);
-                    System.out.println(nickname);
-                    System.out.println(password);
 
                     if (rs.next()) {
+                        // Admin 기능을 구현하기 위해 넣었으나, 구현하지 못함. 추후에 기회가 된다면 구현할 것.
                         if(rs.getString("ADMIN_FG").equals("Y")) {
 //                            new gui.admin.Main();
                             frame.dispose();

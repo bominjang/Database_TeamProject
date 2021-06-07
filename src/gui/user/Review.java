@@ -35,7 +35,6 @@ public class Review extends CustomUI {
         comboMovie.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Combo selectedComboItem = (Combo) comboMovie.getSelectedItem();
-                System.out.println("a: "+selectedComboItem);
                 String movie = selectedComboItem.toString();
                 lbResult.setText(movie);
             }

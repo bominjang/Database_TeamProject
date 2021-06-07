@@ -3,20 +3,14 @@ package gui.user;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import javax.swing.*;
 
 import dao.DBConnection;
-import models.Combo;
-import models.Movies;
 import models.Reviews;
 
 @SuppressWarnings("serial")
@@ -34,35 +28,12 @@ public class MovieReviews extends CustomUI {
     private String nickname;
     private int movieId;
 
-    private int reviewId;
-
     public MovieReviews(String nickname, int MovieId) {
         this.nickname = nickname;
         this.movieId = MovieId;
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         init();
-//        btnCancel.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                int result = JOptionPane.showConfirmDialog(null, "예매를 취소하시겠습니까?", "Confirm", JOptionPane.YES_NO_OPTION);
-//                if (result == JOptionPane.YES_OPTION) {
-//                    int resultCnt = delete(nickname, reserveId);
-//                    if(resultCnt == 0) {
-//                        JOptionPane.showMessageDialog(null, "해당되는 데이터가 없습니다.");
-//                    } else {
-//                        JOptionPane.showMessageDialog(null, "예매가 취소되었습니다.");
-//                        new BookingList(nickname);
-//                        frame.dispose();
-//                    }
-//                }
-//            }
-//        });
-
-//        btnBack.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                new BookingList(nickname);
-//                frame.dispose();
-//            }
-//        });
 
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -74,24 +45,6 @@ public class MovieReviews extends CustomUI {
         frame.setResizable(false);
         frame.setVisible(true);
     }
-//    public int delete(String userId, int reserveId) {
-//        String sql = "DELETE FROM RESERVE R WHERE R.USER_ID=? AND R.ID=?";
-//        conn = DBConnection.getConnection();
-//        try {
-//            int returnCnt = 0;
-//            pstmt = conn.prepareStatement(sql);
-//            pstmt.setString(1, userId);
-//            pstmt.setInt(2, reserveId);
-//            returnCnt = pstmt.executeUpdate();
-//
-//            conn.close();
-//            return returnCnt;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        return -1;
-//    }
 
     private void init() {
         backgroundPanel = new JPanel();
@@ -122,12 +75,6 @@ public class MovieReviews extends CustomUI {
 
             conn.close();
 
-//            lbTitleMovie.setText(rv.getMovie());
-//            lbNickName.setText(rv.getNickname());
-//            lbCreateTime.setText(rv.getCreate_time());
-//            lbTitleRating.setText(Float.toString(rv.getRating()));
-//            lbReview.setText(rv.getDetail());
-
             int i = 0;
             lbNickName = new JLabel[rvs.size()];
             lbCreateTime = new JLabel[rvs.size()];
@@ -151,21 +98,6 @@ public class MovieReviews extends CustomUI {
                 panel.add(lbCreateTime[i-1]);
                 panel.add(lbRating[i-1]);
                 panel.add(lbReview[i-1]);
-
-//                lbTitleMovie[i - 1].addMouseListener(new MouseListener() {
-//                    public void mouseReleased(MouseEvent e) {}
-//                    public void mousePressed(MouseEvent e) {}
-//                    public void mouseExited(MouseEvent e) {}
-//                    public void mouseEntered(MouseEvent e) {}
-//                    public void mouseClicked(MouseEvent e) {
-//                        JLabel lb = (JLabel) e.getSource();
-//                        int num = Integer.parseInt(lb.getName().substring(12));
-//                        reviewId = rvs.get(num - 1).getId();
-//
-//                        new ReviewDetail(reviewId);
-//                        frame.dispose();
-//                    }
-//                });
             }
             panel.setPreferredSize(new Dimension(450, 20+ 100*i));
 
@@ -179,8 +111,6 @@ public class MovieReviews extends CustomUI {
         }
 
         lbTitle = custom.setLb("lbTitle", "리뷰", 100, 85, 220, 185, "center", 20, "bold");
-
-//        btnCancel = custom.setBtnBlue("btnCancel", "예매취소", 600);
         btnBack = custom.setBtnWhite("btnBack", "이전으로", 35, 655);
     }
 

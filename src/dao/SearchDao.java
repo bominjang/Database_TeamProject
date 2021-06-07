@@ -21,61 +21,25 @@ public class SearchDao {
     private static PreparedStatement pstmt;
     private static ResultSet rs;
 
-    public Vector<Keyword> setCombo(String comboContent) {
+    public Vector<Keyword> setCombo() {
         Vector<Keyword> combos = new Vector<>();
-        String sql;
 
-        if(comboContent.equals("search")) {
-            Keyword movie = new Keyword();
-            movie.setKey("movie");
-            movie.setValue("영화제목");
-            combos.add(movie);
+        Keyword movie = new Keyword();
+        movie.setKey("movie");
+        movie.setValue("영화제목");
+        combos.add(movie);
 
-            Keyword direc = new Keyword();
-            direc.setKey("director");
-            direc.setValue("감독이름");
-            combos.add(direc);
+        Keyword direc = new Keyword();
+        direc.setKey("director");
+        direc.setValue("감독이름");
+        combos.add(direc);
 
-            Keyword actor = new Keyword();
-            actor.setKey("actor");
-            actor.setValue("배우이름");
-            combos.add(actor);
+        Keyword actor = new Keyword();
+        actor.setKey("actor");
+        actor.setValue("배우이름");
+        combos.add(actor);
 
-            return combos;
-        } else if(comboContent.equals("movie")) {
-            sql = "SELECT * FROM DB2021_Movie WHERE title = ?";
-        } else if(comboContent.equals("director")) {
-            sql = "SELECT * FROM DB2021_Director name = ?";
-        } else if(comboContent.equals("actor")) {
-            sql = "SELECT * FROM DB2021_Actor name = ?";
-        } else {
-            sql = "";
-        }
-
-        conn = DBConnection.getConnection();
-        try {
-            pstmt = conn.prepareStatement(sql);
-            rs = pstmt.executeQuery();
-
-//            while(rs.next()){
-//                Combo combo = new Combo();
-//                combo.setKey(rs.getInt("KEY"));
-//                combo.setValue(rs.getString("VALUE"));
-//                combos.add(combo);
-//            }
-
-            if(rs.getRow() != 0) {
-                conn.close();
-                return null;
-            } else {
-                conn.close();
-                return combos;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
+        return combos;
     }
 
     public boolean dataExist(String keyword, String text) {
