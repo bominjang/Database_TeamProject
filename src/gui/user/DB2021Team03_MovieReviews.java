@@ -10,11 +10,11 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-import dao.DBConnection;
+import dao.DB2021Team03_DBConnection;
 import models.Reviews;
 
 @SuppressWarnings("serial")
-public class MovieReviews extends CustomUI {
+public class DB2021Team03_MovieReviews extends DB2021Team03_CustomUI {
 
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
@@ -28,7 +28,7 @@ public class MovieReviews extends CustomUI {
     private String nickname;
     private int movieId;
 
-    public MovieReviews(String nickname, int MovieId) {
+    public DB2021Team03_MovieReviews(String nickname, int MovieId) {
         this.nickname = nickname;
         this.movieId = MovieId;
 
@@ -37,7 +37,7 @@ public class MovieReviews extends CustomUI {
 
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new Main(nickname);
+                new DB2021Team03_Main(nickname);
                 frame.dispose();
             }
         });
@@ -51,14 +51,14 @@ public class MovieReviews extends CustomUI {
         frame.setContentPane(backgroundPanel);
         frame.setTitle("DB2021Team03-영화 정보 프로그램");
 
-        CustomUI custom = new CustomUI(backgroundPanel);
+        DB2021Team03_CustomUI custom = new DB2021Team03_CustomUI(backgroundPanel);
         custom.setPanel();
 
         Connection conn;
         PreparedStatement pstmt;
         ResultSet rs;
 
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
         try {
             pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, movieId);

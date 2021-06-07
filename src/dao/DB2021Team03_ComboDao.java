@@ -7,11 +7,11 @@ import java.util.Vector;
 
 import models.Combo;
 
-public class ComboDao {
-    private ComboDao(){}
-    private static ComboDao instance = new ComboDao();
+public class DB2021Team03_ComboDao {
+    private DB2021Team03_ComboDao(){}
+    private static DB2021Team03_ComboDao instance = new DB2021Team03_ComboDao();
 
-    public static ComboDao getInstance() {
+    public static DB2021Team03_ComboDao getInstance() {
         return instance;
     }
 
@@ -29,7 +29,7 @@ public class ComboDao {
             sql = "";
         }
 
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
         try {
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
@@ -61,7 +61,7 @@ public class ComboDao {
 
         sql = "SELECT ID AS KEY, NAME AS VALUE FROM THEATER WHERE PLACE_ID = ?";
 
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
         try {
             pstmt = conn.prepareStatement(sql);
             if(comboContent.equals("theater")) {

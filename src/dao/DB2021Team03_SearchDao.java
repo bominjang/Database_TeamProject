@@ -1,6 +1,5 @@
 package dao;
 
-import models.Combo;
 import models.Keyword;
 import models.Movies;
 
@@ -9,11 +8,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
 
-public class SearchDao {
-    private SearchDao(){}
-    private static SearchDao instance = new SearchDao();
+public class DB2021Team03_SearchDao {
+    private DB2021Team03_SearchDao(){}
+    private static DB2021Team03_SearchDao instance = new DB2021Team03_SearchDao();
 
-    public static SearchDao getInstance() {
+    public static DB2021Team03_SearchDao getInstance() {
         return instance;
     }
 
@@ -55,7 +54,7 @@ public class SearchDao {
             sql = "";
         }
 
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, text);
@@ -89,7 +88,7 @@ public class SearchDao {
             sql = "";
         }
 
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
 
         try {
             pstmt = conn.prepareStatement(sql);

@@ -9,13 +9,13 @@ import java.text.SimpleDateFormat;
 
 import javax.swing.*;
 
-import dao.ActorDao;
-import dao.DirectorDao;
-import dao.MovieDao;
+import dao.DB2021Team03_ActorDao;
+import dao.DB2021Team03_DirectorDao;
+import dao.DB2021Team03_MovieDao;
 import models.Movies;
 
 @SuppressWarnings("serial")
-public class Movie extends CustomUI {
+public class DB2021Team03_Movie extends DB2021Team03_CustomUI {
 
     private JFrame frame = new JFrame();
 
@@ -31,7 +31,7 @@ public class Movie extends CustomUI {
 
     private JPanel panel;
 
-    public Movie(String nickname, int MovieId) {
+    public DB2021Team03_Movie(String nickname, int MovieId) {
         this.nickname = nickname;
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,10 +41,10 @@ public class Movie extends CustomUI {
         in_panel.setLayout(null);
         in_panel.setBackground(Color.BLACK);
 
-        MovieDao mDao = MovieDao.getInstance();
+        DB2021Team03_MovieDao mDao = DB2021Team03_MovieDao.getInstance();
         Movies movie = mDao.selectOne(MovieId);
 
-        DirectorDao dDao = DirectorDao.getInstance();
+        DB2021Team03_DirectorDao dDao = DB2021Team03_DirectorDao.getInstance();
 
 
         // 라벨에 값들 set하기
@@ -68,7 +68,7 @@ public class Movie extends CustomUI {
         lbDirector.setText(movie.getDirector());
 
         // 출연 배우
-        ActorDao aDao = ActorDao.getInstance();
+        DB2021Team03_ActorDao aDao = DB2021Team03_ActorDao.getInstance();
         String actors = aDao.selectAll(MovieId);
         lbActor.setText(actors);
 
@@ -90,7 +90,7 @@ public class Movie extends CustomUI {
         btnMovieReviews.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new MovieReviews(nickname, MovieId);
+                new DB2021Team03_MovieReviews(nickname, MovieId);
                 frame.dispose();
             }
         });
@@ -98,7 +98,7 @@ public class Movie extends CustomUI {
         btnMain.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Main(nickname);
+                new DB2021Team03_Main(nickname);
                 frame.dispose();
             }
         });
@@ -124,7 +124,7 @@ public class Movie extends CustomUI {
                 result = dDao.selectId(lb.getText());
                 if(result!=-1)
                 {
-                    new Director(nickname, result);
+                    new DB2021Team03_Director(nickname, result);
                     frame.dispose();
                 }
                 else{
@@ -155,7 +155,7 @@ public class Movie extends CustomUI {
                 result = aDao.selectId(lb.getText());
                 if(result!=-1)
                 {
-                    new Actor(nickname, result);
+                    new DB2021Team03_Actor(nickname, result);
                     frame.dispose();
                 }
                 else{
@@ -170,7 +170,7 @@ public class Movie extends CustomUI {
             public void actionPerformed(ActionEvent e) {
                 int returnCd = JOptionPane.showConfirmDialog(frame, "이전 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if(returnCd == JOptionPane.YES_OPTION) {
-                    new Ranking(nickname);
+                    new DB2021Team03_Ranking(nickname);
                     frame.dispose();
                 }
             }
@@ -186,7 +186,7 @@ public class Movie extends CustomUI {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);
         frame.setTitle("DB2021Team03-영화 정보 프로그램");
-        CustomUI custom = new CustomUI(backgroundPanel);
+        DB2021Team03_CustomUI custom = new DB2021Team03_CustomUI(backgroundPanel);
         custom.setPanel();
 
         panel = new JPanel();

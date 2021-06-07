@@ -12,12 +12,12 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-import dao.DBConnection;
-import dao.ReviewDao;
+import dao.DB2021Team03_DBConnection;
+import dao.DB2021Team03_ReviewDao;
 import models.Reviews;
 
 @SuppressWarnings("serial")
-public class MyReviews extends CustomUI {
+public class DB2021Team03_MyReviews extends DB2021Team03_CustomUI {
 
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
@@ -31,7 +31,7 @@ public class MyReviews extends CustomUI {
     private String nickname;
     private int[] reviewId;
 
-    public MyReviews(String nickname) {
+    public DB2021Team03_MyReviews(String nickname) {
         this.nickname = nickname;
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -39,7 +39,7 @@ public class MyReviews extends CustomUI {
 
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new Main(nickname);
+                new DB2021Team03_Main(nickname);
                 frame.dispose();
             }
         });
@@ -52,14 +52,14 @@ public class MyReviews extends CustomUI {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);
         frame.setTitle("DB2021Team03-영화 정보 프로그램");
-        CustomUI custom = new CustomUI(backgroundPanel);
+        DB2021Team03_CustomUI custom = new DB2021Team03_CustomUI(backgroundPanel);
         custom.setPanel();
 
         Connection conn;
         PreparedStatement pstmt;
         ResultSet rs;
 
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
         try {
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, nickname);
@@ -112,7 +112,7 @@ public class MyReviews extends CustomUI {
                 panel.add(btnUpdate[i-1]);
                 panel.add(lbReview[i-1]);
 
-                ReviewDao reviewDao = ReviewDao.getInstance();
+                DB2021Team03_ReviewDao reviewDao = DB2021Team03_ReviewDao.getInstance();
 
                 btnDelete[i - 1].addMouseListener(new MouseListener() {
                     public void mouseReleased(MouseEvent e) {}
@@ -144,7 +144,7 @@ public class MyReviews extends CustomUI {
                             JOptionPane.showMessageDialog(frame, "데이터 삭제가 완료되었습니다.", "완료", JOptionPane.INFORMATION_MESSAGE);
                             dispose();
                         }
-                        new MyReviews(nickname);
+                        new DB2021Team03_MyReviews(nickname);
                         frame.dispose();
                     }
                 });
@@ -168,7 +168,7 @@ public class MyReviews extends CustomUI {
                                 mv = rv.getMovie();
                             }
                         }
-                        new Update(nickname, id, mv);
+                        new DB2021Team03_Update(nickname, id, mv);
                         frame.dispose();
                     }
                 });

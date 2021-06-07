@@ -18,10 +18,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import dao.DBConnection;
+import dao.DB2021Team03_DBConnection;
 
 @SuppressWarnings("serial")
-public class Login extends CustomUI {
+public class DB2021Team03_Login extends DB2021Team03_CustomUI {
 
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
@@ -35,7 +35,7 @@ public class Login extends CustomUI {
     private static ResultSet rs;
     private static final String SQL = "SELECT * FROM DB2021_User WHERE NICKNAME = ? AND PASSWORD = ? AND DELETE_FG = 'N'";
 
-    public Login() {
+    public DB2021Team03_Login() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         init();
 
@@ -61,13 +61,15 @@ public class Login extends CustomUI {
 
         btnLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                //사용자에게 입력받은 값을 변수에 저장함.
                 String nickname = txtNickname.getText();
                 String password = String.valueOf(txtPassword.getPassword());
 
-                conn = DBConnection.getConnection();
+                conn = DB2021Team03_DBConnection.getConnection();
 
                 try {
                     pstmt = conn.prepareStatement(SQL);
+                    //사용자에게 입력받은 값으로 쿼리를 생성함.
                     pstmt.setString(1, nickname);
                     pstmt.setString(2, password);
                     rs = pstmt.executeQuery();
@@ -78,7 +80,8 @@ public class Login extends CustomUI {
 //                            new gui.admin.Main();
                             frame.dispose();
                         } else {
-                            new Main(nickname);
+                            //인증된 사용자이면 메인화면으로 이동.
+                            new DB2021Team03_Main(nickname);
                             frame.dispose();
                         }
                     } else {
@@ -94,7 +97,7 @@ public class Login extends CustomUI {
 
         btnJoin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new Join();
+                new DB2021Team03_Join();
                 frame.dispose();
             }
         });
@@ -119,7 +122,7 @@ public class Login extends CustomUI {
         frame.setContentPane(backgroundPanel);
         frame.setTitle("DB2021Team03-영화 정보 프로그램");
 
-        CustomUI custom = new CustomUI(backgroundPanel);
+        DB2021Team03_CustomUI custom = new DB2021Team03_CustomUI(backgroundPanel);
         custom.setPanel();
 
         lbLogo = custom.setLbImg("lbLogo", 0, 150, 150);
@@ -133,6 +136,6 @@ public class Login extends CustomUI {
     }
 
     public static void main(String[] args) {
-        new Login();
+        new DB2021Team03_Login();
     }
 }

@@ -7,11 +7,11 @@ import java.util.Vector;
 
 import models.Movies;
 
-public class MovieDao {
-    private MovieDao(){}
-    private static MovieDao instance = new MovieDao();
+public class DB2021Team03_MovieDao {
+    private DB2021Team03_MovieDao(){}
+    private static DB2021Team03_MovieDao instance = new DB2021Team03_MovieDao();
 
-    public static MovieDao getInstance() {
+    public static DB2021Team03_MovieDao getInstance() {
         return instance;
     }
 
@@ -21,7 +21,7 @@ public class MovieDao {
 
     public Movies selectOne(int id) {
         String sql = "SELECT * FROM DB2021_MOVIE WHERE ID = ?";
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
 
         try {
             pstmt = conn.prepareStatement(sql);
@@ -60,7 +60,7 @@ public class MovieDao {
     {
         Vector<Movies> movies = new Vector<>();
         String sql = "SELECT id, title, rating FROM DB2021_MOVIE ORDER BY rating DESC, title LIMIT 10";
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
 
         try {
             pstmt = conn.prepareStatement(sql);
@@ -90,7 +90,7 @@ public class MovieDao {
     public Vector<Movies> selectAll() {
         Vector<Movies> movies = new Vector<>();
         String sql = "SELECT * FROM MOVIE";
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
 
         try {
             pstmt = conn.prepareStatement(sql);
@@ -122,7 +122,7 @@ public class MovieDao {
         String sql = "SELECT *";
         sql += " FROM MOVIE";
         sql += " WHERE TITLE LIKE '%" + keyword + "%'";
-        conn = DBConnection.getConnection();
+        conn = DB2021Team03_DBConnection.getConnection();
 
         try {
             pstmt = conn.prepareStatement(sql);

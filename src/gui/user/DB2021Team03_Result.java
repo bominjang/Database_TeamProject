@@ -8,11 +8,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import dao.ReviewDao;
+import dao.DB2021Team03_ReviewDao;
 import models.Reviews;
 
 @SuppressWarnings("serial")
-public class Result extends CustomUI {
+public class DB2021Team03_Result extends DB2021Team03_CustomUI {
 
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
@@ -23,13 +23,13 @@ public class Result extends CustomUI {
     private String nickname;
     private int reviewId;
 
-    public Result(String nickname) {
+    public DB2021Team03_Result(String nickname) {
         this.nickname = nickname;
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         init();
 
-        ReviewDao rDao = ReviewDao.getInstance();
+        DB2021Team03_ReviewDao rDao = DB2021Team03_ReviewDao.getInstance();
         Reviews review = rDao.reviewDetail(nickname);
         System.out.println(review.getMovie());
 
@@ -42,14 +42,14 @@ public class Result extends CustomUI {
         btnMain.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Main(nickname);
+                new DB2021Team03_Main(nickname);
                 frame.dispose();
             }
         });
 
         btnReviews.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new MyReviews(nickname);
+                new DB2021Team03_MyReviews(nickname);
                 frame.dispose();
             }
         });
@@ -59,14 +59,14 @@ public class Result extends CustomUI {
         frame.setVisible(true);
     }
 
-    public Result(String nickname, int reviewId) {
+    public DB2021Team03_Result(String nickname, int reviewId) {
         this.nickname = nickname;
         this.reviewId = reviewId;
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         init();
 
-        ReviewDao rDao = ReviewDao.getInstance();
+        DB2021Team03_ReviewDao rDao = DB2021Team03_ReviewDao.getInstance();
         Reviews review = rDao.reviewDetail(nickname);
         System.out.println(review.getMovie());
         lbMovie.setText(review.getMovie());
@@ -79,14 +79,14 @@ public class Result extends CustomUI {
 
         btnMain.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new Main(nickname);
+                new DB2021Team03_Main(nickname);
                 frame.dispose();
             }
         });
 
         btnReviews.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new MyReviews(nickname);
+                new DB2021Team03_MyReviews(nickname);
                 frame.dispose();
             }
         });
@@ -100,7 +100,7 @@ public class Result extends CustomUI {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);
         frame.setTitle("DB2021Team03-영화 정보 프로그램");
-        CustomUI custom = new CustomUI(backgroundPanel);
+        DB2021Team03_CustomUI custom = new DB2021Team03_CustomUI(backgroundPanel);
         custom.setPanel();
 
         lbIcon = custom.setLbImg("lbIcon", 0, 160, 130);

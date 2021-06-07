@@ -8,11 +8,11 @@ import java.util.Vector;
 
 import javax.swing.*;
 
-import dao.ActorDao;
+import dao.DB2021Team03_ActorDao;
 import models.Actors;
 
 @SuppressWarnings("serial")
-public class Actor extends CustomUI {
+public class DB2021Team03_Actor extends DB2021Team03_CustomUI {
 
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
@@ -24,12 +24,12 @@ public class Actor extends CustomUI {
 
     private String nickname;
 
-    public Actor(String nickname, int actorId) {
+    public DB2021Team03_Actor(String nickname, int actorId) {
         this.nickname = nickname;
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        ActorDao aDao = ActorDao.getInstance();
+        DB2021Team03_ActorDao aDao = DB2021Team03_ActorDao.getInstance();
         Actors actor = aDao.selectOne(actorId);
 
         actorMovies = aDao.selectMovies(actor.getName());
@@ -57,7 +57,7 @@ public class Actor extends CustomUI {
             public void actionPerformed(ActionEvent e) {
                 int returnCd = JOptionPane.showConfirmDialog(frame, "메인 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if(returnCd == JOptionPane.YES_OPTION) {
-                    new Main(nickname);
+                    new DB2021Team03_Main(nickname);
                     frame.dispose();
                 }
             }
@@ -66,7 +66,7 @@ public class Actor extends CustomUI {
         btnMain.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Main(nickname);
+                new DB2021Team03_Main(nickname);
                 frame.dispose();
             }
         });
@@ -80,7 +80,7 @@ public class Actor extends CustomUI {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);
         frame.setTitle("DB2021Team03-영화 정보 프로그램");
-        CustomUI custom = new CustomUI(backgroundPanel);
+        DB2021Team03_CustomUI custom = new DB2021Team03_CustomUI(backgroundPanel);
         custom.setPanel();
 
         lbIcon = custom.setLbImg("lbIcon", 0, 232, 130);

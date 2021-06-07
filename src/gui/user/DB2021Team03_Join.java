@@ -14,10 +14,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import dao.DBConnection;
+import dao.DB2021Team03_DBConnection;
 
 @SuppressWarnings("serial")
-public class Join extends CustomUI {
+public class DB2021Team03_Join extends DB2021Team03_CustomUI {
 
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
@@ -31,7 +31,7 @@ public class Join extends CustomUI {
     private static final String SQL = "INSERT INTO DB2021_User (ID, NICKNAME, PASSWORD, NAME, BIRTH, PHONE, JOIN_TIME, PRIVACY_FG, ADMIN_FG, DELETE_FG) VALUES (0, ?, ?, ?, ?, ?, now(), ?,'N','N')";
     private static final String SQL2 = "SELECT * FROM DB2021_User WHERE NICKNAME = ?";
 
-    public Join() {
+    public DB2021Team03_Join() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         init();
 
@@ -100,7 +100,7 @@ public class Join extends CustomUI {
                     JOptionPane.showMessageDialog(null, "개인정보 수집 및 이용 약관에 동의해주세요");
                 }
 
-                conn = DBConnection.getConnection();
+                conn = DB2021Team03_DBConnection.getConnection();
 
                 int checkId = 0;
                 try {
@@ -121,7 +121,7 @@ public class Join extends CustomUI {
                         && cbAgree.isSelected() == true && birth.matches(regExp) && phone.matches(regExp2)
                         && checkId == 0) {
 
-                    conn = DBConnection.getConnection();
+                    conn = DB2021Team03_DBConnection.getConnection();
                     int returnCnt = 0;
                     try {
                         pstmt = conn.prepareStatement(SQL);
@@ -140,7 +140,7 @@ public class Join extends CustomUI {
 
                     if(returnCnt == 1) {
                         JOptionPane.showMessageDialog(null, "회원가입 완료");
-                        new Login();
+                        new DB2021Team03_Login();
                         frame.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, "회원가입 실패, 다시 시도해 주세요.");
@@ -166,7 +166,7 @@ public class Join extends CustomUI {
 
         btnPrev.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new Login();
+                new DB2021Team03_Login();
                 frame.dispose();
             }
         });
@@ -191,7 +191,7 @@ public class Join extends CustomUI {
         frame.setContentPane(backgroundPanel);
         frame.setTitle("DB2021Team03-영화 정보 프로그램");
 
-        CustomUI custom = new CustomUI(backgroundPanel);
+        DB2021Team03_CustomUI custom = new DB2021Team03_CustomUI(backgroundPanel);
         custom.setPanel();
 
         //txtUserId = custom.setTextField("txtUserId", "ID", 35, 160, 350, 40);
