@@ -6,12 +6,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
+import java.util.Vector;
 
 import javax.swing.*;
 
 import dao.DB2021Team03_ActorDao;
 import dao.DB2021Team03_DirectorDao;
 import dao.DB2021Team03_MovieDao;
+import models.Actors;
 import models.Movies;
 
 @SuppressWarnings("serial")
@@ -22,13 +24,13 @@ public class DB2021Team03_Movie extends DB2021Team03_CustomUI {
     private JPanel container = new JPanel();
     private JPanel backgroundPanel;
     private JLabel lbIcon, lbTitle, lbTitleMovie,lbTitleCountry, lbTitlePlot, lbTItleRating, lbTitleGenreAge, lbTitleRunOpenTime, lbTitleDirector, lbTitleActor;
-    private JLabel lbMovie, lbRating, lbGenreAge, lbCountry, lbRunOpenTime, lbDirector, lbActor;
+    private JLabel lbMovie, lbRating, lbGenreAge, lbCountry, lbRunOpenTime, lbDirector, lbActors[];
     private JTextArea taPlot;
 
     private JButton btnMain, btnBack, btnMovieReviews;
 
     private String nickname;
-
+    private Vector<Actors> actors;
     private JPanel panel;
 
     // 생성자 : 로그인 유지를 위한 사용자 nickname 그리고 Movie ID를 인자로 받는다.
@@ -36,6 +38,13 @@ public class DB2021Team03_Movie extends DB2021Team03_CustomUI {
         this.nickname = nickname;
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // 출연 배우
+        DB2021Team03_ActorDao aDao = DB2021Team03_ActorDao.getInstance();
+        System.out.println(MovieId);
+        actors = aDao.selectAll(MovieId);
+        lbActors = new JLabel[actors.size()];
+
         init();
 
         JPanel in_panel = new JPanel();
@@ -69,11 +78,6 @@ public class DB2021Team03_Movie extends DB2021Team03_CustomUI {
 
         // 감독
         lbDirector.setText(movie.getDirector());
-
-        // 출연 배우
-        DB2021Team03_ActorDao aDao = DB2021Team03_ActorDao.getInstance();
-        String actors = aDao.selectAll(MovieId);
-        lbActor.setText(actors);
 
         // 줄거리
         taPlot.setText(movie.getPlot());
@@ -140,35 +144,35 @@ public class DB2021Team03_Movie extends DB2021Team03_CustomUI {
         });
 
         //배우 상세페이지 이동
-        lbActor.addMouseListener(new MouseListener() {
-            public void mouseReleased(MouseEvent e) {
-            }
-
-            public void mousePressed(MouseEvent e) {
-            }
-
-            public void mouseExited(MouseEvent e) {
-            }
-
-            public void mouseEntered(MouseEvent e) {
-            }
-
-            public void mouseClicked(MouseEvent e) {
-                JLabel lb = (JLabel) e.getSource();
-                int result = -1;
-
-                result = aDao.selectId(lb.getText());
-                if(result!=-1)
-                {
-                    new DB2021Team03_Actor(nickname, result);
-                    frame.dispose();
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "배우 정보가 없습니다.");
+        for(JLabel lbActor:lbActors) {
+            lbActor.addMouseListener(new MouseListener() {
+                public void mouseReleased(MouseEvent e) {
                 }
 
-            }
-        });
+                public void mousePressed(MouseEvent e) {
+                }
+
+                public void mouseExited(MouseEvent e) {
+                }
+
+                public void mouseEntered(MouseEvent e) {
+                }
+
+                public void mouseClicked(MouseEvent e) {
+                    JLabel lb = (JLabel) e.getSource();
+                    int result = -1;
+
+                    result = aDao.selectId(lb.getText());
+                    if (result != -1) {
+                        new DB2021Team03_Actor(nickname, result);
+                        frame.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "배우 정보가 없습니다.");
+                    }
+
+                }
+            });
+        }
 
         // 이전 페이지로 돌아가도록
         btnBack.addActionListener(new ActionListener() {
@@ -237,10 +241,21 @@ public class DB2021Team03_Movie extends DB2021Team03_CustomUI {
         panel.add(lbDirector);
 
         lbTitleActor = custom.setLb("lbTitleDetail", "출연배우", 230, 450, 150, 20, "left", 17, "bold");
-        lbActor = custom.setLb("lbDetail", "출연배우들 입니다.", 425, 450, 200, 20, "left", 17, "plain");
-
         panel.add(lbTitleActor);
-        panel.add(lbActor);
+
+        if(actors == null) {
+            custom.setLb("lbActor", "없음", 319, 360, 200, 20, "left", 17, "plain");
+        }
+        else{
+            for (int i = 0; i < actors.size(); i++) {
+                Actors actor = actors.get(i);
+                String name = actor.getName();
+
+                lbActors[i] = custom.setLb("lbActor", name, 425 + (50 * i), 450, 60, 20, "left", 17, "plain");
+                lbActors[i].setText(name);
+                panel.add(lbActors[i]);
+            }
+        }
 
         lbTitlePlot = custom.setLb("lbTitlePlot", "줄거리", 330, 490, 150, 20, "center", 17, "bold");
         taPlot = custom.setTextArea("lbPlot", "줄거리주루룩", 100, 520, 600, 120, false);
