@@ -8,9 +8,13 @@ import javax.swing.*;
 import dao.DB2021Team03_ReviewDao;
 import models.Reviews;
 
+
+/**
+ * 리뷰 수정을 위한 클래스
+ */
 @SuppressWarnings("serial")
 public class DB2021Team03_Update extends DB2021Team03_CustomUI {
-    //리뷰 수정을 위한 클래스
+
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
     private JLabel lbIcon, lbTitle;
@@ -22,7 +26,13 @@ public class DB2021Team03_Update extends DB2021Team03_CustomUI {
     private String nickname;
     private int reviewId;
 
-    //생성자 : 로그인 유지를 위한 nickname과 수정을 위한 reviewId, mv 를 인자로 받음.
+    /**
+     * 리뷰 업데이트 화면 생성자
+     *
+     * @param nickname 로그인 유지를 위한 사용자 nickname
+     * @param reviewId 리뷰 pk
+     * @param mv 영화 제목
+     */
     public DB2021Team03_Update(String nickname, int reviewId, String mv) {
         this.nickname = nickname;
         this.reviewId = reviewId;
@@ -72,7 +82,9 @@ public class DB2021Team03_Update extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
-    // 리뷰 수정 화면 구성을 위한 GUI 코드
+    /**
+     * 리뷰 수정 화면 구성을 위한 GUI 코드
+     */
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);

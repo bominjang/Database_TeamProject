@@ -7,20 +7,45 @@ import java.util.Vector;
 
 import models.Movies;
 
-// Movie 테이블 관련 SQL처리를 위한 Class
+
+/**
+ * Movie 테이블 관련 SQL처리를 위한 Class
+ */
 public class DB2021Team03_MovieDao {
+
+    /**
+     * ActorDao 객체 생성자
+     */
     private DB2021Team03_MovieDao(){}
     private static DB2021Team03_MovieDao instance = new DB2021Team03_MovieDao();
 
+    /**
+     * ActorDao 객체를 생성해주는 함수
+     * @return DB2021Team03_ActorDao 객체
+     */
     public static DB2021Team03_MovieDao getInstance() {
         return instance;
     }
 
+    /**
+     * DB connection을 위한 필드
+     */
     private static Connection conn;
+    /**
+     * Query를 매개변수를 이용해 동적으로 작성하기 위한 필드
+     */
     private static PreparedStatement pstmt;
+    /**
+     * Query의 결과값을 받을 필드
+     */
     private static ResultSet rs;
-
-    // Movie Id로 해당 Movie 객체를 반환해주는 메소드
+    
+    /**
+     * Movie Id로 해당 Movie 객체를 반환해주는 메소드
+     *
+     * @param id 영화의 pk
+     * @return 영화를 성공적으로 찾을 시 해당 영화 객체 Movies 반환, 그 외엔 null을 반환합니다.
+     */
     public Movies selectOne(int id) {
         String sql = "SELECT * FROM DB2021_MOVIE WHERE ID = ?";
         conn = DB2021Team03_DBConnection.getConnection();
@@ -57,8 +82,12 @@ public class DB2021Team03_MovieDao {
 
         return null;
     }
-
-    // Movie 평점 순으로 Top10을 선택하여 반환해주는 메소드
+    
+    /**
+     * Movie 평점 순으로 Top10을 선택하여 반환해주는 메소드
+     *
+     * @return 쿼리 성공 시 10개의 영화 객체가 담긴 Vector<Movies> 반환, 그 외엔 null을 반환합니다.
+     */
     public Vector<Movies> selectRanking()
     {
         Vector<Movies> movies = new Vector<>();

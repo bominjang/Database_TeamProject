@@ -12,6 +12,9 @@ import javax.swing.*;
 import dao.DB2021Team03_DirectorDao;
 import models.Directors;
 
+/**
+ * 감독에 대한 상세 정보를 볼 수 있는 클래스
+ */
 @SuppressWarnings("serial")
 public class DB2021Team03_Director extends DB2021Team03_CustomUI {
     // 감독에 대한 상세 정보를 볼 수 있는 클래스
@@ -26,7 +29,12 @@ public class DB2021Team03_Director extends DB2021Team03_CustomUI {
 
     private String nickname;
 
-    // 생성자: 로그인 유지를 위한 사용자 nickname 그리고 Actor ID를 인자로 받는다.
+    /**
+     * 해당 Director의 상세 정보 화면 생성자
+     *
+     * @param nickname 로그인 유지를 위한 사용자 nickname
+     * @param directorId 배우 pk
+     */
     public DB2021Team03_Director(String nickname, int directorId) {
         this.nickname = nickname;
 
@@ -66,7 +74,7 @@ public class DB2021Team03_Director extends DB2021Team03_CustomUI {
         // 영화 목록(순위)으로 이동하기 버튼
         btnRanking.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int returnCd = JOptionPane.showConfirmDialog(frame, "영화 목록 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                int returnCd = JOptionPane.showConfirmDialog(frame, "영화 목록 화면로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if (returnCd == JOptionPane.YES_OPTION) {
                     new DB2021Team03_Ranking(nickname);
                     frame.dispose();
@@ -88,7 +96,9 @@ public class DB2021Team03_Director extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
-    // 감독 상세 화면 구성을 위한 GUI 코드
+    /**
+     * 감독 상세 화면 구성을 위한 GUI 코드
+     */
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);

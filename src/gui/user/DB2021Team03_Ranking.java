@@ -19,9 +19,12 @@ import dao.DB2021Team03_DBConnection;
 import dao.DB2021Team03_MovieDao;
 import models.Movies;
 
+/**
+ * 영화의 순위를 확인할 수 있는 클래스
+ */
 @SuppressWarnings("serial")
 public class DB2021Team03_Ranking extends DB2021Team03_CustomUI {
-    //영화의 순위를 확인할 수 있는 클래스
+
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
     private JLabel lbBox[], lbMovieName[], lbRating[], lbTitle, lbLine;
@@ -34,7 +37,11 @@ public class DB2021Team03_Ranking extends DB2021Team03_CustomUI {
     private DB2021Team03_MovieDao mDao;
     private Vector<Movies> rMovies;
 
-    //생성자: 로그인 유지를 위한 사용자 nickname을 인자로 받음.
+    /**
+     * TOP10 영화 목록 화면 생성자
+     *
+     * @param nickname 로그인 유지를 위한 사용자 nickname
+     */
     public DB2021Team03_Ranking(String nickname) {
         this.nickname = nickname;
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,7 +69,10 @@ public class DB2021Team03_Ranking extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
-    // 순위 화면 구성을 위한 GUI
+
+    /**
+     * 순위 화면 구성을 위한 GUI
+     */
     private void init() {
         conn = DB2021Team03_DBConnection.getConnection();
         try {
@@ -89,7 +99,7 @@ public class DB2021Team03_Ranking extends DB2021Team03_CustomUI {
                 panel.add(lbMovieName[j]);
                 panel.add(lbRating[j]);
 
-                //영화 이름을 클릭하면, 영화 상세페이지로 이동하도록 함.
+                //영화 이름을 클릭하면, 영화 상세화면로 이동하도록 함.
                 lbMovieName[j].addMouseListener(new MouseListener() {
                     public void mouseReleased(MouseEvent e) {
                     }

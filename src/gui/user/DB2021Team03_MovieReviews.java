@@ -13,9 +13,12 @@ import javax.swing.*;
 import dao.DB2021Team03_DBConnection;
 import models.Reviews;
 
+/**
+ * 특정 영화에 등록된 리뷰들을 볼 수 있는 클래스
+ */
 @SuppressWarnings("serial")
 public class DB2021Team03_MovieReviews extends DB2021Team03_CustomUI {
-    //특정 영화에 등록된 리뷰들을 볼 수 있는 클래스
+
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
     private JLabel lbTitle,lbNickName[], lbCreateTime[],lbRating[], lbReview[];
@@ -28,7 +31,12 @@ public class DB2021Team03_MovieReviews extends DB2021Team03_CustomUI {
     private String nickname;
     private int movieId;
 
-    // 생성자 : 생성자: 로그인 유지를 위한 사용자 nickname 그리고 movie의 ID를 인자로 받는다.
+    /**
+     * 해당 영화의 리뷰 목록 화면 생성자
+     *
+     * @param nickname 로그인 유지를 위한 사용자 nickname
+     * @param MovieId 영화 pk
+     */
     public DB2021Team03_MovieReviews(String nickname, int MovieId) {
         this.nickname = nickname;
         this.movieId = MovieId;
@@ -48,7 +56,9 @@ public class DB2021Team03_MovieReviews extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
-    // 해당 영화의 리뷰 화면 구성을 위한 GUI 및 데이터 셋팅
+    /**
+     * 해당 영화의 리뷰 화면 구성을 위한 GUI 및 데이터 셋팅
+     */
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);

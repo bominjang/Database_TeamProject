@@ -22,9 +22,11 @@ import models.Combo;
 import models.Keyword;
 
 
+/**
+ * 프로젝트를 위해 커스텀한 GUI 코드를 모아둔 클래스(일종의 도구 모음)
+ */
 @SuppressWarnings("serial")
 class DB2021Team03_CustomUI extends JFrame {
-    // 프로젝트를 위해 커스텀한 GUI 코드를 모아둔 클래스(일종의 도구 모음)
     
     JPanel backgroundPanel;
 
@@ -34,7 +36,9 @@ class DB2021Team03_CustomUI extends JFrame {
         this.backgroundPanel = backgroundPanel;
     }
 
-    // Panel set
+    /**
+     * Panel set
+     */
     protected void setPanel() {
         backgroundPanel.setLayout(null);
         backgroundPanel.setBackground(Color.WHITE);
@@ -51,7 +55,17 @@ class DB2021Team03_CustomUI extends JFrame {
         backgroundPanel.add(topGrayPanel);
     }
 
-    // TextField set
+
+    /**
+     * TextField set
+     *
+     * @param name component 이름
+     * @param placeholder 보이고자하는 String
+     * @param x x 위치
+     * @param y y 위치
+     * @param width 너비
+     * @param height 높이
+     */
     protected JTextField setTextField(String name, String placeholder, int x, int y, int width, int height) {
         JTextField txt = new JTextField();
 
@@ -95,7 +109,17 @@ class DB2021Team03_CustomUI extends JFrame {
         return txt;
     }
 
-    // PasswordField set
+
+    /**
+     * PasswordField set
+     *
+     * @param name component 이름
+     * @param text 보이고자하는 String
+     * @param x x 위치
+     * @param y y 위치
+     * @param width 너비
+     * @param height 높이
+     */
     protected JPasswordField setPasswordField(String name, String placeholder, int x, int y, int width, int height) {
         JPasswordField txt = new JPasswordField();
 
@@ -139,7 +163,17 @@ class DB2021Team03_CustomUI extends JFrame {
         return txt;
     }
 
-    // 녹색 Button set
+
+    /**
+     * 녹색 Button set
+     *
+     * @param name component 이름
+     * @param text 보이고자하는 String
+     * @param x x 위치
+     * @param y y 위치
+     * @param width 너비
+     * @param height 높이
+     */
     protected JButton setBtnGreen(String name, String text, int x, int y, int width, int height) {
 
         class RoundedButton extends JButton {
@@ -202,7 +236,17 @@ class DB2021Team03_CustomUI extends JFrame {
         return btn;
     }
 
-    // 녹색 Button set(align 조작 가능)
+
+    /**
+     * 녹색 Button set(align 조작 가능)
+     *
+     * @param name component 이름
+     * @param text 보이고자하는 String
+     * @param x x 위치
+     * @param y y 위치
+     * @param width 너비
+     * @param height 높이
+     */
     protected JButton setBtnGreen(String name, String text, int x, int y, String alignment, int width, int height) {
         class RoundedButton extends JButton {
             public RoundedButton() {
@@ -265,7 +309,15 @@ class DB2021Team03_CustomUI extends JFrame {
         return btn;
     }
 
-    // 흰색 Button set
+
+    /**
+     * 흰색 Button set
+     *
+     * @param name component 이름
+     * @param text 보이고자하는 String
+     * @param x x 위치
+     * @param y y 위치
+     */
     protected JButton setBtnWhite(String name, String text, int x, int y) {
 
         class RoundedBorder implements Border {
@@ -303,22 +355,15 @@ class DB2021Team03_CustomUI extends JFrame {
         return btn;
     }
 
-    // TextField set
-    protected JButton setBtnMovie(String name, String time, String seatCnt, int x, int y) {
-        JButton btn = new JButton("<html>" + time + "<br/>" + seatCnt + "</html>");
 
-        btn.setBackground(new Color(230, 236, 240));
-        btn.setForeground(new Color(114, 114, 114));
-        btn.setBorderPainted(false);
-        btn.setBounds(x, y, 90, 70);
-
-        backgroundPanel.add(btn);
-        btn.setName(name);
-
-        return btn;
-    }
-
-    // 버튼 아이콘 set
+    /**
+     * 버튼 아이콘 set
+     *
+     * @param name component 이름
+     * @param text 보이고자하는 String
+     * @param x x 위치
+     * @param y y 위치
+     */
     protected JButton  setBtnImg(String name, String text, int x, int y) {
         ImageIcon icon = new ImageIcon("img/icon5.png");
         Image originImg = icon.getImage();
@@ -343,7 +388,17 @@ class DB2021Team03_CustomUI extends JFrame {
         return btn;
     }
 
-    // TextArea set
+
+    /**
+     * TextArea set
+     *
+     * @param name component 이름
+     * @param text 보이고자하는 String
+     * @param x x 위치
+     * @param y y 위치
+     * @param width 너비
+     * @param height 높이
+     */
     protected JTextArea setTextArea(String name, String placeholder, int x, int y, int width, int height, boolean isEditable) {
         JTextArea txt = new JTextArea();
         txt.setEditable(isEditable);
@@ -399,7 +454,17 @@ class DB2021Team03_CustomUI extends JFrame {
         return txt;
     }
 
-    // Label set
+
+    /**
+     * Label set
+     *
+     * @param name component 이름
+     * @param text 보이고자하는 String
+     * @param x x 위치
+     * @param y y 위치
+     * @param width 너비
+     * @param height 높이
+     */
     protected JLabel setLb(String name, String text, int x, int y, int width, int height, String alignment, int fontSize, String weight) {
         JLabel lb = new JLabel(text);
         Font lbFont = new Font("맑은 고딕", setWeight(weight), fontSize);
@@ -413,7 +478,17 @@ class DB2021Team03_CustomUI extends JFrame {
         return lb;
     }
 
-    // Label set(backgroundPanel에 add하지 않음)
+
+    /**
+     * Label set(backgroundPanel에 add하지 않음)
+     *
+     * @param name component 이름
+     * @param text 보이고자하는 String
+     * @param x x 위치
+     * @param y y 위치
+     * @param width 너비
+     * @param height 높이
+     */
     protected JLabel setLb(String name, String text, int x, int y, int width, int height, String alignment, int fontSize, String weight, JPanel panel) {
         JLabel lb = new JLabel(text);
         Font lbFont = new Font("맑은 고딕", setWeight(weight), fontSize);
@@ -426,7 +501,16 @@ class DB2021Team03_CustomUI extends JFrame {
         return lb;
     }
 
-    // Box icon set
+
+    /**
+     * Box icon set
+     *
+     * @param name component 이름
+     * @param text 보이고자하는 String
+     * @param x x 위치
+     * @param y y 위치
+     * @param panel 너비
+     */
     protected JLabel setLbBox(String name, String text, int x, int y, JPanel panel) {
         JLabel lb = new JLabel(text);
         int rating = Integer.parseInt(text);
@@ -443,7 +527,15 @@ class DB2021Team03_CustomUI extends JFrame {
         return lb;
     }
 
-    // 이미지 icon set
+
+    /**
+     * 이미지 icon set
+     *
+     * @param name component 이름
+     * @param iconNum 어떤 이미지 icon을 보이고싶은지
+     * @param x x 위치
+     * @param y y 위치
+     */
     protected JLabel setLbImg(String name, int iconNum, int x, int y) {
         JLabel lb = new JLabel();
 
@@ -470,7 +562,15 @@ class DB2021Team03_CustomUI extends JFrame {
         return lb;
     }
 
-    // checkbox set
+
+    /**
+     * Checkbox set
+     *
+     * @param name component 이름
+     * @param text 보이고자하는 String
+     * @param x x 위치
+     * @param y y 위치
+     */
     protected JCheckBox setCheckBox(String name, String text, int x, int y) {
         JCheckBox cb = new JCheckBox();
         cb.setBackground(Color.WHITE);
@@ -491,7 +591,17 @@ class DB2021Team03_CustomUI extends JFrame {
         return cb;
     }
 
-    // ComboBox set(검색 키워드 선택 시 사용)
+
+    /**
+     * ComboBox set(검색 키워드 선택 시 사용)
+     *
+     * @param name component 이름
+     * @param combos set하고 싶은 Vector<Keywrod>
+     * @param x x 위치
+     * @param y y 위치
+     * @param width 너비
+     * @param height 높이
+     */
     protected JComboBox<Keyword> setKeyword(String name, Vector<Keyword> combos, int x, int y, int width, int height){
         JComboBox<Keyword> keyword = new JComboBox<>();
 
@@ -513,7 +623,17 @@ class DB2021Team03_CustomUI extends JFrame {
         return keyword;
     }
 
-    // ComboBox set(영화 선택 시 사용)
+
+    /**
+     * ComboBox set(영화 선택 시 사용)
+     *
+     * @param name component 이름
+     * @param combos set하고 싶은 Vector<Combo>
+     * @param x x 위치
+     * @param y y 위치
+     * @param width 너비
+     * @param height 높이
+     */
     protected JComboBox<Combo> setCombo(String name, Vector<Combo> combos, int x, int y, int width, int height){
         JComboBox<Combo> combo = new JComboBox<>();
 
@@ -534,8 +654,12 @@ class DB2021Team03_CustomUI extends JFrame {
 
         return combo;
     }
-
-    // 왼쪽, 가운데, 오른쪽 정렬 set
+    
+    /**
+     * 왼쪽, 가운데, 오른쪽 정렬 set
+     *
+     * @param alignment 원하는 위치
+     */
     private int setAlign(String alignment) {
         if(alignment.toUpperCase().equals("CENTER")) {
             return 0;
@@ -547,8 +671,12 @@ class DB2021Team03_CustomUI extends JFrame {
             return 0;
         }
     }
-
-    // 너비 set
+    
+    /**
+     * 너비 set
+     * 
+     * @param weight 원하는 너비
+     */
     private int setWeight(String weight) {
         if(weight.toUpperCase().equals("BOLD")) {
             return 1;

@@ -7,16 +7,23 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * 메뉴들이 있는 메인화면 클래스
+ */
 @SuppressWarnings("serial")
 public class DB2021Team03_Main extends DB2021Team03_CustomUI {
-    //메인화면 클래스
+
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
     private JButton btnMovie, btnSearch, btnReview, btnInfo, btnLogout;
 
     private String nickname;
 
-    //생성자 : 로그인 유지를 위한 사용자 nickname을 인자로 받는다.
+    /**
+     * 메인화면 생성자
+     *
+     * @param nickname 로그인 유지를 위한 사용자 nickname
+     */
     public DB2021Team03_Main(String nickname) {
         this.nickname = nickname;
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,7 +73,9 @@ public class DB2021Team03_Main extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
-    //메인 화면 구성을 위한 GUI
+    /**
+     * 메인 화면 구성을 위한 GUI
+     */
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);
@@ -78,7 +87,7 @@ public class DB2021Team03_Main extends DB2021Team03_CustomUI {
         btnMovie = custom.setBtnImg("btnMovie", "영화순위 보기", 33, 240);
         btnSearch = custom.setBtnImg("btnTheater", "검색하기", 212, 240);
         btnReview = custom.setBtnImg("btnReview", "리뷰 작성", 33, 400);
-        btnInfo = custom.setBtnImg("btnInfo", "마이페이지", 212, 400);
+        btnInfo = custom.setBtnImg("btnInfo", "마이화면", 212, 400);
         btnLogout = custom.setBtnWhite("btnLogout", "로그아웃", 35, 650);
     }
 }

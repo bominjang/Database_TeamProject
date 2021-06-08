@@ -16,9 +16,12 @@ import dao.DB2021Team03_DBConnection;
 import dao.DB2021Team03_ReviewDao;
 import models.Reviews;
 
+/**
+ * 내가 작성한 리뷰들을 확인할 수 있는 클래스
+ */
 @SuppressWarnings("serial")
 public class DB2021Team03_MyReviews extends DB2021Team03_CustomUI {
-    //내가 작성한 리뷰들을 확인할 수 있는 클래스
+
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
     private JLabel lbTitle,lbBox[], lb, lbReview[], lbTitleRating[], lbTitleMovie[], lbCreateTime[];
@@ -31,7 +34,11 @@ public class DB2021Team03_MyReviews extends DB2021Team03_CustomUI {
     private String nickname;
     private int[] reviewId;
 
-    //생성자 : user정보를 얻기 위해 nickname을 인자로 받음
+    /**
+     * 해당 유저가 쓴 리뷰 목록 화면 생성자
+     *
+     * @param nickname 로그인 유지를 위한 사용자 nickname
+     */
     public DB2021Team03_MyReviews(String nickname) {
         this.nickname = nickname;
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,7 +56,9 @@ public class DB2021Team03_MyReviews extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
-    // 나의 리뷰 모아보기 화면 구성을 위한 GUI 및 데이터 셋팅
+    /**
+     * 나의 리뷰 모아보기 화면 구성을 위한 GUI 및 데이터 셋팅
+     */
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);

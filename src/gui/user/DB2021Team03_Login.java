@@ -20,9 +20,11 @@ import javax.swing.JTextField;
 
 import dao.DB2021Team03_DBConnection;
 
+/**
+ * 로그인을 위한 클래스
+ */
 @SuppressWarnings("serial")
 public class DB2021Team03_Login extends DB2021Team03_CustomUI {
-    // 로그인을 위한 클래스
 
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
@@ -36,6 +38,9 @@ public class DB2021Team03_Login extends DB2021Team03_CustomUI {
     private static ResultSet rs;
     private static final String SQL = "SELECT * FROM DB2021_User WHERE NICKNAME = ? AND PASSWORD = ? AND DELETE_FG = 'N'";
 
+    /**
+     * 로그인 화면 생성자
+     */
     public DB2021Team03_Login() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         init();
@@ -119,6 +124,9 @@ public class DB2021Team03_Login extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
+    /**
+     * 로그인 화면 구성을 위한 GUI 코드
+     */
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);
