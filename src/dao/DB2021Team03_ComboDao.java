@@ -46,7 +46,7 @@ public class DB2021Team03_ComboDao {
      * Review 작성 시 어떤 영화에 대한 리뷰를 작성할건지 선택하는 콤보박스에 쓰이는 메소드
      *
      * @param comboContent "movie" 고정
-     * @return Movie 테이블에 있는 모든 영화 title로 만든 Vector<Combo>를 반환한다. 그 외엔 null을 반환합니다.
+     * @return Movie 테이블에 있는 모든 영화 title로 만든 Combo Vector를 반환한다. 그 외엔 null을 반환합니다.
      */
     public Vector<Combo> setCombo(String comboContent) {
         Vector<Combo> combos = new Vector<>();

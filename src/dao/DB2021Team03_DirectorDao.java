@@ -111,7 +111,7 @@ public class DB2021Team03_DirectorDao {
      * Director의 ID를 받아서 해당 Director가 제작한 모든 영화 객체를 반환해주는 메소드
      *
      * @param directorId 찾고자하는 감독의 pk
-     * @return 해당 감독이 제작한 영화들을 성공적으로 찾을 시 Vector<String> 반환, 그 외엔 null을 반환합니다.
+     * @return 해당 감독이 제작한 영화들을 성공적으로 찾을 시 String Vector 반환, 그 외엔 null을 반환합니다.
      */
     public Vector<String> selectMovies(int directorId) {
         //영화들을 저장하는 Vector 선언 + 객체 생성.
@@ -150,7 +150,7 @@ public class DB2021Team03_DirectorDao {
      * Director의 ID를 받아서 해당 Director가 어떤 영화로 어떠한 상들을 받았는지 그 쌍을 반환해주는 메소드
      *
      * @param directorId 감독의 pk
-     * @return 해당 감독이 어떤 영화를 제작해서 상을 받았는지 모든 쌍을 성공적으로 찾을 시 ap<String, Vector<String>> 반환, 그 외엔 null을 반환합니다
+     * @return 해당 감독이 어떤 영화를 제작해서 상을 받았는지 모든 쌍을 성공적으로 찾을 시 Map(String, String Vector String) 반환, 그 외엔 null을 반환합니다
      */
     public Map<String, Vector<String>> selectPrizes(int directorId) {
         Map<String, Vector<String>> MP = new HashMap<String, Vector<String>>();

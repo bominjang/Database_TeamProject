@@ -45,7 +45,7 @@ public class DB2021Team03_SearchDao {
     /**
      * 검색 기능에서 사용될 키워드를 출력하는 메소드(콤보박스에 사용)
      *
-     * @return Movie Vector<Keyword>를 반환한다. 실패시 null을 반환합니다.
+     * @return Movie Keyword Vector를 반환한다. 실패시 null을 반환합니다.
      */
     public Vector<Keyword> setCombo() {
         Vector<Keyword> combos = new Vector<>();
@@ -115,7 +115,7 @@ public class DB2021Team03_SearchDao {
      *
      * @param keyword 검색 키워드
      * @param text 검색어
-     * @return 키워드에 맞게 검색을 하여 조건에 맞는 영화들 Vector<Movies>를 반환한다. 그 외엔 null을 반환합니다.
+     * @return 키워드에 맞게 검색을 하여 조건에 맞는 영화들 Movies Vector를반환한다. 그 외엔 null을 반환합니다.
      */
     public Vector<Movies> search(String keyword, String text) {
         Vector<Movies> results = new Vector<>();
