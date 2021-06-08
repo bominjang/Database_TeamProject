@@ -80,6 +80,7 @@ public class DB2021Team03_Movie extends DB2021Team03_CustomUI {
 
         in_panel.setPreferredSize(new Dimension(600,200));
 
+        // 스크롤 추가
         JScrollPane sp1 = new JScrollPane(taPlot);
         sp1.setBounds(100, 520, 600, 200);
         panel.add(sp1);
@@ -186,6 +187,7 @@ public class DB2021Team03_Movie extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
+    // 영화 상세 화면 구성을 위한 GUI
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);

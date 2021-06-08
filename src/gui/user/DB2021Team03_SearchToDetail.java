@@ -179,6 +179,7 @@ public class DB2021Team03_SearchToDetail extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
+    //영화 상세 화면 구성을 위한 GUI 코드
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);

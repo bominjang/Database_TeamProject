@@ -49,6 +49,7 @@ public class DB2021Team03_MyReviews extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
+    // 나의 리뷰 모아보기 화면 구성을 위한 GUI 및 데이터 셋팅
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);
