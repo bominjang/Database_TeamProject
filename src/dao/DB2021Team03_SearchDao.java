@@ -80,11 +80,11 @@ public class DB2021Team03_SearchDao {
         String sql, view;
 
         if(keyword.equals("movie")) {
-            sql = "SELECT * FROM DB2021_titleExist WHERE title = ?";
+            sql = "SELECT * FROM DB2021_titleExist WHERE title LIKE ?";
         } else if(keyword.equals("director")) {
-            sql = "SELECT * FROM DB2021_DnameExist WHERE name = ?";
+            sql = "SELECT * FROM DB2021_DnameExist WHERE name LIKE ?";
         } else if(keyword.equals("actor")) {
-            sql = "SELECT * FROM DB2021_AnameExist WHERE name = ?";
+            sql = "SELECT * FROM DB2021_AnameExist WHERE name LIKE ?";
         } else {
             sql = "";
         }
@@ -92,7 +92,7 @@ public class DB2021Team03_SearchDao {
         conn = DB2021Team03_DBConnection.getConnection();
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, text);
+            pstmt.setString(1, "%"+text+"%");
             rs = pstmt.executeQuery();
 
             if(rs.next()){
@@ -123,11 +123,11 @@ public class DB2021Team03_SearchDao {
 
         //keyword에 따른 검색 쿼리문
         if(keyword.equals("movie")) {
-            sql = "SELECT * FROM DB2021_Movie WHERE title = ?";
+            sql = "SELECT * FROM DB2021_Movie WHERE title LIKE ?";
         } else if(keyword.equals("director")) {
-            sql = "SELECT * FROM DB2021_Movie WHERE director = ?";
+            sql = "SELECT * FROM DB2021_Movie WHERE director LIKE ?";
         } else if(keyword.equals("actor")) {
-            sql = "SELECT * FROM DB2021_Movie WHERE title in (SELECT movie FROM DB2021_Actor_Movie WHERE actor = ?)";
+            sql = "SELECT * FROM DB2021_Movie WHERE title in (SELECT movie FROM DB2021_Actor_Movie WHERE actor LIKE ?)";
         } else {
             sql = "";
         }
@@ -136,7 +136,7 @@ public class DB2021Team03_SearchDao {
 
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, text);
+            pstmt.setString(1, "%"+text+"%");
             rs = pstmt.executeQuery();
 
             while(rs.next()){
