@@ -95,8 +95,8 @@ public class DB2021Team03_Actor extends DB2021Team03_CustomUI {
         DB2021Team03_CustomUI custom = new DB2021Team03_CustomUI(backgroundPanel);
         custom.setPanel();
 
-        lbIcon = custom.setLbImg("lbIcon", 0, 232, 130);
-        lbName = custom.setLb("lbName", "배우이름", 232, 150, 100, 185, "center", 20, "bold");
+        lbIcon = custom.setLbImg("lbIcon", 0, 247, 130);
+        lbName = custom.setLb("lbName", "배우이름", 0, 150, 600, 185, "center", 20, "bold");
 
         lbTitleCountry = custom.setLb("lbTitleCountry", "출신국가", 150, 300, 150, 20, "left", 17, "bold");
         lbCountry = custom.setLb("lbCountry", "출신 국가", 319, 300, 200, 20, "left", 17, "plain");

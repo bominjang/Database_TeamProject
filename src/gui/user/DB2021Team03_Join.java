@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -28,6 +29,7 @@ public class DB2021Team03_Join extends DB2021Team03_CustomUI {
 
     private static Connection conn;
     private static PreparedStatement pstmt;
+    private static ResultSet rs;
 
     private static final String SQL = "INSERT INTO DB2021_User (ID, NICKNAME, PASSWORD, NAME, BIRTH, PHONE, JOIN_TIME, PRIVACY_FG, ADMIN_FG, DELETE_FG) VALUES (0, ?, ?, ?, ?, ?, now(), ?,'N','N')";
     private static final String SQL2 = "SELECT * FROM DB2021_User WHERE NICKNAME = ?";
@@ -117,7 +119,13 @@ public class DB2021Team03_Join extends DB2021Team03_CustomUI {
                 try {
                     pstmt = conn.prepareStatement(SQL2);
                     pstmt.setString(1, nickname);
-                    checkId = pstmt.executeUpdate();
+//                    checkId = pstmt.executeUpdate();
+                    rs = pstmt.executeQuery();
+
+                    if(rs.next()){
+                        checkId = 1;
+                    }
+
                     conn.close();
                 } catch (Exception e2) {
                     e2.printStackTrace();

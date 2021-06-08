@@ -48,6 +48,7 @@ public class DB2021Team03_MovieReviews extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
+    // 해당 영화의 리뷰 화면 구성을 위한 GUI 및 데이터 셋팅
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);

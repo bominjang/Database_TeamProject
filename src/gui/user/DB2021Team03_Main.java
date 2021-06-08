@@ -66,6 +66,7 @@ public class DB2021Team03_Main extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
+    //메인 화면 구성을 위한 GUI
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);

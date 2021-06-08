@@ -123,7 +123,7 @@ public class DB2021Team03_SearchResult extends DB2021Team03_CustomUI {
         lbTitle = custom.setLb("lbTitle", "영화 검색", 310, 100, 180, 50, "center", 35, "bold");
         panel.add(lbTitle);
 
-
+        // 영화 검색을 위한 키워드 콤보박스 셋팅
         DB2021Team03_SearchDao sDao = DB2021Team03_SearchDao.getInstance();
         Vector<Keyword> comboKeywords = sDao.setCombo();
         comboKeyword = custom.setKeyword("combo", comboKeywords, 35, 200, 150, 40);

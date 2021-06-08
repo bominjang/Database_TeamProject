@@ -84,10 +84,11 @@ public class DB2021Team03_ActorDao {
     }
 
     // movie ID를 받아서 해당 movie에 출연한 모든 Actor 객체를 반환해주는 메소드
-    public String selectAll(int movieId) {
-        String actors = "";
+    public Vector<Actors> selectAll(int movieId) {
+        Vector<Actors> actors = new Vector<Actors>();
         //Movie.java에서 사용하는 쿼리문이다. 해당 영화에 출연한 배우를 가져오기 위해 left outer join을 사용하였음.
-        String sql = "SELECT actor FROM DB2021_Actor_Movie as am left outer join DB2021_Movie as m on am.movie = m.title where m.ID = ?";
+        String sql = "SELECT * FROM DB2021_Actor WHERE name in";
+        sql += " (SELECT actor FROM DB2021_Actor_Movie as am left outer join DB2021_Movie as m on am.movie = m.title where m.ID = ?)";
         conn = DB2021Team03_DBConnection.getConnection();
 
         try {
@@ -97,8 +98,12 @@ public class DB2021Team03_ActorDao {
 
             while (rs.next()) {
                 //출연한 배우들을 actors 변수에 담음.
-                String actor_name = rs.getString("actor");
-                actors += actor_name +" ";
+                Actors actor = new Actors();
+                actor.setId(rs.getInt("id"));
+                actor.setName(rs.getString("name"));
+                actor.setCountry(rs.getString("country"));
+                actor.setBirth(rs.getDate("birth"));
+                actors.add(actor);
             }
 
             conn.close();

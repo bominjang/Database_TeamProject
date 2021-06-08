@@ -62,6 +62,7 @@ public class DB2021Team03_Ranking extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
+    // 순위 화면 구성을 위한 GUI
     private void init() {
         conn = DB2021Team03_DBConnection.getConnection();
         try {
@@ -117,6 +118,7 @@ public class DB2021Team03_Ranking extends DB2021Team03_CustomUI {
             }
             panel.setPreferredSize(new Dimension(400, 20 + 55 * addnum));
 
+            // 스크롤 추가
             JScrollPane sp = new JScrollPane();
             sp.setViewportView(panel);
             sp.setBounds(0, 120, 422, 500);

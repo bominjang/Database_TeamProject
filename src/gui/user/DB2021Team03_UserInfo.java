@@ -54,6 +54,7 @@ public class DB2021Team03_UserInfo extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
+    //유저 페이지 상세 화면 구성을 위한 GUI 코드
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);
