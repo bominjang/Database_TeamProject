@@ -16,7 +16,7 @@ import models.Movies;
 
 @SuppressWarnings("serial")
 public class DB2021Team03_Movie extends DB2021Team03_CustomUI {
-
+    //영화에 대한 상세 정보를 볼 수 있는 클래스
     private JFrame frame = new JFrame();
 
     private JPanel container = new JPanel();
@@ -31,6 +31,7 @@ public class DB2021Team03_Movie extends DB2021Team03_CustomUI {
 
     private JPanel panel;
 
+    // 생성자 : 로그인 유지를 위한 사용자 nickname 그리고 Movie ID를 인자로 받는다.
     public DB2021Team03_Movie(String nickname, int MovieId) {
         this.nickname = nickname;
 
@@ -41,9 +42,11 @@ public class DB2021Team03_Movie extends DB2021Team03_CustomUI {
         in_panel.setLayout(null);
         in_panel.setBackground(Color.BLACK);
 
+        //MovieDao 객체를 이용해 MovieId에 해당하는 movie 객체를 가져온다.
         DB2021Team03_MovieDao mDao = DB2021Team03_MovieDao.getInstance();
         Movies movie = mDao.selectOne(MovieId);
 
+        //DirectorDao 객체를 생성한다.
         DB2021Team03_DirectorDao dDao = DB2021Team03_DirectorDao.getInstance();
 
 
@@ -95,6 +98,7 @@ public class DB2021Team03_Movie extends DB2021Team03_CustomUI {
             }
         });
 
+        //메인으로 이동하기
         btnMain.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

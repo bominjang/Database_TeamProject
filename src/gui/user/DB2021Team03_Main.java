@@ -9,32 +9,35 @@ import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class DB2021Team03_Main extends DB2021Team03_CustomUI {
-
+    //메인화면 클래스
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
-    private JButton btnMovie, btnTheater, btnReview, btnInfo, btnLogout;
+    private JButton btnMovie, btnSearch, btnReview, btnInfo, btnLogout;
 
     private String nickname;
 
+    //생성자 : 로그인 유지를 위한 사용자 nickname을 인자로 받는다.
     public DB2021Team03_Main(String nickname) {
         this.nickname = nickname;
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         init();
 
+        //영화 순위로 이동하는 버튼
         btnMovie.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new DB2021Team03_Ranking(nickname);
                 frame.dispose();
             }
         });
-
-        btnTheater.addActionListener(new ActionListener() {
+        //영화검색으로 이동하는 버튼
+        btnSearch.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new DB2021Team03_Search(nickname);
                 frame.dispose();
             }
         });
 
+        //Review 작성으로 이동하는 버튼
         btnReview.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new DB2021Team03_Review(nickname);
@@ -42,6 +45,7 @@ public class DB2021Team03_Main extends DB2021Team03_CustomUI {
             }
         });
 
+        //User 정보 화면으로 이동하는 버튼
         btnInfo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new DB2021Team03_UserInfo(nickname);
@@ -49,6 +53,7 @@ public class DB2021Team03_Main extends DB2021Team03_CustomUI {
             }
         });
 
+        //로그아웃 버튼
         btnLogout.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new DB2021Team03_Login();
@@ -70,7 +75,7 @@ public class DB2021Team03_Main extends DB2021Team03_CustomUI {
         custom.setPanel();
 
         btnMovie = custom.setBtnImg("btnMovie", "영화순위 보기", 33, 240);
-        btnTheater = custom.setBtnImg("btnTheater", "검색하기", 212, 240);
+        btnSearch = custom.setBtnImg("btnTheater", "검색하기", 212, 240);
         btnReview = custom.setBtnImg("btnReview", "리뷰 작성", 33, 400);
         btnInfo = custom.setBtnImg("btnInfo", "마이페이지", 212, 400);
         btnLogout = custom.setBtnWhite("btnLogout", "로그아웃", 35, 650);

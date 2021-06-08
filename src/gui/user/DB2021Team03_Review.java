@@ -14,7 +14,7 @@ import models.Combo;
 
 @SuppressWarnings("serial")
 public class DB2021Team03_Review extends DB2021Team03_CustomUI {
-
+    //Review 등록을 위한 클래스
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
     private JLabel lbResult, lbTitleNickname, lbTitleUser, lbTitleRating, lbReview, lbTitleMovie;
@@ -25,6 +25,7 @@ public class DB2021Team03_Review extends DB2021Team03_CustomUI {
 
     private String nickname;
 
+    //생성자 : 로그인 유지를 위한 nickname을 인자로 받는다.
     public DB2021Team03_Review(String nickname) {
         this.nickname = nickname;
 
@@ -92,6 +93,7 @@ public class DB2021Team03_Review extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
+    //리뷰 등록을 위한 GUI
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);
