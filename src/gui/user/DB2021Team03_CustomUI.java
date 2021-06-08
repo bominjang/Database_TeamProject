@@ -65,6 +65,8 @@ class DB2021Team03_CustomUI extends JFrame {
      * @param y y 위치
      * @param width 너비
      * @param height 높이
+     *
+     * @return JTextField
      */
     protected JTextField setTextField(String name, String placeholder, int x, int y, int width, int height) {
         JTextField txt = new JTextField();
@@ -114,11 +116,13 @@ class DB2021Team03_CustomUI extends JFrame {
      * PasswordField set
      *
      * @param name component 이름
-     * @param text 보이고자하는 String
+     * @param placeholder 보이고자하는 String
      * @param x x 위치
      * @param y y 위치
      * @param width 너비
      * @param height 높이
+     *
+     * @return JPasswordField
      */
     protected JPasswordField setPasswordField(String name, String placeholder, int x, int y, int width, int height) {
         JPasswordField txt = new JPasswordField();
@@ -173,6 +177,8 @@ class DB2021Team03_CustomUI extends JFrame {
      * @param y y 위치
      * @param width 너비
      * @param height 높이
+     *
+     * @return JButton
      */
     protected JButton setBtnGreen(String name, String text, int x, int y, int width, int height) {
 
@@ -244,8 +250,11 @@ class DB2021Team03_CustomUI extends JFrame {
      * @param text 보이고자하는 String
      * @param x x 위치
      * @param y y 위치
+     * @param alignment 정렬
      * @param width 너비
      * @param height 높이
+     *
+     * @return JButton
      */
     protected JButton setBtnGreen(String name, String text, int x, int y, String alignment, int width, int height) {
         class RoundedButton extends JButton {
@@ -317,6 +326,8 @@ class DB2021Team03_CustomUI extends JFrame {
      * @param text 보이고자하는 String
      * @param x x 위치
      * @param y y 위치
+     *
+     * @return JButton
      */
     protected JButton setBtnWhite(String name, String text, int x, int y) {
 
@@ -363,6 +374,8 @@ class DB2021Team03_CustomUI extends JFrame {
      * @param text 보이고자하는 String
      * @param x x 위치
      * @param y y 위치
+     *
+     * @return JButton
      */
     protected JButton  setBtnImg(String name, String text, int x, int y) {
         ImageIcon icon = new ImageIcon("img/icon5.png");
@@ -393,11 +406,14 @@ class DB2021Team03_CustomUI extends JFrame {
      * TextArea set
      *
      * @param name component 이름
-     * @param text 보이고자하는 String
+     * @param placeholder 보이고자하는 String
      * @param x x 위치
      * @param y y 위치
      * @param width 너비
      * @param height 높이
+     * @param isEditable 수정 여부
+     *
+     * @return JTextArea
      */
     protected JTextArea setTextArea(String name, String placeholder, int x, int y, int width, int height, boolean isEditable) {
         JTextArea txt = new JTextArea();
@@ -462,8 +478,13 @@ class DB2021Team03_CustomUI extends JFrame {
      * @param text 보이고자하는 String
      * @param x x 위치
      * @param y y 위치
+     * @param alignment 정렬
+     * @param fontSize 글씨 크기
      * @param width 너비
      * @param height 높이
+     * @param weight 글씨 두께
+     *
+     * @return JLabel
      */
     protected JLabel setLb(String name, String text, int x, int y, int width, int height, String alignment, int fontSize, String weight) {
         JLabel lb = new JLabel(text);
@@ -488,6 +509,12 @@ class DB2021Team03_CustomUI extends JFrame {
      * @param y y 위치
      * @param width 너비
      * @param height 높이
+     * @param alignment 정렬
+     * @param fontSize 글씨 크기
+     * @param weight 글씨 두께
+     * @param panel 붙일 패널
+     *
+     * @return JLabel
      */
     protected JLabel setLb(String name, String text, int x, int y, int width, int height, String alignment, int fontSize, String weight, JPanel panel) {
         JLabel lb = new JLabel(text);
@@ -509,7 +536,9 @@ class DB2021Team03_CustomUI extends JFrame {
      * @param text 보이고자하는 String
      * @param x x 위치
      * @param y y 위치
-     * @param panel 너비
+     * @param panel 붙일 패널
+     *
+     * @return JLabel
      */
     protected JLabel setLbBox(String name, String text, int x, int y, JPanel panel) {
         JLabel lb = new JLabel(text);
@@ -535,6 +564,8 @@ class DB2021Team03_CustomUI extends JFrame {
      * @param iconNum 어떤 이미지 icon을 보이고싶은지
      * @param x x 위치
      * @param y y 위치
+     *
+     * @return JLabel
      */
     protected JLabel setLbImg(String name, int iconNum, int x, int y) {
         JLabel lb = new JLabel();
@@ -570,6 +601,8 @@ class DB2021Team03_CustomUI extends JFrame {
      * @param text 보이고자하는 String
      * @param x x 위치
      * @param y y 위치
+     *
+     * @return JCheckBox
      */
     protected JCheckBox setCheckBox(String name, String text, int x, int y) {
         JCheckBox cb = new JCheckBox();
@@ -596,11 +629,13 @@ class DB2021Team03_CustomUI extends JFrame {
      * ComboBox set(검색 키워드 선택 시 사용)
      *
      * @param name component 이름
-     * @param combos set하고 싶은 Vector<Keywrod>
+     * @param combos set하고 싶은 Keyword Vector
      * @param x x 위치
      * @param y y 위치
      * @param width 너비
      * @param height 높이
+     *               
+     * @return 내가 설정한 콤보들이 담긴 콤보박스 리턴
      */
     protected JComboBox<Keyword> setKeyword(String name, Vector<Keyword> combos, int x, int y, int width, int height){
         JComboBox<Keyword> keyword = new JComboBox<>();
@@ -628,11 +663,13 @@ class DB2021Team03_CustomUI extends JFrame {
      * ComboBox set(영화 선택 시 사용)
      *
      * @param name component 이름
-     * @param combos set하고 싶은 Vector<Combo>
+     * @param combos set하고 싶은 Combo Vector
      * @param x x 위치
      * @param y y 위치
      * @param width 너비
      * @param height 높이
+     *
+     * @return JComboBox
      */
     protected JComboBox<Combo> setCombo(String name, Vector<Combo> combos, int x, int y, int width, int height){
         JComboBox<Combo> combo = new JComboBox<>();

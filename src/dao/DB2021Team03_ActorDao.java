@@ -117,7 +117,7 @@ public class DB2021Team03_ActorDao {
      * movie ID를 받아서 해당 movie에 출연한 모든 Actor 객체를 반환해주는 메소드
      *
      * @param movieId 찾고자하는 영화의 pk
-     * @return 해당 영화에 출연하는 배우들을 성공적으로 찾을 시 Vector<Actors> 반환, 그 외엔 null을 반환합니다.
+     * @return 해당 영화에 출연하는 배우들을 성공적으로 찾을 시 Actors Vector 반환, 그 외엔 null을 반환합니다.
      */
     public Vector<Actors> selectAll(int movieId) {
         Vector<Actors> actors = new Vector<Actors>();
@@ -157,7 +157,7 @@ public class DB2021Team03_ActorDao {
      * Actor의 Name을 받아서 해당 Actor가 출연한 모든 Movie 객체를 반환해주는 메소드
      *
      * @param name 배우의 이름
-     * @return 해당 배우가 출연한 모든 영화들을 성공적으로 찾을 시 Vector<String> 반환, 그 외엔 null을 반환합니다.
+     * @return 해당 배우가 출연한 모든 영화들을 성공적으로 찾을 시 String Vector반환, 그 외엔 null을 반환합니다.
      */
     public Vector<String> selectMovies(String name) {
         Vector<String> movies = new Vector<String>();
@@ -192,7 +192,7 @@ public class DB2021Team03_ActorDao {
      *  Actor의 ID를 받아서 해당 Actor가 어떤 영화로 어떠한 상들을 받았는지 그 쌍을 반환해주는 메소드
      *
      * @param actorId 배우의 pk
-     * @return 해당 배우가 어떤 영화에 출연해서 상을 받았는지 모든 쌍을 성공적으로 찾을 시 ap<String, Vector<String>> 반환, 그 외엔 null을 반환합니다.
+     * @return 해당 배우가 어떤 영화에 출연해서 상을 받았는지 모든 쌍을 성공적으로 찾을 시 Map(String, String Vector) 반환, 그 외엔 null을 반환합니다.
      */
     public Map<String, Vector<String>> selectPrizes(int actorId) {
         Map<String, Vector<String>> MP = new HashMap<String, Vector<String>>();

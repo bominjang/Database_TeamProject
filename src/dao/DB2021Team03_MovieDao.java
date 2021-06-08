@@ -86,7 +86,7 @@ public class DB2021Team03_MovieDao {
     /**
      * Movie 평점 순으로 Top10을 선택하여 반환해주는 메소드
      *
-     * @return 쿼리 성공 시 10개의 영화 객체가 담긴 Vector<Movies> 반환, 그 외엔 null을 반환합니다.
+     * @return 쿼리 성공 시 10개의 영화 객체가 담긴 Movies Vector 반환, 그 외엔 null을 반환합니다.
      */
     public Vector<Movies> selectRanking()
     {
