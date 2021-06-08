@@ -13,11 +13,13 @@ import dao.*;
 import models.Keyword;
 import models.Movies;
 
+/**
+ * 검색 결과 화면을 위한 클래스
+ */
 @SuppressWarnings("serial")
 public class DB2021Team03_SearchResult extends DB2021Team03_CustomUI {
-    //검색 결과 화면을 위한 클래스
-    private JFrame frame = new JFrame();
 
+    private JFrame frame = new JFrame();
     private JPanel container = new JPanel();
     private JPanel backgroundPanel;
     private JLabel lbIcon, lbTitle, lbTitleMovie,lbTitleCountry, lbTitlePlot, lbTItleRating, lbTitleGenreAge, lbTitleRunOpenTime, lbTitleDirector, lbTitleActor;
@@ -27,14 +29,20 @@ public class DB2021Team03_SearchResult extends DB2021Team03_CustomUI {
     private JComboBox<Keyword> comboKeyword;
     private JButton btnMain, btnBack, btnSearch;
     private JLabel lbBox[];
+
     private Vector<Movies> rMovies;
     private DB2021Team03_SearchDao sDao;
     private int movieId;
-
     private String nickname;
     private int addnum;
 
-    //생성자 : 로그인 유지를 위한 nickname과 검색을 위한 keyword, text를 인자로 입력받는다.
+    /**
+     * 검색 결과 화면 생성자
+     *
+     * @param nickname 로그인 유지를 위한 사용자 nickname
+     * @param keyword 검색키워드
+     * @param text 검색어
+     */
     public DB2021Team03_SearchResult(String nickname, String keyword, String text) {
         this.nickname = nickname;
 
@@ -50,10 +58,10 @@ public class DB2021Team03_SearchResult extends DB2021Team03_CustomUI {
 
         init();
 
-        // 메인 페이지로 돌아가는 버튼
+        // 메인 화면로 돌아가는 버튼
         btnMain.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int returnCd = JOptionPane.showConfirmDialog(frame, "메인 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                int returnCd = JOptionPane.showConfirmDialog(frame, "메인 화면로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if(returnCd == JOptionPane.YES_OPTION) {
                     new DB2021Team03_Main(nickname);
                     frame.dispose();
@@ -61,10 +69,10 @@ public class DB2021Team03_SearchResult extends DB2021Team03_CustomUI {
             }
         });
 
-        // 이전 페이지로 돌아가는 버튼
+        // 이전 화면로 돌아가는 버튼
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int returnCd = JOptionPane.showConfirmDialog(frame, "이전 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                int returnCd = JOptionPane.showConfirmDialog(frame, "이전 화면로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if(returnCd == JOptionPane.YES_OPTION) {
                     new DB2021Team03_Search(nickname);
                     frame.dispose();
@@ -85,7 +93,7 @@ public class DB2021Team03_SearchResult extends DB2021Team03_CustomUI {
                 DB2021Team03_SearchDao sDao = DB2021Team03_SearchDao.getInstance();
                 boolean check = sDao.dataExist(key, text);
 
-                //존재한다면 결과페이지 호출,존재하지 않는다면 경고문 팝업
+                //존재한다면 결과화면 호출,존재하지 않는다면 경고문 팝업
                 if(check) {
                     new DB2021Team03_SearchResult(nickname, key, text);
                     frame.dispose();
@@ -101,7 +109,10 @@ public class DB2021Team03_SearchResult extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
-    //검색 결과 화면 구성을 위한 GUI 코드
+
+    /**
+     * 검색 결과 화면 구성을 위한 GUI 코드
+     */
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);
@@ -164,7 +175,7 @@ public class DB2021Team03_SearchResult extends DB2021Team03_CustomUI {
                 public void mouseEntered(MouseEvent e) {
                 }
 
-                //영화 제목을 클릭하면 영화 상세페이지로 이동.
+                //영화 제목을 클릭하면 영화 상세화면로 이동.
                 public void mouseClicked(MouseEvent e) {
                     JLabel label = (JLabel) e.getSource();
                     for (Movies rMovie : rMovies) {

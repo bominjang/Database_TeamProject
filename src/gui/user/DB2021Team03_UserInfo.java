@@ -15,9 +15,12 @@ import javax.swing.JPanel;
 import dao.DB2021Team03_DBConnection;
 import models.Users;
 
+/**
+ * 유저 정보를 확인하기 위한 클래스
+ */
 @SuppressWarnings("serial")
 public class DB2021Team03_UserInfo extends DB2021Team03_CustomUI {
-    //유저 정보를 확인하기 위한 클래스
+
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
     private JButton btnMain, btnReviews;
@@ -25,7 +28,11 @@ public class DB2021Team03_UserInfo extends DB2021Team03_CustomUI {
 
     private String nickname;
 
-    //생성자 : 해당 유저의 nickname을 인자로 받음
+    /**
+     * 해당 유저의 마이페이지 화면 생성자
+     *
+     * @param nickname 로그인 유지를 위한 사용자 nickname
+     */
     public DB2021Team03_UserInfo(String nickname) {
         this.nickname = nickname;
 
@@ -54,7 +61,9 @@ public class DB2021Team03_UserInfo extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
-    //유저 페이지 상세 화면 구성을 위한 GUI 코드
+    /**
+     * 유저 화면 상세 화면 구성을 위한 GUI 코드
+     */
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);

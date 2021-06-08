@@ -16,9 +16,12 @@ import dao.DB2021Team03_MovieDao;
 import models.Actors;
 import models.Movies;
 
+/**
+ * 영화에 대한 상세 정보를 볼 수 있는 클래스
+ */
 @SuppressWarnings("serial")
 public class DB2021Team03_Movie extends DB2021Team03_CustomUI {
-    //영화에 대한 상세 정보를 볼 수 있는 클래스
+
     private JFrame frame = new JFrame();
 
     private JPanel container = new JPanel();
@@ -33,7 +36,12 @@ public class DB2021Team03_Movie extends DB2021Team03_CustomUI {
     private Vector<Actors> actors;
     private JPanel panel;
 
-    // 생성자 : 로그인 유지를 위한 사용자 nickname 그리고 Movie ID를 인자로 받는다.
+    /**
+     * 영화 상세 정보 화면 생성자
+     *
+     * @param nickname 로그인 유지를 위한 사용자 nickname
+     * @param MovieId 영화 pk
+     */
     public DB2021Team03_Movie(String nickname, int MovieId) {
         this.nickname = nickname;
 
@@ -112,7 +120,7 @@ public class DB2021Team03_Movie extends DB2021Team03_CustomUI {
             }
         });
 
-        //감독상세페이지 이동
+        //감독상세화면 이동
         lbDirector.addMouseListener(new MouseListener() {
             public void mouseReleased(MouseEvent e) {
             }
@@ -143,7 +151,7 @@ public class DB2021Team03_Movie extends DB2021Team03_CustomUI {
             }
         });
 
-        //배우 상세페이지 이동
+        //배우 상세화면 이동
         for(JLabel lbActor:lbActors) {
             lbActor.addMouseListener(new MouseListener() {
                 public void mouseReleased(MouseEvent e) {
@@ -174,10 +182,10 @@ public class DB2021Team03_Movie extends DB2021Team03_CustomUI {
             });
         }
 
-        // 이전 페이지로 돌아가도록
+        // 이전 화면로 돌아가도록
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int returnCd = JOptionPane.showConfirmDialog(frame, "이전 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                int returnCd = JOptionPane.showConfirmDialog(frame, "이전 화면로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if(returnCd == JOptionPane.YES_OPTION) {
                     new DB2021Team03_Ranking(nickname);
                     frame.dispose();
@@ -191,7 +199,9 @@ public class DB2021Team03_Movie extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
-    // 영화 상세 화면 구성을 위한 GUI
+    /**
+     * 영화 상세 화면 구성을 위한 GUI
+     */
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);
@@ -243,7 +253,7 @@ public class DB2021Team03_Movie extends DB2021Team03_CustomUI {
         lbTitleActor = custom.setLb("lbTitleDetail", "출연배우", 230, 450, 150, 20, "left", 17, "bold");
         panel.add(lbTitleActor);
 
-        // 출연 배우 출력하고 클릭하면 상세페이지로 이동하도록
+        // 출연 배우 출력하고 클릭하면 상세화면로 이동하도록
         if(actors == null) {
             custom.setLb("lbActor", "없음", 319, 360, 200, 20, "left", 17, "plain");
         }

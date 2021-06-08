@@ -17,9 +17,12 @@ import javax.swing.JTextField;
 
 import dao.DB2021Team03_DBConnection;
 
+
+/**
+ * 회원가입을 위한 클래스
+ */
 @SuppressWarnings("serial")
 public class DB2021Team03_Join extends DB2021Team03_CustomUI {
-    // 회원가입을 위한 클래스
 
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
@@ -34,6 +37,9 @@ public class DB2021Team03_Join extends DB2021Team03_CustomUI {
     private static final String SQL = "INSERT INTO DB2021_User (ID, NICKNAME, PASSWORD, NAME, BIRTH, PHONE, JOIN_TIME, PRIVACY_FG, ADMIN_FG, DELETE_FG) VALUES (0, ?, ?, ?, ?, ?, now(), ?,'N','N')";
     private static final String SQL2 = "SELECT * FROM DB2021_User WHERE NICKNAME = ?";
 
+    /**
+     * 회원정보 화면 생성자
+     */
     public DB2021Team03_Join() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         init();
@@ -211,7 +217,9 @@ public class DB2021Team03_Join extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
-    // 회원가입 화면 구성을 위한 GUI 코드
+    /**
+     * 회원가입 화면 구성을 위한 GUI 코드
+     */
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);
