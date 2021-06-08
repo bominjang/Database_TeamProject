@@ -204,8 +204,8 @@ public class DB2021Team03_Movie extends DB2021Team03_CustomUI {
         panel.setBackground(Color.WHITE);
 
 
-        lbIcon = custom.setLbImg("lbIcon", 0, 350, 130);
-        lbMovie = custom.setLb("lbTitle", "영화제목", 350, 150, 100, 185, "center", 20, "bold");
+        lbIcon = custom.setLbImg("lbIcon", 0, 355, 130);
+        lbMovie = custom.setLb("lbTitle", "영화제목", 0, 150, 800, 185, "center", 20, "bold");
 
         panel.add(lbIcon);
         panel.add(lbMovie);
