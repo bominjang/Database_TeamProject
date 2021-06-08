@@ -4,9 +4,6 @@ import java.sql.Date;
 
 /**
  * User(유저, 사용자) 모델 클래스
- *
- * @author 김서영
- *
  */
 public class Users {
 

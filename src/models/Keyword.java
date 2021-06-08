@@ -2,9 +2,6 @@ package models;
 
 /**
  * 영화 검색 화면의 ComboBox 구현을 위한 Keyword 모델
- *
- * @author 김서영
- *
  */
 public class Keyword {
     /**

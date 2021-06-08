@@ -2,9 +2,6 @@ package models;
 
 /**
  * 리뷰 작성 화면의 ComboBox 구현을 위한 Combo 모델
- *
- * @author 김서영
- *
  */
 public class Combo {
     /**

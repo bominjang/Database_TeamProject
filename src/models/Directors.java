@@ -4,9 +4,6 @@ import java.sql.Date;
 
 /**
  * Director(감독) 모델 클래스
- *
- * @author 김서영
- *
  */
 public class Directors {
     /**

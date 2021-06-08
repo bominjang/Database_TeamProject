@@ -7,21 +7,47 @@ import java.util.Vector;
 
 import models.Combo;
 
-// 콤보박스 구현을 위한 Class
+/**
+ * 콤보박스 구현을 위한 Class
+ */
 public class DB2021Team03_ComboDao {
+
+    /**
+     * ComboDao 객체 생성자
+     */
     private DB2021Team03_ComboDao(){}
+
     private static DB2021Team03_ComboDao instance = new DB2021Team03_ComboDao();
 
+    /**
+     * ComboDao 객체를 생성해주는 함수
+     * @return DB2021_Team03_ComboDao 객체
+     */
     public static DB2021Team03_ComboDao getInstance() {
         return instance;
     }
 
+    /**
+     * DB connection을 위한 필드
+     */
     private static Connection conn;
+
+    /**
+     * Query를 매개변수를 이용해 동적으로 작성하기 위한 필드
+     */
     private static PreparedStatement pstmt;
+    /**
+     * Query의 결과값을 받을 필드
+     */
     private static ResultSet rs;
 
-    // Review 작성 시 어떤 영화에 대한 리뷰를 작성할건지 선택하는 콤보박스에 쓰이는 메소드
-    // Movie 테이블에 있는 모든 영화 title을 반환한다.
+
+    /**
+     * Review 작성 시 어떤 영화에 대한 리뷰를 작성할건지 선택하는 콤보박스에 쓰이는 메소드
+     *
+     * @param comboContent "movie" 고정
+     * @return Movie 테이블에 있는 모든 영화 title로 만든 Vector<Combo>를 반환한다. 그 외엔 null을 반환합니다.
+     */
     public Vector<Combo> setCombo(String comboContent) {
         Vector<Combo> combos = new Vector<>();
         String sql;

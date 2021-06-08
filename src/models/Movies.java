@@ -4,9 +4,6 @@ import java.sql.Date;
 
 /**
  * Movie(영화) 모델 클래스
- *
- * @author 김서영
- *
  */
 public class Movies {
     /**
