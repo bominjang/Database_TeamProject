@@ -10,6 +10,7 @@ import models.Reviews;
 
 @SuppressWarnings("serial")
 public class DB2021Team03_Update extends DB2021Team03_CustomUI {
+    //리뷰 수정을 위한 클래스
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
     private JLabel lbIcon, lbTitle;
@@ -21,6 +22,7 @@ public class DB2021Team03_Update extends DB2021Team03_CustomUI {
     private String nickname;
     private int reviewId;
 
+    //생성자 : 로그인 유지를 위한 nickname과 수정을 위한 reviewId, mv 를 인자로 받음.
     public DB2021Team03_Update(String nickname, int reviewId, String mv) {
         this.nickname = nickname;
         this.reviewId = reviewId;
@@ -28,6 +30,7 @@ public class DB2021Team03_Update extends DB2021Team03_CustomUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         init();
 
+        //ReviewDao 객체를 이용하여 reviewId에 해당하는 리뷰 내용을 불러온다.
         DB2021Team03_ReviewDao rDao = DB2021Team03_ReviewDao.getInstance();
         Reviews review = rDao.reviewDetail(reviewId);
         System.out.println(review.getMovie());
@@ -37,13 +40,14 @@ public class DB2021Team03_Update extends DB2021Team03_CustomUI {
         lbRating.setText(Float.toString(review.getRating()));
         lbDetail.setText(review.getDetail());
 
+        //이전으로 이동하는 버튼
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new DB2021Team03_MyReviews(nickname);
                 frame.dispose();
             }
         });
-
+        //수정을 완료하는 버튼
         btnUpdate.addActionListener(new ActionListener() {
             int result=0;
             public void actionPerformed(ActionEvent e) {
@@ -68,6 +72,7 @@ public class DB2021Team03_Update extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
+    // 리뷰 수정 화면 구성을 위한 GUI 코드
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);

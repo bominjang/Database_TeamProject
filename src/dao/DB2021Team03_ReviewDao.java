@@ -124,7 +124,7 @@ public class DB2021Team03_ReviewDao {
         return null;
     }
 
-    // Review ID를 해당 리뷰 객체를 반환해주는 메소드
+    // Review ID에 해당하는 리뷰 객체를 반환해주는 메소드
     public Reviews reviewDetail(int reviewId) {
         sql = "SELECT * FROM DB2021_Review WHERE id = ?";
 

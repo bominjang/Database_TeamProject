@@ -18,7 +18,7 @@ import models.Reviews;
 
 @SuppressWarnings("serial")
 public class DB2021Team03_MyReviews extends DB2021Team03_CustomUI {
-
+    //내가 작성한 리뷰들을 확인할 수 있는 클래스
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
     private JLabel lbTitle,lbBox[], lb, lbReview[], lbTitleRating[], lbTitleMovie[], lbCreateTime[];
@@ -31,12 +31,13 @@ public class DB2021Team03_MyReviews extends DB2021Team03_CustomUI {
     private String nickname;
     private int[] reviewId;
 
+    //생성자 : user정보를 얻기 위해 nickname을 인자로 받음
     public DB2021Team03_MyReviews(String nickname) {
         this.nickname = nickname;
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         init();
-
+        //메인으로 이동하는 버
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new DB2021Team03_Main(nickname);
@@ -65,9 +66,10 @@ public class DB2021Team03_MyReviews extends DB2021Team03_CustomUI {
             pstmt.setString(1, nickname);
             rs = pstmt.executeQuery();
 
+            // 유저가 쓴 리뷰 저장
             while (rs.next()) {
                 Reviews rv = new Reviews();
-                rv.setMovie(rs.getString("MOVIE")); // 영화제목
+                rv.setMovie(rs.getString("MOVIE"));
                 rv.setCreate_time(rs.getString("CREATE_TIME"));
                 rv.setRating(rs.getFloat("RATING"));
                 rv.setDetail(rs.getString("DETAIL"));
@@ -91,6 +93,7 @@ public class DB2021Team03_MyReviews extends DB2021Team03_CustomUI {
             panel.setLayout(null);
             panel.setBackground(Color.WHITE);
 
+            //리뷰 출력
             for (Reviews r : rvs) {
                 int moveY = 50 * i;
                 i++;
@@ -114,6 +117,7 @@ public class DB2021Team03_MyReviews extends DB2021Team03_CustomUI {
 
                 DB2021Team03_ReviewDao reviewDao = DB2021Team03_ReviewDao.getInstance();
 
+                //리뷰를 삭제하는 기능
                 btnDelete[i - 1].addMouseListener(new MouseListener() {
                     public void mouseReleased(MouseEvent e) {}
                     public void mousePressed(MouseEvent e) {}
@@ -133,7 +137,6 @@ public class DB2021Team03_MyReviews extends DB2021Team03_CustomUI {
                             }
                         }
 
-                        //사용자가 선택한 리뷰를 삭제하는 기능.
                         result = reviewDao.delete(id, mv);
                         if (result == -1) {
                             JOptionPane.showMessageDialog(frame, "ER21:데이터를 삭제할 수 없습니다.", "오류", JOptionPane.ERROR_MESSAGE);
@@ -148,6 +151,7 @@ public class DB2021Team03_MyReviews extends DB2021Team03_CustomUI {
                     }
                 });
 
+                //리뷰를 수정하는 기능
                 btnUpdate[i - 1].addMouseListener(new MouseListener() {
                     public void mouseReleased(MouseEvent e) {}
                     public void mousePressed(MouseEvent e) {}

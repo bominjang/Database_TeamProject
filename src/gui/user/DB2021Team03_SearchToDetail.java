@@ -16,7 +16,7 @@ import models.Movies;
 
 @SuppressWarnings("serial")
 public class DB2021Team03_SearchToDetail extends DB2021Team03_CustomUI {
-
+    //영화 검색에서 영화를 선택하면 나오는 화면
     private JFrame frame = new JFrame();
 
     private JPanel container = new JPanel();
@@ -31,6 +31,7 @@ public class DB2021Team03_SearchToDetail extends DB2021Team03_CustomUI {
 
     private JPanel panel;
 
+    // 생성자 : 로그인 유지를 위한 nickname과 영화 상세페이지를 위한 movieId를 인자로 받음.
     public DB2021Team03_SearchToDetail(String nickname, int MovieId) {
         this.nickname = nickname;
 

@@ -15,7 +15,7 @@ import models.Movies;
 
 @SuppressWarnings("serial")
 public class DB2021Team03_SearchResult extends DB2021Team03_CustomUI {
-
+    //검색 결과 화면을 위한 클래스
     private JFrame frame = new JFrame();
 
     private JPanel container = new JPanel();
@@ -34,13 +34,14 @@ public class DB2021Team03_SearchResult extends DB2021Team03_CustomUI {
     private String nickname;
     private int addnum;
 
+    //생성자 : 로그인 유지를 위한 nickname과 검색을 위한 keyword, text를 인자로 입력받는다.
     public DB2021Team03_SearchResult(String nickname, String keyword, String text) {
         this.nickname = nickname;
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        //SearchDao 객체를 이용해 keyword, text 검색.
         sDao = DB2021Team03_SearchDao.getInstance();
-        //사용자가 입력한 값 검색
         rMovies = sDao.search(keyword, text);
 
         lbBox = new JLabel[rMovies.size()];
@@ -49,7 +50,7 @@ public class DB2021Team03_SearchResult extends DB2021Team03_CustomUI {
 
         init();
 
-        // 메인 페이지로 돌아가도록
+        // 메인 페이지로 돌아가는 버튼
         btnMain.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int returnCd = JOptionPane.showConfirmDialog(frame, "메인 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
@@ -60,7 +61,7 @@ public class DB2021Team03_SearchResult extends DB2021Team03_CustomUI {
             }
         });
 
-        // 이전 페이지로 돌아가도록
+        // 이전 페이지로 돌아가는 버튼
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int returnCd = JOptionPane.showConfirmDialog(frame, "이전 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
@@ -71,16 +72,20 @@ public class DB2021Team03_SearchResult extends DB2021Team03_CustomUI {
             }
         });
 
+        //검색 버튼
         btnSearch.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                //사용자가 선택한 키워드를 key 변수에 저장
                 Keyword movie = (Keyword) comboKeyword.getSelectedItem();
-
                 String key = movie.getKey();
+                //사용자가 입력한 검색어를 text 변수에 저장
                 String text = searchbar.getText();
 
+                //getInstance객체를 이용하여 해당 검색어가 db에 존재하는지 확인
                 DB2021Team03_SearchDao sDao = DB2021Team03_SearchDao.getInstance();
                 boolean check = sDao.dataExist(key, text);
 
+                //존재한다면 결과페이지 호출,존재하지 않는다면 경고문 팝업
                 if(check) {
                     new DB2021Team03_SearchResult(nickname, key, text);
                     frame.dispose();
@@ -96,6 +101,7 @@ public class DB2021Team03_SearchResult extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
+    //검색 결과 화면 구성을 위한 GUI 코드
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);
@@ -133,6 +139,7 @@ public class DB2021Team03_SearchResult extends DB2021Team03_CustomUI {
         lbTitle = custom.setLb("lbTitle", "검색 결과", 310, 300, 180, 50, "center", 35, "bold");
         panel.add(lbTitle);
 
+        //검색한 영화들을 화면에 출력
         for (int j = 0; j < rMovies.size(); j++) {
             int moveY = 55;
             addnum++;
@@ -157,6 +164,7 @@ public class DB2021Team03_SearchResult extends DB2021Team03_CustomUI {
                 public void mouseEntered(MouseEvent e) {
                 }
 
+                //영화 제목을 클릭하면 영화 상세페이지로 이동.
                 public void mouseClicked(MouseEvent e) {
                     JLabel label = (JLabel) e.getSource();
                     for (Movies rMovie : rMovies) {

@@ -12,7 +12,7 @@ import models.Keyword;
 
 @SuppressWarnings("serial")
 public class DB2021Team03_Search extends DB2021Team03_CustomUI {
-
+    //검색 기능을 위한 클래스
     private JFrame frame = new JFrame();
 
     private JPanel container = new JPanel();
@@ -32,7 +32,7 @@ public class DB2021Team03_Search extends DB2021Team03_CustomUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         init();
 
-        // 메인 페이지로 돌아가도록
+        // 메인 페이지로 돌아가는 버튼
         btnMain.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int returnCd = JOptionPane.showConfirmDialog(frame, "메인 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
@@ -43,7 +43,7 @@ public class DB2021Team03_Search extends DB2021Team03_CustomUI {
             }
         });
 
-        // 이전 페이지로 돌아가도록
+        // 이전 페이지로 돌아가는 버튼
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int returnCd = JOptionPane.showConfirmDialog(frame, "이전 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
@@ -83,6 +83,7 @@ public class DB2021Team03_Search extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
+    //검색 화면 구성을 위한 GUI
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);

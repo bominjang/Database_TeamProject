@@ -13,7 +13,7 @@ import models.Reviews;
 
 @SuppressWarnings("serial")
 public class DB2021Team03_Result extends DB2021Team03_CustomUI {
-
+    //리뷰를 작성, 수정하고 난 후 결과를 보여주기 위한 클래스
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
     private JLabel lbIcon, lbTitle;
@@ -23,12 +23,14 @@ public class DB2021Team03_Result extends DB2021Team03_CustomUI {
     private String nickname;
     private int reviewId;
 
+    //생성자 : 로그인 유지를 위한 사용자 nickname을 인자로 받음
     public DB2021Team03_Result(String nickname) {
         this.nickname = nickname;
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         init();
 
+        //ReviewDao 객체를 통해 해당 user가 작성한 모든 review를 불러옴,
         DB2021Team03_ReviewDao rDao = DB2021Team03_ReviewDao.getInstance();
         Reviews review = rDao.reviewDetail(nickname);
         System.out.println(review.getMovie());
@@ -39,6 +41,7 @@ public class DB2021Team03_Result extends DB2021Team03_CustomUI {
         lbRating.setText(Float.toString(review.getRating()));
         lbDetail.setText(review.getDetail());
 
+        //메인화면으로 이동하는 버튼
         btnMain.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -46,7 +49,7 @@ public class DB2021Team03_Result extends DB2021Team03_CustomUI {
                 frame.dispose();
             }
         });
-
+        //내가 쓴 리뷰로 이동하는 버튼
         btnReviews.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new DB2021Team03_MyReviews(nickname);
@@ -59,6 +62,7 @@ public class DB2021Team03_Result extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
+    //생성자 : 로그인 유지를 위한 사용자 nickname 그리고 review Id를 인자로 받음
     public DB2021Team03_Result(String nickname, int reviewId) {
         this.nickname = nickname;
         this.reviewId = reviewId;
@@ -66,13 +70,12 @@ public class DB2021Team03_Result extends DB2021Team03_CustomUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         init();
 
+        //리뷰를 수정하고나서의 결과를 보여주는 기능
         DB2021Team03_ReviewDao rDao = DB2021Team03_ReviewDao.getInstance();
-        Reviews review = rDao.reviewDetail(nickname);
+        Reviews review = rDao.reviewDetail(reviewId);
         System.out.println(review.getMovie());
         lbMovie.setText(review.getMovie());
 
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        lbDate.setText(dateFormat.format(review.getCreate_time()));
         lbDate.setText(review.getCreate_time());
         lbRating.setText(Float.toString(review.getRating()));
         lbDetail.setText(review.getDetail());
@@ -84,6 +87,7 @@ public class DB2021Team03_Result extends DB2021Team03_CustomUI {
             }
         });
 
+        //내가 쓴 리뷰들로 이동
         btnReviews.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new DB2021Team03_MyReviews(nickname);
@@ -96,6 +100,7 @@ public class DB2021Team03_Result extends DB2021Team03_CustomUI {
         frame.setVisible(true);
     }
 
+    //리뷰 등록 결과 상세화면을 위한 GUI코드
     private void init() {
         backgroundPanel = new JPanel();
         frame.setContentPane(backgroundPanel);

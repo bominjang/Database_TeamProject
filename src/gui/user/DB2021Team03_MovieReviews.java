@@ -15,19 +15,20 @@ import models.Reviews;
 
 @SuppressWarnings("serial")
 public class DB2021Team03_MovieReviews extends DB2021Team03_CustomUI {
-
+    //특정 영화에 등록된 리뷰들을 볼 수 있는 클래스
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
-    private JLabel lbTitle, lbResult, lb,lbNickName[], lbCreateTime[],lbRating[], lbReview[];
-    private JTextField txtdetail, txtrating;
-    private JButton btnReview, btnBack;
+    private JLabel lbTitle,lbNickName[], lbCreateTime[],lbRating[], lbReview[];
+    private JButton btnBack;
 
+    //movie의 review들을 모두 선택.
     private final String SQL = "SELECT * FROM DB2021_Review WHERE Movie = (SELECT title FROM DB2021_MOVIE AS M WHERE M.ID = ?)";
     private ArrayList<Reviews> rvs = new ArrayList<Reviews>();
 
     private String nickname;
     private int movieId;
 
+    // 생성자 : 생성자: 로그인 유지를 위한 사용자 nickname 그리고 movie의 ID를 인자로 받는다.
     public DB2021Team03_MovieReviews(String nickname, int MovieId) {
         this.nickname = nickname;
         this.movieId = MovieId;
@@ -35,6 +36,7 @@ public class DB2021Team03_MovieReviews extends DB2021Team03_CustomUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         init();
 
+        //이전으로 이동
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new DB2021Team03_Main(nickname);
@@ -64,9 +66,10 @@ public class DB2021Team03_MovieReviews extends DB2021Team03_CustomUI {
             pstmt.setInt(1, movieId);
             rs = pstmt.executeQuery();
 
+            //리뷰들을 저장함
             while (rs.next()) {
                 Reviews rv = new Reviews();
-                rv.setNickname(rs.getString("NICKNAME")); // 영화제목
+                rv.setNickname(rs.getString("NICKNAME"));
                 rv.setCreate_time(rs.getString("CREATE_TIME"));
                 rv.setRating(rs.getFloat("RATING"));
                 rv.setDetail(rs.getString("DETAIL"));
@@ -85,6 +88,7 @@ public class DB2021Team03_MovieReviews extends DB2021Team03_CustomUI {
             panel.setLayout(null);
             panel.setBackground(Color.WHITE);
 
+            //리뷰 출력
             for (Reviews r : rvs) {
                 int moveY = 50 * i;
                 i++;

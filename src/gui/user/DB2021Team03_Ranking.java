@@ -21,7 +21,7 @@ import models.Movies;
 
 @SuppressWarnings("serial")
 public class DB2021Team03_Ranking extends DB2021Team03_CustomUI {
-
+    //영화의 순위를 확인할 수 있는 클래스
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
     private JLabel lbBox[], lbMovieName[], lbRating[], lbTitle, lbLine;
@@ -34,10 +34,12 @@ public class DB2021Team03_Ranking extends DB2021Team03_CustomUI {
     private DB2021Team03_MovieDao mDao;
     private Vector<Movies> rMovies;
 
+    //생성자: 로그인 유지를 위한 사용자 nickname을 인자로 받음.
     public DB2021Team03_Ranking(String nickname) {
         this.nickname = nickname;
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        //MovieDao 객체를 이용해 영화 순위를 담은 객체 가져옴.
         mDao = DB2021Team03_MovieDao.getInstance();
         rMovies = mDao.selectRanking();
 
@@ -47,6 +49,7 @@ public class DB2021Team03_Ranking extends DB2021Team03_CustomUI {
 
         init();
 
+        //이전화면으로
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new DB2021Team03_Main(nickname);
@@ -85,6 +88,7 @@ public class DB2021Team03_Ranking extends DB2021Team03_CustomUI {
                 panel.add(lbMovieName[j]);
                 panel.add(lbRating[j]);
 
+                //영화 이름을 클릭하면, 영화 상세페이지로 이동하도록 함.
                 lbMovieName[j].addMouseListener(new MouseListener() {
                     public void mouseReleased(MouseEvent e) {
                     }

@@ -17,7 +17,7 @@ import models.Users;
 
 @SuppressWarnings("serial")
 public class DB2021Team03_UserInfo extends DB2021Team03_CustomUI {
-
+    //유저 정보를 확인하기 위한 클래스
     private JFrame frame = new JFrame();
     private JPanel backgroundPanel;
     private JButton btnMain, btnReviews;
@@ -25,6 +25,7 @@ public class DB2021Team03_UserInfo extends DB2021Team03_CustomUI {
 
     private String nickname;
 
+    //생성자 : 해당 유저의 nickname을 인자로 받음
     public DB2021Team03_UserInfo(String nickname) {
         this.nickname = nickname;
 
@@ -33,13 +34,14 @@ public class DB2021Team03_UserInfo extends DB2021Team03_CustomUI {
 
         setUserInfo(nickname);
 
+        //메인화면으로 이동하는 버튼
         btnMain.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new DB2021Team03_Main(nickname);
                 frame.dispose();
             }
         });
-
+        //내가 쓴 리뷰들로 이동하는 버튼
         btnReviews.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new DB2021Team03_MyReviews(nickname);
@@ -74,6 +76,7 @@ public class DB2021Team03_UserInfo extends DB2021Team03_CustomUI {
         btnMain = custom.setBtnGreen("btnMain", "메인으로", 35, 605, 350 , 40);
     }
 
+    //유저정보를 출력하는 메서드
     public Users setUserInfo(String nickname) {
         final String SQL = "SELECT BIRTH, PHONE FROM DB2021_User WHERE NICKNAME = ?";
 
@@ -82,6 +85,7 @@ public class DB2021Team03_UserInfo extends DB2021Team03_CustomUI {
         ResultSet rs;
         conn = DB2021Team03_DBConnection.getConnection();
 
+        //nickname, 생일, 핸드폰 번호를 출력
         Users user = new Users();
         try {
             pstmt = conn.prepareStatement(SQL);
@@ -106,6 +110,7 @@ public class DB2021Team03_UserInfo extends DB2021Team03_CustomUI {
         return null;
     }
 
+    //전화번호를 파싱하는 메서드
     private String formatTel(String tel) {
         if(tel.length() == 10) {
             String tel1 = tel.substring(0, 3);
