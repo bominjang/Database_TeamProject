@@ -19,7 +19,7 @@ public class DB2021Team03_Actor extends DB2021Team03_CustomUI {
     private JPanel backgroundPanel;
     private JLabel lbIcon, lbName, lbTitleCountry, lbTitleBirth, lbTitleMovies, lbTitlePrize;
     private JLabel lbCountry, lbBirth, lbMovies[], lbPrizes[];
-    private JButton btnMain, btnBack;
+    private JButton btnMain, btnRanking;
     private Vector<String> actorMovies;
     private Map<String, Vector<String>> actorPrizes;
 
@@ -62,18 +62,18 @@ public class DB2021Team03_Actor extends DB2021Team03_CustomUI {
         lbBirth.setText(birth);
 
 
-        // 이전으로 가기 버튼 기능(메인으로 이동한다.)
-        btnBack.addActionListener(new ActionListener() {
+        // 영화 목록(순위)으로 이동하기 버튼
+        btnRanking.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int returnCd = JOptionPane.showConfirmDialog(frame, "메인 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-                if(returnCd == JOptionPane.YES_OPTION) {
-                    new DB2021Team03_Main(nickname);
+                int returnCd = JOptionPane.showConfirmDialog(frame, "영화 목록 페이지로 돌아가시겠습니까?", "경고", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (returnCd == JOptionPane.YES_OPTION) {
+                    new DB2021Team03_Ranking(nickname);
                     frame.dispose();
                 }
             }
         });
 
-        // 메인으로 가기 버튼 기능
+        // 메인으로 이동하기 버튼
         btnMain.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -81,6 +81,10 @@ public class DB2021Team03_Actor extends DB2021Team03_CustomUI {
                 frame.dispose();
             }
         });
+
+        frame.setSize(600, 900);
+        frame.setResizable(false);
+        frame.setVisible(true);
 
         frame.setSize(600, 900);
         frame.setResizable(false);
@@ -138,7 +142,7 @@ public class DB2021Team03_Actor extends DB2021Team03_CustomUI {
             }
         }
 
-        btnMain = custom.setBtnGreen("btnMain", "메인으로", 120, 680, 350, 40);
-        btnBack = custom.setBtnWhite("btnBack", "이전으로", 120, 730);
+        btnRanking = custom.setBtnWhite("btnBack", "영화 목록으로", 120, 680);
+        btnMain = custom.setBtnGreen("btnMain", "메인으로", 120, 730, 350, 40);
     }
 }

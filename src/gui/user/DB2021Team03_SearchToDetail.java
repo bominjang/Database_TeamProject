@@ -237,6 +237,7 @@ public class DB2021Team03_SearchToDetail extends DB2021Team03_CustomUI {
         lbTitleActor = custom.setLb("lbTitleDetail", "출연배우", 230, 450, 150, 20, "left", 17, "bold");
         panel.add(lbTitleActor);
 
+        // 출연 배우 출력하고 클릭하면 상세페이지로 이동하도록
         if(actors == null) {
             custom.setLb("lbActor", "없음", 319, 360, 200, 20, "left", 17, "plain");
         }
