@@ -99,7 +99,6 @@ public class DB2021Team03_ReviewDao {
             returnCnt = pstmt.executeUpdate();
             conn.commit();
 
-            conn.setAutoCommit(true);
             conn.close();
             return returnCnt;
 
@@ -107,6 +106,7 @@ public class DB2021Team03_ReviewDao {
             e.printStackTrace();
             try {
                 conn.rollback();
+                conn.setAutoCommit(true);
             } catch (SQLException se) {
                 System.out.println(se.getMessage());
             }
@@ -251,7 +251,6 @@ public class DB2021Team03_ReviewDao {
             returnCnt = pstmt.executeUpdate();
             conn.commit();
 
-            conn.setAutoCommit(true);
             conn.close();
             return returnCnt;
 
@@ -259,6 +258,7 @@ public class DB2021Team03_ReviewDao {
             e.printStackTrace();
             try {
                 conn.rollback();
+                conn.setAutoCommit(true);
             } catch (SQLException se) {
                 System.out.println(se.getMessage());
             }
@@ -321,7 +321,6 @@ public class DB2021Team03_ReviewDao {
             returnCnt = pstmt.executeUpdate();
             conn.commit();
 
-            conn.setAutoCommit(true);
             conn.close();
             return returnCnt;
 
@@ -329,6 +328,7 @@ public class DB2021Team03_ReviewDao {
             e.printStackTrace();
             try {
                 conn.rollback();
+                conn.setAutoCommit(true);
             } catch (SQLException se) {
                 System.out.println(se.getMessage());
             }
